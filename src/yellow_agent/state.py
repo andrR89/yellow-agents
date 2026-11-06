@@ -218,14 +218,14 @@ class StateReader:
         count = min(self._u8(self._sym.addr("wPartyCount")), PARTY_LENGTH)
         mons_base = self._sym.addr("wPartyMons")
         nicks_base = self._sym.addr("wPartyMonNicks")
-        return [
-            self._mon(
-                mons_base + i * PARTYMON_STRUCT_LENGTH,
-                battle=False,
-                nickname=self._name_at(nicks_base + i * NAME_LENGTH),
-            )
-            for i in range(count)
-        ]
+        party = []
+        for i in range(count):
+            base = mons_base + i * PARTYMON_STRUCT_LENGTH
+            if self._u8(base + PM_SPECIES) == 0:  # count bumped, struct not written yet
+                continue
+            nickname = self._name_at(nicks_base + i * NAME_LENGTH)
+            party.append(self._mon(base, battle=False, nickname=nickname))
+        return party
 
     def battle(self) -> Battle:
         raw = self._u8(self._sym.addr("wIsInBattle"))

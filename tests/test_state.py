@@ -55,6 +55,8 @@ def test_overworld_state(memory, symbols, gamedata):
 
 def test_party_count_is_clamped(memory, symbols, gamedata):
     memory.poke(symbols.addr("wPartyCount"), [0xFF])  # garbage during intro
+    for i in range(6):
+        memory.poke(symbols.addr("wPartyMons") + i * PARTYMON_STRUCT_LENGTH, [0x54])
     assert len(StateReader(memory.read, symbols, gamedata).party()) == 6
     assert PARTYMON_STRUCT_LENGTH == 44
 
@@ -92,3 +94,11 @@ def test_empty_battle_slot_is_none(memory, symbols, gamedata):
     battle = StateReader(memory.read, symbols, gamedata).battle()
     assert battle.player_mon is None
     assert battle.enemy_mon is not None and battle.enemy_mon.species == "PIKACHU"
+
+
+def test_party_skips_a_mon_still_being_written(memory, symbols, gamedata):
+    # Receiving a Pokémon: wPartyCount is bumped before the struct is filled (session 3).
+    _write_pikachu(memory, symbols)
+    memory.poke(symbols.addr("wPartyCount"), [2])  # slot 2 is still all zeros
+    party = StateReader(memory.read, symbols, gamedata).party()
+    assert [m.species for m in party] == ["PIKACHU"]
