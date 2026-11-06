@@ -52,8 +52,15 @@ You need **your own dump** of a Pokémon Yellow cartridge (`.gbc`). ROMs are nev
 ### Play it from Claude Code
 
 ```bash
-claude mcp add yellow -e YELLOW_ROM=/path/to/pokeyellow.gbc -- yellow-mcp
+mkdir -p roms && cp /path/to/your/dump.gb roms/pokeyellow.gbc
 ```
+
+Inside this repo, Claude Code picks the server up from `.mcp.json`. Elsewhere:
+`claude mcp add yellow -e YELLOW_ROM=/path/to/pokeyellow.gbc -- yellow-mcp`.
+Set `YELLOW_RUNS=runs` to record every action (state + screenshot) for replay.
+
+Tests: `pytest` runs without a ROM; with `YELLOW_ROM` set, `tests/test_rom.py` also plays a new
+game end to end.
 
 …then ask Claude Code to `get_state` and start playing. Codex CLI and Claude Desktop work the same
 way: any MCP client can launch `yellow-mcp` over stdio.
@@ -62,8 +69,8 @@ way: any MCP client can launch `yellow-mcp` over stdio.
 
 | Tool | What it does |
 |---|---|
-| `get_state` | Map, x/y, facing, party (species, level, HP, moves/PP), badges, money, Pikachu happiness, battle |
-| `press_buttons` | Press up to 30 buttons in order; returns the new state |
+| `get_state` | Map, x/y, facing, party (species, level, HP, moves/PP), badges, money, Pikachu happiness, battle, and `screen` (overworld / text / menu / cutscene, visible text, menu cursor) |
+| `press_buttons` | Press up to 30 buttons in order; returns the new state. A direction walks exactly one tile (closed-loop on RAM, see [ADR 0001](docs/adr/0001-closed-loop-walking.md)) |
 | `wait` | Run frames without input |
 | `screenshot` | PNG of the screen (for menus/dialogue) |
 | `save_state` / `load_state` / `list_states` | Named checkpoints |

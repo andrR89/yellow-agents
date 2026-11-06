@@ -62,13 +62,17 @@ Planned interactive pieces:
 - [x] Data tables extracted from pret/pokeyellow
 - [x] MCP server with input validation
 - [x] Unit tests with fake memory
-- [ ] Validate with a real ROM: walk around Pallet Town via Claude Code
-- [ ] Tune `HOLD_FRAMES` / `SETTLE_FRAMES` so one press = one tile, reliably
-- [ ] Detect "text box open" / "menu open" in the state (so the model knows when to press A)
+- [x] Validate with a real ROM: new game → Pallet Town → Pikachu, over the MCP stdio client and
+      `tests/test_rom.py` (session 1)
+- [ ] Same thing driven by Claude Code itself as the MCP client
+- [x] One press = one tile, reliably: closed-loop walking on `wWalkCounter` replaced fixed
+      `HOLD_FRAMES` / `SETTLE_FRAMES` ([ADR 0001](adr/0001-closed-loop-walking.md))
+- [x] Detect "text box open" / "menu open": `screen` = overworld / text / menu / cutscene, the
+      visible text and the item under the cursor, read from `wTileMap`
 
-- [ ] Export state snapshots + raw RAM bytes to JSON (feeds the site's RAM decoder)
-- [ ] Run recorder format (frame, screenshot, state, prompt, response, action, tokens, latency)
-      — defined now so every later run can be replayed on the site
+- [x] Export state snapshots + raw RAM bytes to JSON (`yellow-snapshot`, `site/data/snapshots/`)
+- [x] Run recorder format (`recorder.py`: frame, screenshot, state, prompt, response, action,
+      tokens, latency, cost); the MCP server records when `YELLOW_RUNS` is set
 - [ ] Site v1: architecture overview, RAM → state decoder, MCP call flow
 
 **Milestone:** Claude Code plays through MCP from a new game to receiving Pikachu.

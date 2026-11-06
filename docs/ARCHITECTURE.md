@@ -3,16 +3,22 @@
 ## Layers
 
 1. **Emulator** (`emulator.py`): PyBoy headless at unlimited speed. Owns input timing and save
-   states. No AI here.
+   states. No AI here. Directions are closed-loop on `wWalkCounter`
+   ([ADR 0001](adr/0001-closed-loop-walking.md)); every action renders its last frame, so
+   screenshots never advance the game.
 2. **State** (`state.py`): reads RAM via `pokeyellow.sym` into pydantic models. Pure function of
-   memory, unit-tested with a fake memory. This is the agent's primary "eyes"; the screenshot is
-   a fallback for menus and dialogue.
+   memory, unit-tested with a fake memory. This is the agent's primary "eyes". It includes
+   `screen`, decoded from the `wTileMap` tile buffer: overworld / text / menu / cutscene, the
+   visible text and the menu item under the cursor, so dialogue and menus need no screenshot.
 3. **Tools** (`mcp_server.py`): the action surface. Validated inputs (button whitelist, bounded
    sequences, save names that can't become paths). Same tools for any MCP client and, later, for
    our own agent loop.
 4. **Models** (`models/`): one `ChatModel` interface; Claude, OpenAI and Ollama (via the
    OpenAI-compatible endpoint) are implementations chosen by a `provider:model` string.
 5. **Agent** *(phase 2+)*: planner / navigator / battle, memory, routing.
+6. **Recording** (`recorder.py`, `snapshot.py`): every run is a JSONL file (header + one line per
+   action: frame, state, action, screenshot, prompt/response, tokens, latency, cost); RAM
+   snapshots pair raw bytes with the fields they become. Both feed the showcase site.
 
 ## Principles
 
