@@ -5,6 +5,8 @@ Read by Codex directly and by Claude Code through `CLAUDE.md`.
 ## Project
 AI agent that plays Pokémon Yellow via PyBoy. Roadmap and module mapping: `docs/ROADMAP.md`.
 Architecture and principles: `docs/ARCHITECTURE.md`.
+Why this project, model split (Claude / local GPU / Codex) and agreed constraints:
+`docs/STUDY_NOTES.md` (Portuguese). Read it before proposing design changes.
 
 ## Rules
 - Python ≥ 3.11, type hints everywhere, pydantic for data that crosses boundaries.
