@@ -38,7 +38,7 @@ actions with what happened. Call exactly one tool per turn.
   through a door or stairs), 'text' or 'script' (the game took over: call advance_text).
 - In a battle at FIGHT / PKMN / ITEM / RUN: use_move(slot) picks a move and plays the turn.
 - press_buttons and wait are fallbacks for anything else.
-Before the tool call, write one short sentence: what you are doing and why."""
+Fill each tool's `reason` with one short sentence: what you are doing and why."""
 
 _DIRECTION = {"type": "string", "enum": list(actions.DIRECTIONS)}
 TOOLS: list[ToolSpec] = [
@@ -68,6 +68,9 @@ TOOLS: list[ToolSpec] = [
                  "frames": {"type": "integer", "minimum": 1, "maximum": actions.MAX_WAIT_FRAMES}},
               "required": ["frames"]}),
 ]  # fmt: skip
+_REASON = {"type": "string", "description": "One short sentence: what you are doing and why."}
+for _tool in TOOLS:  # every tool takes an optional `reason`: the replay shows it
+    _tool.parameters.setdefault("properties", {})["reason"] = _REASON
 
 
 # -- what the model sees ----------------------------------------------------------------
@@ -165,7 +168,7 @@ def _str(args: dict[str, Any], key: str) -> str:
 
 def execute(game: actions.Game, call: ToolCall) -> ActionResult:
     """Run one tool call. Raises ActionError for anything invalid (nothing pressed then)."""
-    a = call.arguments
+    a = {k: v for k, v in call.arguments.items() if k != "reason"}
     if "_raw" in a:
         raise ActionError(f"arguments are not valid JSON: {a['_raw']!r}")
     match call.name:
@@ -260,7 +263,13 @@ def run_agent(
             outcome = "ERROR: no tool was called. Call exactly one tool."
         else:
             call = resp.tool_calls[0]
-            action = {"tool": call.name, **call.arguments}
+            reason = call.arguments.get("reason")
+            if isinstance(reason, str) and reason.strip() and not resp.text:
+                resp.text = reason.strip()  # what the model "said" for this turn
+            action = {
+                "tool": call.name,
+                **{k: v for k, v in call.arguments.items() if k != "reason"},
+            }
             run.tools[call.name] = run.tools.get(call.name, 0) + 1
             try:
                 result = execute(game, call)

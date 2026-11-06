@@ -128,3 +128,11 @@ def test_every_tool_has_a_json_schema_object():
         "advance_text", "walk", "talk", "choose", "use_move", "press_buttons", "wait",
     }  # fmt: skip
     assert all(t.parameters["type"] == "object" for t in TOOLS)
+
+
+def test_reason_is_kept_as_what_the_model_said_and_not_passed_to_the_action():
+    game = FakeGame([text("Hi"), overworld()])
+    model = ScriptedModel([T("advance_text", reason="Read Oak's lines.")])
+    run = run_agent(game, model, "g", on_overworld, max_turns=3, budget_usd=1)
+    assert run.stop == "success" and run.invalid_actions == 0
+    assert all("reason" in t.parameters["properties"] for t in TOOLS)
