@@ -241,7 +241,8 @@ footer { max-width: 1120px; margin: 0 auto; padding: 2rem clamp(1rem, 4vw, 2rem)
 #replay > .controls { margin-block-end: 2.5rem; }
 
 /* ---------------------------------------------------------------- run picker, model words */
-.rp-pick { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; margin-block: 1.25rem 0; color: var(--ink-2); font-size: 0.9rem; }
+.rp-picks { display: flex; gap: 1.25rem; flex-wrap: wrap; margin-block: 1.25rem 0; }
+.rp-pick { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; color: var(--ink-2); font-size: 0.9rem; }
 .rp-pick select { background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 0.35rem 0.6rem; font: inherit; max-width: 100%; }
 .rp-said { margin-block-start: 0.75rem; border-block-start: 1px solid var(--line); padding-block-start: 0.6rem; }
 .rp-said p { margin: 0.2rem 0; color: var(--ink); font-size: 0.9rem; }
@@ -250,7 +251,8 @@ footer { max-width: 1120px; margin: 0 auto; padding: 2rem clamp(1rem, 4vw, 2rem)
 
 /* ---------------------------------------------------------------- benchmark */
 .bench-wrap { overflow-x: auto; margin-block: 1.5rem 1rem; }
-table.bench { border-collapse: separate; border-spacing: 6px; min-width: 640px; width: 100%; }
+table.bench { border-collapse: separate; border-spacing: 6px; min-width: 1000px; width: 100%; table-layout: fixed; }
+table.bench tr > th:first-child { width: 150px; }
 table.bench th { text-align: start; font-size: 0.85rem; color: var(--ink-2); font-weight: 600; padding: 0.2rem 0.4rem; }
 table.bench th[scope="row"] { white-space: nowrap; }
 table.bench td { padding: 0; vertical-align: top; }

@@ -146,9 +146,14 @@
       <div><h4 data-i18n="label.decision"></h4><p data-i18n="replay.decision"></p></div>
     </div>
 
-    <label class="rp-pick"><span data-i18n="replay.pick"></span>
-      <select id="rp-run"></select>
-    </label>
+    <div class="rp-picks">
+      <label class="rp-pick"><span data-i18n="replay.pickModel"></span>
+        <select id="rp-model"></select>
+      </label>
+      <label class="rp-pick"><span data-i18n="replay.pickScenario"></span>
+        <select id="rp-scen"></select>
+      </label>
+    </div>
     <div class="player">
       <figure class="screen-frame player-screen">
         <img id="rp-img" alt="" width="160" height="144">
@@ -156,7 +161,7 @@
       </figure>
       <div class="player-side">
         <div class="panel">
-          <h5 data-i18n="replay.action"></h5>
+          <h5 id="rp-action-title" data-i18n="replay.action"></h5>
           <pre id="rp-action" class="json" dir="ltr"></pre>
           <h5 data-i18n="replay.state"></h5>
           <dl id="rp-state" class="rp-state" dir="ltr"></dl>

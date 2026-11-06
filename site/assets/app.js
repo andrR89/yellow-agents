@@ -322,25 +322,64 @@ function playReplay(on) {
   $("#rp-play").textContent = timers.rp ? t("ctl.pause") : t("ctl.play");
 }
 
-function shortModel(spec) { return (spec || "").split(":").pop().split("/").pop(); }
+function shortModel(spec) {
+  const s = spec || "";
+  return s.slice(s.indexOf(":") + 1).split("/").pop(); // "ollama:llama3.1:8b" -> "llama3.1:8b"
+}
 
-function runLabel(entry) {
-  if (entry.source === "mcp") return t("replay.run.mcp", { name: entry.player_name });
-  return t("replay.run.eval", { scenario: t(`bench.scenario.${entry.scenario}`), model: shortModel(entry.model) });
+const SCENARIO_ORDER = ["rival_battle", "pikachu", "route1"];
+const runModel = (e) => (e.source === "mcp" ? "mcp" : e.model);
+const runScenario = (e) => (e.source === "mcp" ? "mcp" : e.scenario);
+
+function modelLabel(key) {
+  if (key === "mcp") return t("replay.who.mcp");
+  return key.startsWith("ollama:") ? `${shortModel(key)} · ${t("replay.local")}` : shortModel(key);
+}
+
+function scenarioLabel(scenario) {
+  return scenario === "mcp" ? t("replay.run.mcp") : t(`bench.scenario.${scenario}`);
+}
+
+// model -> scenario -> latest run entry (run ids sort by time)
+function runTable() {
+  const table = new Map();
+  for (const e of data.runs) {
+    const m = runModel(e);
+    if (!table.has(m)) table.set(m, new Map());
+    table.get(m).set(runScenario(e), e);
+  }
+  const rank = (m) => (m === "mcp" ? 0 : m.startsWith("ollama:") ? 2 : 1);
+  return new Map([...table].sort(([a], [b]) => rank(a) - rank(b) || a.localeCompare(b)));
+}
+
+function fillScenarios(model, wanted) {
+  const byScenario = data.runTable.get(model);
+  const scenarios = [...byScenario.keys()].sort((a, b) => SCENARIO_ORDER.indexOf(a) - SCENARIO_ORDER.indexOf(b));
+  $("#rp-scen").innerHTML = scenarios.map((s) => `<option value="${esc(byScenario.get(s).run_id)}">${esc(scenarioLabel(s))}</option>`).join("");
+  const keep = byScenario.get(wanted) || byScenario.get(scenarios[0]);
+  $("#rp-scen").value = keep.run_id;
+  return keep.run_id;
+}
+
+function syncPickers(runId) {
+  const entry = data.runs.find((e) => e.run_id === runId);
+  $("#rp-model").value = runModel(entry);
+  fillScenarios(runModel(entry), runScenario(entry));
 }
 
 async function selectRun(runId, scroll = false) {
   playReplay(false);
   data.replay = data.runCache[runId] || (data.runCache[runId] = await getJSON(`data/runs/${runId}.json`));
-  $("#rp-run").value = runId;
+  syncPickers(runId);
   rp.i = 0;
   renderPlayer();
   if (scroll) $("#replay").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
 }
 
 function renderReplay() {
-  $("#rp-run").innerHTML = data.runs.map((e) => `<option value="${esc(e.run_id)}">${esc(runLabel(e))}</option>`).join("");
-  $("#rp-run").value = data.replay.run_id;
+  data.runTable = runTable();
+  $("#rp-model").innerHTML = [...data.runTable.keys()].map((m) => `<option value="${esc(m)}">${esc(modelLabel(m))}</option>`).join("");
+  syncPickers(data.replay.run_id);
   renderPlayer();
   renderCompare();
 }
@@ -348,7 +387,10 @@ function renderReplay() {
 function renderPlayer() {
   const r = data.replay;
   $("#rp-scrub").max = r.steps.length - 1;
-  const ms = r.milestones;
+  $("#rp-action-title").textContent = t(r.source === "mcp" ? "replay.action" : "replay.actionAgent");
+  // Milestones are the baseline's (new game -> Pikachu): they only mean something on such runs.
+  const fromNewGame = r.source === "mcp" || (r.notes && r.notes.scenario === "pikachu");
+  const ms = fromNewGame ? r.milestones : [];
   $("#rp-jumps").innerHTML = ms.map((m, k) => {
     const until = k + 1 < ms.length ? ms[k + 1].step : r.steps.length;
     return `<button type="button" data-step="${m.step}" data-until="${until}">${esc(t(`ms.${m.name}`))}</button>`;
@@ -414,8 +456,9 @@ function renderCompare() {
 // ---------------------------------------------------------------- benchmark
 function renderBench() {
   const rows = data.bench;
-  const scenarios = [...new Set(rows.map((r) => r.scenario))];
-  const models = [...new Set(rows.map((r) => r.model))];
+  const scenarios = [...new Set(rows.map((r) => r.scenario))].sort((a, b) => SCENARIO_ORDER.indexOf(a) - SCENARIO_ORDER.indexOf(b));
+  const rank = (m) => (m.startsWith("ollama:") ? 1 : 0);  // API models first, then local
+  const models = [...new Set(rows.map((r) => r.model))].sort((a, b) => rank(a) - rank(b) || a.localeCompare(b));
   const cell = (r) => {
     if (!r) return `<td class="na">—</td>`;
     const ok = r.success;
@@ -424,7 +467,7 @@ function renderBench() {
       <b>${ok ? "✓" : "✗"} ${esc(t(`bench.stop.${r.stop}`))}</b>
       <span>${esc(t("bench.cell", { turns: num(r.turns), frames: num(r.frames), cost, invalid: num(r.invalid_actions) }))}</span></button></td>`;
   };
-  $("#bench-table").innerHTML = `<tr><th>${esc(t("bench.col.scenario"))}</th>${models.map((m) => `<th>${esc(shortModel(m))}</th>`).join("")}</tr>` +
+  $("#bench-table").innerHTML = `<tr><th>${esc(t("bench.col.scenario"))}</th>${models.map((m) => `<th>${esc(m.startsWith("ollama:") ? `${shortModel(m)} · ${t("replay.local")}` : shortModel(m))}</th>`).join("")}</tr>` +
     scenarios.map((s) => `<tr><th scope="row">${esc(t(`bench.scenario.${s}`))}</th>${models.map((m) => cell(rows.find((r) => r.scenario === s && r.model === m))).join("")}</tr>`).join("");
   document.querySelectorAll(".bench-cell").forEach((b) => b.addEventListener("click", () => selectRun(b.dataset.run, true)));
   const wins = rows.filter((r) => r.success).length;
@@ -522,7 +565,11 @@ async function main() {
   $("#rp-prev").addEventListener("click", () => { playReplay(false); stepReplay(-1); });
   $("#rp-next").addEventListener("click", () => { playReplay(false); stepReplay(1); });
   $("#rp-play").addEventListener("click", () => playReplay(!timers.rp));
-  $("#rp-run").addEventListener("change", (e) => selectRun(e.target.value));
+  $("#rp-model").addEventListener("change", (e) => {
+    const current = data.runs.find((r) => r.run_id === data.replay.run_id);
+    selectRun(fillScenarios(e.target.value, runScenario(current)));
+  });
+  $("#rp-scen").addEventListener("change", (e) => selectRun(e.target.value));
   $("#rp-scrub").addEventListener("input", (e) => { playReplay(false); rp.i = +e.target.value; showStep(); });
   await setLocale(pickLocale());
 }
