@@ -6,6 +6,7 @@ import pytest
 
 from tests.fake_game import FakeGame, Phase, menu, overworld, text
 from yellow_agent.actions import (
+    BATTLE_STABLE_FRAMES,
     QUIET_FRAMES,
     STABLE_FRAMES,
     ActionError,
@@ -14,11 +15,13 @@ from yellow_agent.actions import (
     choose,
     cursor_moves,
     is_battle_menu,
+    press_buttons,
     talk,
     text_ready,
     use_move,
     validate_slot,
     validate_walk,
+    wait,
     walk,
 )
 from yellow_agent.emulator import StepResult
@@ -316,8 +319,9 @@ def test_choose_presses_a_again_when_the_menu_ignored_it():
     assert game.pressed[:2] == ["a", "a"] and r.stop is StopReason.OVERWORLD
 
 
-def test_battle_text_without_arrow_is_left_to_move_on_by_itself():
+def test_battle_text_without_arrow_waits_longer_before_a():
     assert not text_ready(BLANK, stable_frames=STABLE_FRAMES * 3, in_battle=True)
+    assert text_ready(BLANK, stable_frames=BATTLE_STABLE_FRAMES, in_battle=True)  # level up
     assert text_ready(_tiles_with_arrow(), stable_frames=0, in_battle=True)
 
 
@@ -332,3 +336,23 @@ def test_transcript_keeps_battle_text_that_moves_on_by_itself():
     r = advance_text(game)
     assert r.stop is StopReason.BATTLE_MENU and game.pressed == []
     assert r.transcript[:2] == ["EEVEE used", "TACKLE!"]
+
+
+def test_press_buttons_reports_where_it_ended():
+    game = FakeGame([text("Hi"), overworld()])
+    r = press_buttons(game, ["a"])
+    assert (r.stop, r.presses, game.pressed) == (StopReason.OVERWORLD, 1, ["a"])
+
+
+@pytest.mark.parametrize("buttons", [[], ["jump"], ["a"] * 31])
+def test_press_buttons_validates(buttons):
+    with pytest.raises(ActionError):
+        press_buttons(FakeGame([overworld()]), buttons)
+
+
+def test_wait_runs_frames_and_validates():
+    game = FakeGame([overworld(frames=10, input_enabled=False), text("Hey!")])
+    r = wait(game, 30)
+    assert (r.stop, r.frames) == (StopReason.TEXT, 30)
+    with pytest.raises(ActionError):
+        wait(game, 601)

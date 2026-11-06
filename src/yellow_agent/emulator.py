@@ -90,6 +90,10 @@ class Emulator:
     def in_battle(self) -> bool:
         return self._u8("wIsInBattle") != 0
 
+    def battle_result(self) -> int:
+        """wBattleResult after a battle: 0 won, 1 lost (measured on the rival's battle), 2 draw."""
+        return self._u8("wBattleResult")
+
     # -- input ---------------------------------------------------------------
     def _u8(self, symbol: str) -> int:
         return self.pyboy.memory[self.symbols.addr(symbol)]

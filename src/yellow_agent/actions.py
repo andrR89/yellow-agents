@@ -16,6 +16,7 @@ from .state import SCREEN_COLS, GameState, Screen, ScreenKind
 from .text import MORE_TEXT
 
 STABLE_FRAMES = 30  # text with no ▼ that has not changed this long is waiting for A
+BATTLE_STABLE_FRAMES = 150  # same in battle, past the pause of text that moves on by itself
 # Free control only counts after this long with input enabled and nothing on screen changing:
 # scripts pause with input enabled between parts (after Oak's catch: ~32 frames, measured).
 QUIET_FRAMES = 90
@@ -84,13 +85,14 @@ class Game(Protocol):
 
 
 def text_ready(tiles: list[int], stable_frames: int, in_battle: bool = False) -> bool:
-    """A can be pressed: ▼ is in the text box, or (outside battle) the screen stopped changing.
+    """A can be pressed: ▼ is in the text box, or the screen stopped changing.
 
-    In battle, text without ▼ moves on by itself; an A pressed then lands on the battle menu
-    that comes next and picks FIGHT (session 4)."""
+    In battle most text without ▼ moves on by itself, and an A pressed 30 frames in landed on
+    the battle menu that came next and picked FIGHT (session 4). Some battle text does wait for
+    A with no ▼ ("PIKACHU grew to level 6!" and its stats box), so battle waits longer."""
     if MORE_TEXT in tiles[TEXT_BOX_FIRST_ROW * SCREEN_COLS :]:
         return True
-    return not in_battle and stable_frames >= STABLE_FRAMES
+    return stable_frames >= (BATTLE_STABLE_FRAMES if in_battle else STABLE_FRAMES)
 
 
 def is_battle_menu(screen: Screen, in_battle: bool) -> bool:
@@ -347,3 +349,48 @@ def use_move(game: Game, slot: int) -> ActionResult:
         presses += more
         transcript += rest
     return _result(game, action, start, stop, presses, transcript)
+
+
+# -- raw input, for anything the actions above do not cover ------------------------------
+
+MAX_BUTTONS = 30
+MAX_WAIT_FRAMES = 600
+BUTTONS = ("a", "b", "start", "select", *DIRECTIONS)
+
+
+def _screen_stop(game: Game) -> StopReason:
+    screen = game.screen()
+    if screen.kind is ScreenKind.MENU:
+        return (
+            StopReason.BATTLE_MENU if is_battle_menu(screen, game.in_battle()) else StopReason.MENU
+        )
+    if screen.kind is ScreenKind.TEXT:
+        return StopReason.TEXT
+    return StopReason.OVERWORLD if game.input_enabled() else StopReason.SCRIPT
+
+
+def validate_buttons(buttons: list[str]) -> None:
+    if not buttons or len(buttons) > MAX_BUTTONS:
+        raise ActionError(f"pass 1-{MAX_BUTTONS} buttons")
+    bad = [b for b in buttons if b not in BUTTONS]
+    if bad:
+        raise ActionError(f"invalid buttons: {bad}; valid: {list(BUTTONS)}")
+
+
+def press_buttons(game: Game, buttons: list[str]) -> ActionResult:
+    """Raw presses, in order. Directions walk one tile each outside menus."""
+    validate_buttons(buttons)
+    start = game.frame
+    for b in buttons:
+        game.press(b)
+    action = {"tool": "press_buttons", "buttons": list(buttons)}
+    return _result(game, action, start, _screen_stop(game), len(buttons), [])
+
+
+def wait(game: Game, frames: int = 60) -> ActionResult:
+    """Let the game run without input."""
+    if not 1 <= frames <= MAX_WAIT_FRAMES:
+        raise ActionError(f"frames must be 1-{MAX_WAIT_FRAMES}")
+    start = game.frame
+    game.wait(frames)
+    return _result(game, {"tool": "wait", "frames": frames}, start, _screen_stop(game), 0, [])

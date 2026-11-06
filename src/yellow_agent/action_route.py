@@ -50,9 +50,11 @@ def _done(r: ActionResult) -> bool:
     return has_pikachu and r.stop is StopReason.OVERWORLD
 
 
-def play_to_pikachu_with_actions(emu: Emulator) -> Route:
+def play_to_pikachu_with_actions(
+    emu: Emulator, player_name: str = "CLAUDE", rival_name: str = "GEMINI"
+) -> Route:
     route = Route()
-    new_game(emu, "CLAUDE", "GEMINI")  # same names as the baseline and the MCP run
+    new_game(emu, player_name, rival_name)  # CLAUDE/GEMINI: same as the baseline and MCP run
     route.new_game_frame = emu.frame
 
     def do(result: ActionResult) -> ActionResult:
