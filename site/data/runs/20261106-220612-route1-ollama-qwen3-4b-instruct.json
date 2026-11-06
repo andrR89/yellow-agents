@@ -1,0 +1,1250 @@
+{
+ "run_id": "20261106-220612-route1-ollama-qwen3-4b-instruct",
+ "source": "eval",
+ "player_name": "QWEN",
+ "rival_name": "GEMINI",
+ "started_at": "2026-11-06T22:06:21.807966+00:00",
+ "git_commit": "558b7a4",
+ "start_frame": 18528,
+ "total_frames": 18528,
+ "actions": {
+  "go_to": 26,
+  "walk": 14
+ },
+ "wait_frames": 0,
+ "start_state": "route1",
+ "notes": {
+  "model": "ollama:qwen3:4b-instruct",
+  "scenario": "route1",
+  "goal": "You are in Professor Oak's lab after your first battle with GEMINI. Leave the lab: the exit is at the bottom of the room (x=4, y=11). Outside, the lab blocks the way north: walk left to x=9, north to y=2, right to x=10, then north onto ROUTE_1. Done when you are on ROUTE_1."
+ },
+ "cost_usd": 0.0,
+ "milestones": [
+  {
+   "name": "pallet_town",
+   "frame": 18528,
+   "step": 0,
+   "map_name": "PALLET_TOWN",
+   "x": 12,
+   "y": 12
+  },
+  {
+   "name": "north_exit",
+   "frame": 19394,
+   "step": 21,
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 1
+  },
+  {
+   "name": "got_pikachu",
+   "frame": 18528,
+   "step": 0,
+   "map_name": "PALLET_TOWN",
+   "x": 12,
+   "y": 12
+  }
+ ],
+ "steps": [
+  {
+   "index": 0,
+   "frame": 18528,
+   "action": {
+    "tool": "go_to",
+    "x": 4,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 12,
+   "y": 12,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000000.png",
+   "stop": "warped",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the exit of Professor Oak's lab to leave and proceed to the outside.",
+   "input_tokens": 1569,
+   "output_tokens": 49,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 1,
+   "frame": 18688,
+   "action": {
+    "tool": "go_to",
+    "x": 4,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 4,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000001.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1626,
+   "output_tokens": 28,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 2,
+   "frame": 18758,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 5
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 1,
+   "y": 11,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000002.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1665,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 3,
+   "frame": 18775,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 1,
+   "y": 11,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000003.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1706,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 4,
+   "frame": 18951,
+   "action": {
+    "tool": "go_to",
+    "x": 9,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 11,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000004.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to x=9, y=11 to proceed toward the north path after overcoming the lab's block.",
+   "input_tokens": 1747,
+   "output_tokens": 55,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 5,
+   "frame": 18968,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 5
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 11,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000005.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1793,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 6,
+   "frame": 18992,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 10,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000006.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1834,
+   "output_tokens": 26,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 7,
+   "frame": 19009,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 10,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000007.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move from x=9 to x=10 to proceed toward the north path to ROUTE_1.",
+   "input_tokens": 1855,
+   "output_tokens": 52,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 8,
+   "frame": 19009,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 10
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 10,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000008.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to x=10, y=10 to proceed toward the north exit to ROUTE_1.",
+   "input_tokens": 1896,
+   "output_tokens": 56,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 9,
+   "frame": 19169,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000009.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the north edge of PALLET_TOWN to reach ROUTE_1 via the exit at y=2.",
+   "input_tokens": 1896,
+   "output_tokens": 56,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 10,
+   "frame": 19190,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 11,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000010.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1896,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 11,
+   "frame": 19225,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000011.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the coordinate (10, 2) to proceed toward the exit and reach Route 1.",
+   "input_tokens": 1898,
+   "output_tokens": 54,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 12,
+   "frame": 19229,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000012.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the coordinate (10, 2) to proceed toward ROUTE_1 as per the goal.",
+   "input_tokens": 1901,
+   "output_tokens": 55,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 13,
+   "frame": 19250,
+   "action": {
+    "tool": "go_to",
+    "x": 9,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 2,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000013.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to x=9, y=2 to proceed toward the path leading to ROUTE_1 as per the goal.",
+   "input_tokens": 1901,
+   "output_tokens": 56,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 14,
+   "frame": 19254,
+   "action": {
+    "tool": "go_to",
+    "x": 9,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 2,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000014.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the coordinate (9,2) to align with the path leading to the exit and continue toward ROUTE_1.",
+   "input_tokens": 1901,
+   "output_tokens": 57,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 15,
+   "frame": 19258,
+   "action": {
+    "tool": "go_to",
+    "x": 9,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 2,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000015.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the coordinate (9,2) to align with the path leading to the exit of Professor Oak's lab.",
+   "input_tokens": 1902,
+   "output_tokens": 55,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 16,
+   "frame": 19262,
+   "action": {
+    "tool": "go_to",
+    "x": 9,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 2,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000016.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the starting position to prepare for the next step in the path.",
+   "input_tokens": 1903,
+   "output_tokens": 46,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 17,
+   "frame": 19297,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000017.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to x=10, y=2 to proceed toward the exit and follow the path to ROUTE_1.",
+   "input_tokens": 1947,
+   "output_tokens": 57,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 18,
+   "frame": 19332,
+   "action": {
+    "tool": "go_to",
+    "x": 9,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 2,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000018.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move left to x=9, y=2 to follow the path toward ROUTE_1 as per the goal.",
+   "input_tokens": 1901,
+   "output_tokens": 55,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 19,
+   "frame": 19349,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000019.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move from x=9 to x=10 on the same row to reach the next step toward Route 1.",
+   "input_tokens": 1901,
+   "output_tokens": 54,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 20,
+   "frame": 19371,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000020.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to x=10, y=2 to prepare for the next step in the path toward ROUTE_1.",
+   "input_tokens": 1898,
+   "output_tokens": 57,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 21,
+   "frame": 19394,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 1,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000021.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1898,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 22,
+   "frame": 19415,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000022.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1899,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 23,
+   "frame": 19432,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000023.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move left from x=10 to x=9 to proceed toward the exit at the bottom of the room.",
+   "input_tokens": 1899,
+   "output_tokens": 53,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 24,
+   "frame": 19524,
+   "action": {
+    "tool": "go_to",
+    "x": 9,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 2,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000024.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move left to x=9, y=2 to proceed past the lab block and continue toward Route 1.",
+   "input_tokens": 1899,
+   "output_tokens": 54,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 25,
+   "frame": 19528,
+   "action": {
+    "tool": "go_to",
+    "x": 9,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 2,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000025.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to x=9, y=2 to prepare for the next step in the path to ROUTE_1.",
+   "input_tokens": 1898,
+   "output_tokens": 55,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 26,
+   "frame": 19532,
+   "action": {
+    "tool": "go_to",
+    "x": 9,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 2,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000026.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the starting position to prepare for the next step in the path.",
+   "input_tokens": 1896,
+   "output_tokens": 46,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 27,
+   "frame": 19691,
+   "action": {
+    "tool": "go_to",
+    "x": 9,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 11,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000027.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the exit of Professor Oak's lab at (9,11) to leave the lab and proceed toward Route 1.",
+   "input_tokens": 1896,
+   "output_tokens": 59,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 28,
+   "frame": 19695,
+   "action": {
+    "tool": "go_to",
+    "x": 9,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 11,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000028.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1920,
+   "output_tokens": 28,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 29,
+   "frame": 19699,
+   "action": {
+    "tool": "go_to",
+    "x": 9,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 11,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000029.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the exit of Professor Oak's lab to proceed to the next part of the goal.",
+   "input_tokens": 1920,
+   "output_tokens": 51,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 30,
+   "frame": 19892,
+   "action": {
+    "tool": "go_to",
+    "x": 9,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000030.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the north entrance of the lab to begin the path to ROUTE_1.",
+   "input_tokens": 1922,
+   "output_tokens": 49,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 31,
+   "frame": 19913,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000031.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move right from x=9 to x=10 at y=2 to proceed toward the north path.",
+   "input_tokens": 1901,
+   "output_tokens": 54,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 32,
+   "frame": 19917,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000032.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to x=10, y=2 to proceed toward the north exit to ROUTE_1.",
+   "input_tokens": 1904,
+   "output_tokens": 54,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 33,
+   "frame": 19940,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 3
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 3,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000033.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move north from (10,2) to (10,3) to progress toward ROUTE_1.",
+   "input_tokens": 1906,
+   "output_tokens": 56,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 34,
+   "frame": 19957,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000034.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1909,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 35,
+   "frame": 19979,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000035.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1909,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 36,
+   "frame": 19983,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000036.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the starting position to prepare for heading north to ROUTE_1.",
+   "input_tokens": 1907,
+   "output_tokens": 48,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 37,
+   "frame": 19987,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000037.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the starting position to prepare for the next step in the route.",
+   "input_tokens": 1907,
+   "output_tokens": 47,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 38,
+   "frame": 20010,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 2,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000038.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1907,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 39,
+   "frame": 20031,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 8,
+   "y": 2,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220612-route1-ollama-qwen3-4b-instruct/000039.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move left from x=9, y=2 to x=8, y=2 to progress toward the exit at x=9, y=2.",
+   "input_tokens": 1904,
+   "output_tokens": 62,
+   "cost_usd": 0.0
+  }
+ ]
+}

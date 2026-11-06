@@ -56,39 +56,7 @@
   "steps": 35
  },
  {
-  "run_id": "20261106-210133-rival_battle-ollama-qwen3-4b-instruct",
-  "source": "eval",
-  "player_name": "QWEN",
-  "model": "ollama:qwen3:4b-instruct",
-  "scenario": "rival_battle",
-  "steps": 25
- },
- {
-  "run_id": "20261106-210154-pikachu-ollama-qwen3-4b-instruct",
-  "source": "eval",
-  "player_name": "QWEN",
-  "model": "ollama:qwen3:4b-instruct",
-  "scenario": "pikachu",
-  "steps": 40
- },
- {
-  "run_id": "20261106-210216-route1-ollama-qwen3-4b-instruct",
-  "source": "eval",
-  "player_name": "QWEN",
-  "model": "ollama:qwen3:4b-instruct",
-  "scenario": "route1",
-  "steps": 40
- },
- {
-  "run_id": "20261106-211444-rival_battle-ollama-qwen3-8b",
-  "source": "eval",
-  "player_name": "QWEN",
-  "model": "ollama:qwen3:8b",
-  "scenario": "rival_battle",
-  "steps": 14
- },
- {
-  "run_id": "20261106-211503-pikachu-ollama-qwen3-8b",
+  "run_id": "20261106-220055-pikachu-ollama-qwen3-8b",
   "source": "eval",
   "player_name": "QWEN",
   "model": "ollama:qwen3:8b",
@@ -96,7 +64,15 @@
   "steps": 40
  },
  {
-  "run_id": "20261106-211523-route1-ollama-qwen3-8b",
+  "run_id": "20261106-220130-rival_battle-ollama-qwen3-8b",
+  "source": "eval",
+  "player_name": "QWEN",
+  "model": "ollama:qwen3:8b",
+  "scenario": "rival_battle",
+  "steps": 17
+ },
+ {
+  "run_id": "20261106-220148-route1-ollama-qwen3-8b",
   "source": "eval",
   "player_name": "QWEN",
   "model": "ollama:qwen3:8b",
@@ -104,15 +80,7 @@
   "steps": 40
  },
  {
-  "run_id": "20261106-211838-rival_battle-ollama-llama3-1-8b",
-  "source": "eval",
-  "player_name": "LLAMA",
-  "model": "ollama:llama3.1:8b",
-  "scenario": "rival_battle",
-  "steps": 9
- },
- {
-  "run_id": "20261106-211853-pikachu-ollama-llama3-1-8b",
+  "run_id": "20261106-220228-pikachu-ollama-llama3-1-8b",
   "source": "eval",
   "player_name": "LLAMA",
   "model": "ollama:llama3.1:8b",
@@ -120,71 +88,7 @@
   "steps": 40
  },
  {
-  "run_id": "20261106-211918-route1-ollama-llama3-1-8b",
-  "source": "eval",
-  "player_name": "LLAMA",
-  "model": "ollama:llama3.1:8b",
-  "scenario": "route1",
-  "steps": 40
- },
- {
-  "run_id": "20261106-211953-rival_battle-ollama-qwen3-14b",
-  "source": "eval",
-  "player_name": "QWEN",
-  "model": "ollama:qwen3:14b",
-  "scenario": "rival_battle",
-  "steps": 16
- },
- {
-  "run_id": "20261106-212029-pikachu-ollama-qwen3-14b",
-  "source": "eval",
-  "player_name": "QWEN",
-  "model": "ollama:qwen3:14b",
-  "scenario": "pikachu",
-  "steps": 40
- },
- {
-  "run_id": "20261106-212117-route1-ollama-qwen3-14b",
-  "source": "eval",
-  "player_name": "QWEN",
-  "model": "ollama:qwen3:14b",
-  "scenario": "route1",
-  "steps": 40
- },
- {
-  "run_id": "20261106-215325-pikachu-ollama-qwen3-8b",
-  "source": "eval",
-  "player_name": "QWEN",
-  "model": "ollama:qwen3:8b",
-  "scenario": "pikachu",
-  "steps": 40
- },
- {
-  "run_id": "20261106-215400-rival_battle-ollama-qwen3-8b",
-  "source": "eval",
-  "player_name": "QWEN",
-  "model": "ollama:qwen3:8b",
-  "scenario": "rival_battle",
-  "steps": 20
- },
- {
-  "run_id": "20261106-215420-route1-ollama-qwen3-8b",
-  "source": "eval",
-  "player_name": "QWEN",
-  "model": "ollama:qwen3:8b",
-  "scenario": "route1",
-  "steps": 40
- },
- {
-  "run_id": "20261106-215500-pikachu-ollama-llama3-1-8b",
-  "source": "eval",
-  "player_name": "LLAMA",
-  "model": "ollama:llama3.1:8b",
-  "scenario": "pikachu",
-  "steps": 40
- },
- {
-  "run_id": "20261106-215527-rival_battle-ollama-llama3-1-8b",
+  "run_id": "20261106-220255-rival_battle-ollama-llama3-1-8b",
   "source": "eval",
   "player_name": "LLAMA",
   "model": "ollama:llama3.1:8b",
@@ -192,7 +96,7 @@
   "steps": 25
  },
  {
-  "run_id": "20261106-215549-route1-ollama-llama3-1-8b",
+  "run_id": "20261106-220318-route1-ollama-llama3-1-8b",
   "source": "eval",
   "player_name": "LLAMA",
   "model": "ollama:llama3.1:8b",
@@ -200,7 +104,7 @@
   "steps": 40
  },
  {
-  "run_id": "20261106-215629-pikachu-ollama-qwen3-14b",
+  "run_id": "20261106-220358-pikachu-ollama-qwen3-14b",
   "source": "eval",
   "player_name": "QWEN",
   "model": "ollama:qwen3:14b",
@@ -208,15 +112,15 @@
   "steps": 40
  },
  {
-  "run_id": "20261106-215722-rival_battle-ollama-qwen3-14b",
+  "run_id": "20261106-220452-rival_battle-ollama-qwen3-14b",
   "source": "eval",
   "player_name": "QWEN",
   "model": "ollama:qwen3:14b",
   "scenario": "rival_battle",
-  "steps": 25
+  "steps": 10
  },
  {
-  "run_id": "20261106-215752-route1-ollama-qwen3-14b",
+  "run_id": "20261106-220513-route1-ollama-qwen3-14b",
   "source": "eval",
   "player_name": "QWEN",
   "model": "ollama:qwen3:14b",
@@ -224,7 +128,7 @@
   "steps": 9
  },
  {
-  "run_id": "20261106-215811-pikachu-ollama-qwen3-4b-instruct",
+  "run_id": "20261106-220532-pikachu-ollama-qwen3-4b-instruct",
   "source": "eval",
   "player_name": "QWEN",
   "model": "ollama:qwen3:4b-instruct",
@@ -232,15 +136,15 @@
   "steps": 40
  },
  {
-  "run_id": "20261106-215836-rival_battle-ollama-qwen3-4b-instruct",
+  "run_id": "20261106-220557-rival_battle-ollama-qwen3-4b-instruct",
   "source": "eval",
   "player_name": "QWEN",
   "model": "ollama:qwen3:4b-instruct",
   "scenario": "rival_battle",
-  "steps": 25
+  "steps": 12
  },
  {
-  "run_id": "20261106-215857-route1-ollama-qwen3-4b-instruct",
+  "run_id": "20261106-220612-route1-ollama-qwen3-4b-instruct",
   "source": "eval",
   "player_name": "QWEN",
   "model": "ollama:qwen3:4b-instruct",

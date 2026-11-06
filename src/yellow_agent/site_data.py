@@ -225,6 +225,24 @@ def _notes(raw: str | None) -> dict[str, Any]:
     return value if isinstance(value, dict) else {"text": raw}
 
 
+def _prune_replays(site: Path) -> None:
+    """Keep only the latest replay per (source, model, scenario): the site shows that one, and
+    older screenshots would only grow the repository."""
+    runs = site / "data" / "runs"
+    latest: dict[tuple[str, Any, Any], str] = {}
+    for p in sorted(runs.glob("*.json")):  # run ids start with the time: later sorts last
+        if p.stem == "index":
+            continue
+        r = json.loads(p.read_text(encoding="utf-8"))
+        notes = r.get("notes") or {}
+        latest[(r["source"], notes.get("model"), notes.get("scenario"))] = p.stem
+    keep = set(latest.values())
+    for p in runs.glob("*.json"):
+        if p.stem != "index" and p.stem not in keep:
+            p.unlink()
+            shutil.rmtree(site / "media" / "runs" / p.stem, ignore_errors=True)
+
+
 def write_replay(run_dir: Path, site: Path) -> Replay:
     """Export one run to site/data/runs/<id>.json and refresh the runs index."""
     replay = export_run(run_dir, site)
@@ -233,6 +251,7 @@ def write_replay(run_dir: Path, site: Path) -> Replay:
     (runs / f"{replay.run_id}.json").write_text(
         replay.model_dump_json(indent=1) + "\n", encoding="utf-8"
     )
+    _prune_replays(site)
     index = []
     for p in sorted(runs.glob("*.json")):
         if p.stem == "index":

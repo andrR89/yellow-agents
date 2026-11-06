@@ -1,0 +1,1151 @@
+{
+ "run_id": "20261106-220532-pikachu-ollama-qwen3-4b-instruct",
+ "source": "eval",
+ "player_name": "QWEN",
+ "rival_name": "GEMINI",
+ "started_at": "2026-11-06T22:05:34.783409+00:00",
+ "git_commit": "558b7a4",
+ "start_frame": 4480,
+ "total_frames": 7058,
+ "actions": {
+  "go_to": 15,
+  "walk": 19,
+  "talk": 6
+ },
+ "wait_frames": 0,
+ "start_state": "pikachu",
+ "notes": {
+  "model": "ollama:qwen3:4b-instruct",
+  "scenario": "pikachu",
+  "goal": "A new game: you are in your bedroom, on the 2nd floor of your house in Pallet Town. The stairs are at the top right of the bedroom (x=7, y=1). Downstairs, the front door is the mat at the bottom of the room (x=3, y=7): stand on it and walk down to go outside. In Pallet Town, walk north to the top edge of town (x=10-11, y=0) and into the tall grass: Professor Oak stops you and takes you to his lab; let the scene play. When you can move in the lab, take the Poké Ball on the table to your right: stand right below it and talk to it facing up. Decline to give a nickname. Done when PIKACHU is in your party and you can move again."
+ },
+ "cost_usd": 0.0,
+ "milestones": [
+  {
+   "name": "pallet_town",
+   "frame": 4743,
+   "step": 2,
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6
+  },
+  {
+   "name": "oaks_lab",
+   "frame": 5055,
+   "step": 3,
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 11
+  }
+ ],
+ "steps": [
+  {
+   "index": 0,
+   "frame": 4480,
+   "action": {
+    "tool": "go_to",
+    "x": 7,
+    "y": 1
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 7,
+   "y": 1,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000000.png",
+   "stop": "warped",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the stairs at the top right of the bedroom to go downstairs.",
+   "input_tokens": 1492,
+   "output_tokens": 46,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 1,
+   "frame": 4571,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 5
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 7,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000001.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move down from the bedroom to reach the front door at the bottom of the room.",
+   "input_tokens": 1591,
+   "output_tokens": 47,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 2,
+   "frame": 4743,
+   "action": {
+    "tool": "go_to",
+    "x": 3,
+    "y": 7
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000002.png",
+   "stop": "warped",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the front door at the bottom of the bedroom to go outside.",
+   "input_tokens": 1634,
+   "output_tokens": 46,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 3,
+   "frame": 5055,
+   "action": {
+    "tool": "go_to",
+    "x": 12,
+    "y": 11
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000003.png",
+   "stop": "warped",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to Professor Oak's lab by going to the exit at (12,11) in Pallet Town.",
+   "input_tokens": 1715,
+   "output_tokens": 57,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 4,
+   "frame": 5076,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 10,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000004.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1741,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 5,
+   "frame": 5130,
+   "action": {
+    "tool": "talk"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 10,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000005.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Stand right below the Poké Ball on the table and talk to it to take it, facing up.",
+   "input_tokens": 1783,
+   "output_tokens": 39,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 6,
+   "frame": 5130,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1000000000000000
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 10,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000006.png",
+   "stop": null,
+   "error": "ERROR: tiles must be 1-20",
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1810,
+   "output_tokens": 40,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 7,
+   "frame": 5151,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 9,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000007.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1857,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 8,
+   "frame": 5205,
+   "action": {
+    "tool": "talk"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 9,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000008.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Stand right below the Poké Ball on the table and talk to it to take it, facing up.",
+   "input_tokens": 1897,
+   "output_tokens": 39,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 9,
+   "frame": 5259,
+   "action": {
+    "tool": "talk"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 9,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000009.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Stand right below the Poké Ball on the table and talk to it to take it, facing up.",
+   "input_tokens": 1879,
+   "output_tokens": 39,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 10,
+   "frame": 5313,
+   "action": {
+    "tool": "talk"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 9,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000010.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Stand right below the Poké Ball on the table and talk to it to take it, as instructed.",
+   "input_tokens": 1863,
+   "output_tokens": 39,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 11,
+   "frame": 5422,
+   "action": {
+    "tool": "go_to",
+    "x": 8,
+    "y": 10
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 10,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000011.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the person at (8,10) in the lab to interact, as walking up further is ineffective and may not yield progress.",
+   "input_tokens": 1893,
+   "output_tokens": 61,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 12,
+   "frame": 5478,
+   "action": {
+    "tool": "go_to",
+    "x": 8,
+    "y": 10
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 10,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000012.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the person's location at (8,10) in the lab to interact.",
+   "input_tokens": 1809,
+   "output_tokens": 51,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 13,
+   "frame": 5501,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 9,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000013.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1812,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 14,
+   "frame": 5576,
+   "action": {
+    "tool": "go_to",
+    "x": 8,
+    "y": 10
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 10,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000014.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the person's location in the lab to interact, as they are present and likely to provide a key action.",
+   "input_tokens": 1826,
+   "output_tokens": 56,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 15,
+   "frame": 5599,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 9,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000015.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1825,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 16,
+   "frame": 5674,
+   "action": {
+    "tool": "go_to",
+    "x": 8,
+    "y": 10
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 10,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000016.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the person's location in the lab to interact and proceed with the scene.",
+   "input_tokens": 1825,
+   "output_tokens": 49,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 17,
+   "frame": 5727,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 10
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 8,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000017.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move up from current position to reach the table with the Poké Ball in the lab.",
+   "input_tokens": 1845,
+   "output_tokens": 49,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 18,
+   "frame": 5744,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 10
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 8,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000018.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1860,
+   "output_tokens": 26,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 19,
+   "frame": 5761,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 10
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 8,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000019.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1876,
+   "output_tokens": 26,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 20,
+   "frame": 5778,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 10
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 8,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000020.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1874,
+   "output_tokens": 26,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 21,
+   "frame": 5967,
+   "action": {
+    "tool": "go_to",
+    "x": 4,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 12,
+   "y": 12,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000021.png",
+   "stop": "warped",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the exit at the bottom left of the lab to leave and go outside, as the previous actions of walking up repeatedly failed and did not progress.",
+   "input_tokens": 1918,
+   "output_tokens": 63,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 22,
+   "frame": 6058,
+   "action": {
+    "tool": "go_to",
+    "x": 12,
+    "y": 11
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000022.png",
+   "stop": "warped",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the top edge of Pallet Town to enter the tall grass where Professor Oak is located.",
+   "input_tokens": 1940,
+   "output_tokens": 53,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 23,
+   "frame": 6079,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 10,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000023.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1917,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 24,
+   "frame": 6100,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 9,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000024.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1918,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 25,
+   "frame": 6154,
+   "action": {
+    "tool": "talk"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 9,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000025.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Stand right below the Poké Ball on the table and talk to it to take it, facing up.",
+   "input_tokens": 1914,
+   "output_tokens": 39,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 26,
+   "frame": 6263,
+   "action": {
+    "tool": "go_to",
+    "x": 8,
+    "y": 10
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 10,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000026.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the position right below the Poké Ball on the table to interact with it.",
+   "input_tokens": 1898,
+   "output_tokens": 50,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 27,
+   "frame": 6319,
+   "action": {
+    "tool": "go_to",
+    "x": 8,
+    "y": 10
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 10,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000027.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the person's location at (8,10) in the lab to interact with Professor Oak and continue the scene.",
+   "input_tokens": 1863,
+   "output_tokens": 58,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 28,
+   "frame": 6375,
+   "action": {
+    "tool": "go_to",
+    "x": 8,
+    "y": 10
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 10,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000028.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the person's location in the lab to interact with Professor Oak and continue the scene.",
+   "input_tokens": 1865,
+   "output_tokens": 51,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 29,
+   "frame": 6392,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 10,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000029.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1867,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 30,
+   "frame": 6409,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 10,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000030.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1864,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 31,
+   "frame": 6465,
+   "action": {
+    "tool": "go_to",
+    "x": 8,
+    "y": 10
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 10,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000031.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the person's location at (8,10) in the lab to interact and proceed with the scene.",
+   "input_tokens": 1860,
+   "output_tokens": 56,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 32,
+   "frame": 6521,
+   "action": {
+    "tool": "go_to",
+    "x": 8,
+    "y": 10
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 10,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000032.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the person's location at (8,10) in the lab to interact and proceed with the scene.",
+   "input_tokens": 1862,
+   "output_tokens": 56,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 33,
+   "frame": 6544,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 9,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000033.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1865,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 34,
+   "frame": 6565,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 8,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000034.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1879,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 35,
+   "frame": 6817,
+   "action": {
+    "tool": "talk"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 8,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000035.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Stand right below the Poké Ball on the table and talk to it to take it, facing up.",
+   "input_tokens": 1876,
+   "output_tokens": 39,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 36,
+   "frame": 6834,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 8,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000036.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1873,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 37,
+   "frame": 6851,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 8,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000037.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1870,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 38,
+   "frame": 6868,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 8,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000038.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": null,
+   "input_tokens": 1869,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 39,
+   "frame": 7058,
+   "action": {
+    "tool": "go_to",
+    "x": 4,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 12,
+   "y": 12,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220532-pikachu-ollama-qwen3-4b-instruct/000039.png",
+   "stop": "warped",
+   "error": null,
+   "model": "ollama:qwen3:4b-instruct",
+   "said": "Move to the exit at the top left of the lab to leave and go outside, as the current position is blocked and we need to progress toward the goal.",
+   "input_tokens": 1914,
+   "output_tokens": 64,
+   "cost_usd": 0.0
+  }
+ ]
+}

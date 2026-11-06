@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 from yellow_agent.site_data import export_sessions, parse_frontmatter
@@ -119,3 +120,17 @@ def test_export_run_copies_screens_and_counts_actions(tmp_path):
     assert replay.steps[-1].party == ["PIKACHU Lv5"]
     shot = replay.steps[0].screenshot
     assert shot == "media/runs/r1/000000.png" and (site / shot).read_bytes() == b"\x89PNG"
+
+
+def test_old_replays_of_the_same_model_and_stage_are_pruned(tmp_path):
+    from yellow_agent.site_data import _prune_replays
+
+    runs, media = tmp_path / "data" / "runs", tmp_path / "media" / "runs"
+    runs.mkdir(parents=True)
+    for run_id, model in [("20260101-a", "m1"), ("20260102-b", "m1"), ("20260101-c", "m2")]:
+        notes = {"model": model, "scenario": "pikachu"}
+        (runs / f"{run_id}.json").write_text(json.dumps({"source": "eval", "notes": notes}))
+        (media / run_id).mkdir(parents=True)
+    _prune_replays(tmp_path)
+    assert sorted(p.stem for p in runs.glob("*.json")) == ["20260101-c", "20260102-b"]
+    assert sorted(p.name for p in media.iterdir()) == ["20260101-c", "20260102-b"]

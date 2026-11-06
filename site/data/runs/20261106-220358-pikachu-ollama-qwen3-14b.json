@@ -1,0 +1,1186 @@
+{
+ "run_id": "20261106-220358-pikachu-ollama-qwen3-14b",
+ "source": "eval",
+ "player_name": "QWEN",
+ "rival_name": "GEMINI",
+ "started_at": "2026-11-06T22:04:00.664963+00:00",
+ "git_commit": "558b7a4",
+ "start_frame": 4480,
+ "total_frames": 11456,
+ "actions": {
+  "go_to": 22,
+  "advance_text": 14,
+  "use_move": 1,
+  "choose": 2,
+  "talk": 1
+ },
+ "wait_frames": 0,
+ "start_state": "pikachu",
+ "notes": {
+  "model": "ollama:qwen3:14b",
+  "scenario": "pikachu",
+  "goal": "A new game: you are in your bedroom, on the 2nd floor of your house in Pallet Town. The stairs are at the top right of the bedroom (x=7, y=1). Downstairs, the front door is the mat at the bottom of the room (x=3, y=7): stand on it and walk down to go outside. In Pallet Town, walk north to the top edge of town (x=10-11, y=0) and into the tall grass: Professor Oak stops you and takes you to his lab; let the scene play. When you can move in the lab, take the Poké Ball on the table to your right: stand right below it and talk to it facing up. Decline to give a nickname. Done when PIKACHU is in your party and you can move again."
+ },
+ "cost_usd": 0.0,
+ "milestones": [
+  {
+   "name": "pallet_town",
+   "frame": 4737,
+   "step": 1,
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6
+  },
+  {
+   "name": "north_exit",
+   "frame": 4930,
+   "step": 2,
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0
+  },
+  {
+   "name": "oak_stops_you",
+   "frame": 4930,
+   "step": 2,
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0
+  },
+  {
+   "name": "oak_battle_menu",
+   "frame": 5959,
+   "step": 3,
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0
+  },
+  {
+   "name": "oaks_lab",
+   "frame": 9114,
+   "step": 7,
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3
+  }
+ ],
+ "steps": [
+  {
+   "index": 0,
+   "frame": 4480,
+   "action": {
+    "tool": "go_to",
+    "x": 7,
+    "y": 1
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 7,
+   "y": 1,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000000.png",
+   "stop": "warped",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Go to the stairs to go downstairs.",
+   "input_tokens": 1308,
+   "output_tokens": 39,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 1,
+   "frame": 4737,
+   "action": {
+    "tool": "go_to",
+    "x": 3,
+    "y": 7
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000001.png",
+   "stop": "warped",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": null,
+   "input_tokens": 1407,
+   "output_tokens": 26,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 2,
+   "frame": 4930,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 0
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000002.png",
+   "stop": "text",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Walk to the top edge of Pallet Town to reach the tall grass where Professor Oak is waiting.",
+   "input_tokens": 1489,
+   "output_tokens": 52,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 3,
+   "frame": 5959,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "menu",
+    "lines": [
+     "PIKACHU",
+     "Lv5",
+     "FIGHT PKMN",
+     "ITEM RUN"
+    ],
+    "cursor": "FIGHT"
+   },
+   "party": [],
+   "battle": "wild",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000003.png",
+   "stop": "battle_menu",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Advancing the text to proceed with the scene where Professor Oak takes the player to his lab.",
+   "input_tokens": 1387,
+   "output_tokens": 38,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 4,
+   "frame": 5959,
+   "action": {
+    "tool": "use_move",
+    "slot": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "menu",
+    "lines": [
+     "PIKACHU",
+     "Lv5",
+     "FIGHT PKMN",
+     "ITEM RUN"
+    ],
+    "cursor": "FIGHT"
+   },
+   "party": [],
+   "battle": "wild",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000004.png",
+   "stop": null,
+   "error": "ERROR: no move in slot 1; moves: []",
+   "model": "ollama:qwen3:14b",
+   "said": null,
+   "input_tokens": 1504,
+   "output_tokens": 20,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 5,
+   "frame": 6011,
+   "action": {
+    "tool": "choose",
+    "item": "PKMN"
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "PIKACHU",
+     "Lv5",
+     "POKé BALL",
+     "× 1",
+     "CANCEL"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "wild",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000005.png",
+   "stop": null,
+   "error": "ERROR: no menu cursor on screen",
+   "model": "ollama:qwen3:14b",
+   "said": "Selecting PKMN to view the Pokémon details.",
+   "input_tokens": 1532,
+   "output_tokens": 35,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 6,
+   "frame": 6012,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "menu",
+    "lines": [
+     "PIKACHU",
+     "Lv5",
+     "POKé BALL",
+     "× 1",
+     "CANCEL"
+    ],
+    "cursor": "POKé BALL"
+   },
+   "party": [],
+   "battle": "wild",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000006.png",
+   "stop": "menu",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Advancing text to proceed with the battle menu.",
+   "input_tokens": 1554,
+   "output_tokens": 29,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 7,
+   "frame": 9114,
+   "action": {
+    "tool": "choose",
+    "item": "POKé BALL"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "GEMINI:"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000007.png",
+   "stop": "limit",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Select the POKé BALL to catch the PIKACHU.",
+   "input_tokens": 1611,
+   "output_tokens": 41,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 8,
+   "frame": 9114,
+   "action": {
+    "tool": "talk"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "GEMINI:"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000008.png",
+   "stop": null,
+   "error": "ERROR: talk needs the overworld screen; it is text (call advance_text)",
+   "model": "ollama:qwen3:14b",
+   "said": "Talk to the Poké Ball on the table to obtain it.",
+   "input_tokens": 1623,
+   "output_tokens": 31,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 9,
+   "frame": 9576,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000009.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Advancing dialogue to proceed with taking the Poké Ball.",
+   "input_tokens": 1605,
+   "output_tokens": 31,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 10,
+   "frame": 9576,
+   "action": {
+    "tool": "go_to",
+    "x": 7,
+    "y": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000010.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": null,
+   "input_tokens": 1779,
+   "output_tokens": 26,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 11,
+   "frame": 9576,
+   "action": {
+    "tool": "go_to",
+    "x": 7,
+    "y": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000011.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": null,
+   "input_tokens": 1779,
+   "output_tokens": 26,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 12,
+   "frame": 9576,
+   "action": {
+    "tool": "go_to",
+    "x": 7,
+    "y": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000012.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": null,
+   "input_tokens": 1767,
+   "output_tokens": 26,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 13,
+   "frame": 9666,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000013.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Advancing text to proceed with the scene in the lab.",
+   "input_tokens": 1828,
+   "output_tokens": 31,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 14,
+   "frame": 9666,
+   "action": {
+    "tool": "go_to",
+    "x": 7,
+    "y": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000014.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": null,
+   "input_tokens": 1786,
+   "output_tokens": 26,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 15,
+   "frame": 9666,
+   "action": {
+    "tool": "go_to",
+    "x": 7,
+    "y": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000015.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": null,
+   "input_tokens": 1780,
+   "output_tokens": 26,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 16,
+   "frame": 9666,
+   "action": {
+    "tool": "go_to",
+    "x": 7,
+    "y": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000016.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": null,
+   "input_tokens": 1748,
+   "output_tokens": 26,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 17,
+   "frame": 9722,
+   "action": {
+    "tool": "go_to",
+    "x": 4,
+    "y": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000017.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Move to the person at (4, 3) to interact with them.",
+   "input_tokens": 1811,
+   "output_tokens": 47,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 18,
+   "frame": 9778,
+   "action": {
+    "tool": "go_to",
+    "x": 4,
+    "y": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000018.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": null,
+   "input_tokens": 1742,
+   "output_tokens": 26,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 19,
+   "frame": 9778,
+   "action": {
+    "tool": "go_to",
+    "x": 7,
+    "y": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000019.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": null,
+   "input_tokens": 1742,
+   "output_tokens": 26,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 20,
+   "frame": 9778,
+   "action": {
+    "tool": "go_to",
+    "x": 7,
+    "y": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000020.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": null,
+   "input_tokens": 1742,
+   "output_tokens": 26,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 21,
+   "frame": 9778,
+   "action": {
+    "tool": "go_to",
+    "x": 7,
+    "y": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000021.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": null,
+   "input_tokens": 1742,
+   "output_tokens": 26,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 22,
+   "frame": 9834,
+   "action": {
+    "tool": "go_to",
+    "x": 4,
+    "y": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000022.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": null,
+   "input_tokens": 1803,
+   "output_tokens": 26,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 23,
+   "frame": 9890,
+   "action": {
+    "tool": "go_to",
+    "x": 4,
+    "y": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000023.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": null,
+   "input_tokens": 1757,
+   "output_tokens": 26,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 24,
+   "frame": 9946,
+   "action": {
+    "tool": "go_to",
+    "x": 4,
+    "y": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000024.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": null,
+   "input_tokens": 1757,
+   "output_tokens": 26,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 25,
+   "frame": 10072,
+   "action": {
+    "tool": "go_to",
+    "x": 4,
+    "y": 11
+   },
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "OAK: He"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000025.png",
+   "stop": "text",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": null,
+   "input_tokens": 1803,
+   "output_tokens": 27,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 26,
+   "frame": 10274,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 5,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000026.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Advancing the dialogue to proceed with the scene.",
+   "input_tokens": 1606,
+   "output_tokens": 29,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 27,
+   "frame": 10364,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 5,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000027.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Advancing the dialogue to proceed with the scene.",
+   "input_tokens": 1775,
+   "output_tokens": 29,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 28,
+   "frame": 10454,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 5,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000028.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Advancing the dialogue to see what Professor Oak says next.",
+   "input_tokens": 1760,
+   "output_tokens": 31,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 29,
+   "frame": 10544,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 5,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000029.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Advancing dialogue to proceed with the scene.",
+   "input_tokens": 1745,
+   "output_tokens": 28,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 30,
+   "frame": 10634,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 5,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000030.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Advancing dialogue to proceed with the game.",
+   "input_tokens": 1776,
+   "output_tokens": 28,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 31,
+   "frame": 10724,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 5,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000031.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Advancing dialogue to proceed with the scene.",
+   "input_tokens": 1761,
+   "output_tokens": 28,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 32,
+   "frame": 10814,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 5,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000032.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Advancing the dialogue to see if there are more instructions from Professor Oak.",
+   "input_tokens": 1746,
+   "output_tokens": 34,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 33,
+   "frame": 10904,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 5,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000033.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Advancing the dialogue to proceed with the scene.",
+   "input_tokens": 1731,
+   "output_tokens": 29,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 34,
+   "frame": 10979,
+   "action": {
+    "tool": "go_to",
+    "x": 4,
+    "y": 11
+   },
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "OAK: He"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000034.png",
+   "stop": "text",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Go to the exit of the lab to proceed further.",
+   "input_tokens": 1716,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 35,
+   "frame": 11181,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 5,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000035.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Advancing the dialogue to proceed with the scene.",
+   "input_tokens": 1501,
+   "output_tokens": 29,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 36,
+   "frame": 11271,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 5,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000036.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Advancing text to proceed with the dialogue.",
+   "input_tokens": 1685,
+   "output_tokens": 28,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 37,
+   "frame": 11344,
+   "action": {
+    "tool": "go_to",
+    "x": 4,
+    "y": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 4,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000037.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Move to the person at (4, 3) to interact with them.",
+   "input_tokens": 1685,
+   "output_tokens": 47,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 38,
+   "frame": 11400,
+   "action": {
+    "tool": "go_to",
+    "x": 4,
+    "y": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 4,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000038.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": "Move to the location of the Poké Ball on the table.",
+   "input_tokens": 1682,
+   "output_tokens": 44,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 39,
+   "frame": 11456,
+   "action": {
+    "tool": "go_to",
+    "x": 4,
+    "y": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 4,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220358-pikachu-ollama-qwen3-14b/000039.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:14b",
+   "said": null,
+   "input_tokens": 1697,
+   "output_tokens": 26,
+   "cost_usd": 0.0
+  }
+ ]
+}

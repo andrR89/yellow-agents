@@ -1,0 +1,613 @@
+{
+ "run_id": "20261106-220130-rival_battle-ollama-qwen3-8b",
+ "source": "eval",
+ "player_name": "QWEN",
+ "rival_name": "GEMINI",
+ "started_at": "2026-11-06T22:01:36.854231+00:00",
+ "git_commit": "922808f",
+ "start_frame": 12084,
+ "total_frames": 12084,
+ "actions": {
+  "go_to": 1,
+  "walk": 4,
+  "advance_text": 3,
+  "choose": 4,
+  "use_move": 5
+ },
+ "wait_frames": 0,
+ "start_state": "rival_battle",
+ "notes": {
+  "model": "ollama:qwen3:8b",
+  "scenario": "rival_battle",
+  "goal": "You are in Professor Oak's lab with your PIKACHU, free to move. Walk south towards the lab's exit: your rival GEMINI will stop you and challenge you to a battle. Win the battle. PIKACHU's attacking move is THUNDERSHOCK."
+ },
+ "cost_usd": 0.0,
+ "milestones": [
+  {
+   "name": "oak_battle_menu",
+   "frame": 13404,
+   "step": 9,
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6
+  },
+  {
+   "name": "oaks_lab",
+   "frame": 12084,
+   "step": 0,
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3
+  },
+  {
+   "name": "got_pikachu",
+   "frame": 12084,
+   "step": 0,
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3
+  }
+ ],
+ "steps": [
+  {
+   "index": 0,
+   "frame": 12084,
+   "action": {
+    "tool": "go_to",
+    "x": 5,
+    "y": 2
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv5"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220130-rival_battle-ollama-qwen3-8b/000000.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": "Walk south towards the lab's exit to encounter GEMINI.",
+   "input_tokens": 1347,
+   "output_tokens": 44,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 1,
+   "frame": 12107,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 4,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv5"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220130-rival_battle-ollama-qwen3-8b/000001.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1390,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 2,
+   "frame": 12128,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 5,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv5"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220130-rival_battle-ollama-qwen3-8b/000002.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1449,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 3,
+   "frame": 12149,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv5"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220130-rival_battle-ollama-qwen3-8b/000003.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1490,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 4,
+   "frame": 12166,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv5"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220130-rival_battle-ollama-qwen3-8b/000004.png",
+   "stop": "text",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1531,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 5,
+   "frame": 12584,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv5"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220130-rival_battle-ollama-qwen3-8b/000005.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": "Continue the dialogue to reach the battle with Gemini.",
+   "input_tokens": 1396,
+   "output_tokens": 29,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 6,
+   "frame": 12584,
+   "action": {
+    "tool": "choose",
+    "item": "YES"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv5"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220130-rival_battle-ollama-qwen3-8b/000006.png",
+   "stop": null,
+   "error": "ERROR: choose needs the menu screen; it is overworld",
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1636,
+   "output_tokens": 19,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 7,
+   "frame": 12584,
+   "action": {
+    "tool": "choose",
+    "item": "YES"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv5"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220130-rival_battle-ollama-qwen3-8b/000007.png",
+   "stop": null,
+   "error": "ERROR: choose needs the menu screen; it is overworld",
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1664,
+   "output_tokens": 19,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 8,
+   "frame": 12584,
+   "action": {
+    "tool": "choose",
+    "item": "YES"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv5"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220130-rival_battle-ollama-qwen3-8b/000008.png",
+   "stop": null,
+   "error": "ERROR: choose needs the menu screen; it is overworld",
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1692,
+   "output_tokens": 19,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 9,
+   "frame": 13404,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "menu",
+    "lines": [
+     "EEVEE",
+     "Lv5",
+     "PIKACHU",
+     "Lv5",
+     "19/ 19",
+     "FIGHT PKMN",
+     "ITEM RUN"
+    ],
+    "cursor": "FIGHT"
+   },
+   "party": [
+    "PIKACHU Lv5"
+   ],
+   "battle": "trainer",
+   "screenshot": "media/runs/20261106-220130-rival_battle-ollama-qwen3-8b/000009.png",
+   "stop": "battle_menu",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": "Advance the dialogue to see what happens next.",
+   "input_tokens": 1725,
+   "output_tokens": 28,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 10,
+   "frame": 13436,
+   "action": {
+    "tool": "choose",
+    "item": "FIGHT"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "menu",
+    "lines": [
+     "EEVEE",
+     "Lv5",
+     "PIKACHU",
+     "Lv5",
+     "TYPE/",
+     "ELECTRIC | 19/ 19",
+     "30/30",
+     "THUNDERSHOCK",
+     "GROWL",
+     "-",
+     "-"
+    ],
+    "cursor": "THUNDERSHOCK"
+   },
+   "party": [
+    "PIKACHU Lv5"
+   ],
+   "battle": "trainer",
+   "screenshot": "media/runs/20261106-220130-rival_battle-ollama-qwen3-8b/000010.png",
+   "stop": "menu",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1657,
+   "output_tokens": 20,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 11,
+   "frame": 13928,
+   "action": {
+    "tool": "use_move",
+    "slot": 1,
+    "move": "THUNDERSHOCK"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "menu",
+    "lines": [
+     "EEVEE",
+     "Lv5",
+     "PIKACHU",
+     "Lv5",
+     "13/ 19",
+     "FIGHT PKMN",
+     "ITEM RUN"
+    ],
+    "cursor": "FIGHT"
+   },
+   "party": [
+    "PIKACHU Lv5"
+   ],
+   "battle": "trainer",
+   "screenshot": "media/runs/20261106-220130-rival_battle-ollama-qwen3-8b/000011.png",
+   "stop": "battle_menu",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1708,
+   "output_tokens": 20,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 12,
+   "frame": 14440,
+   "action": {
+    "tool": "use_move",
+    "slot": 1,
+    "move": "THUNDERSHOCK"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "menu",
+    "lines": [
+     "EEVEE",
+     "Lv5",
+     "PIKACHU",
+     "Lv5",
+     "13/ 19",
+     "FIGHT PKMN",
+     "ITEM RUN"
+    ],
+    "cursor": "FIGHT"
+   },
+   "party": [
+    "PIKACHU Lv5"
+   ],
+   "battle": "trainer",
+   "screenshot": "media/runs/20261106-220130-rival_battle-ollama-qwen3-8b/000012.png",
+   "stop": "battle_menu",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1719,
+   "output_tokens": 20,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 13,
+   "frame": 14926,
+   "action": {
+    "tool": "use_move",
+    "slot": 1,
+    "move": "THUNDERSHOCK"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "menu",
+    "lines": [
+     "EEVEE",
+     "Lv5",
+     "PIKACHU",
+     "Lv5",
+     "13/ 19",
+     "FIGHT PKMN",
+     "ITEM RUN"
+    ],
+    "cursor": "FIGHT"
+   },
+   "party": [
+    "PIKACHU Lv5"
+   ],
+   "battle": "trainer",
+   "screenshot": "media/runs/20261106-220130-rival_battle-ollama-qwen3-8b/000013.png",
+   "stop": "battle_menu",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1754,
+   "output_tokens": 20,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 14,
+   "frame": 14926,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "menu",
+    "lines": [
+     "EEVEE",
+     "Lv5",
+     "PIKACHU",
+     "Lv5",
+     "13/ 19",
+     "FIGHT PKMN",
+     "ITEM RUN"
+    ],
+    "cursor": "FIGHT"
+   },
+   "party": [
+    "PIKACHU Lv5"
+   ],
+   "battle": "trainer",
+   "screenshot": "media/runs/20261106-220130-rival_battle-ollama-qwen3-8b/000014.png",
+   "stop": "battle_menu",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": "Advance dialogue to proceed with the battle.",
+   "input_tokens": 1811,
+   "output_tokens": 27,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 15,
+   "frame": 15416,
+   "action": {
+    "tool": "use_move",
+    "slot": 1,
+    "move": "THUNDERSHOCK"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "menu",
+    "lines": [
+     "EEVEE",
+     "Lv5",
+     "PIKACHU",
+     "Lv5",
+     "13/ 19",
+     "FIGHT PKMN",
+     "ITEM RUN"
+    ],
+    "cursor": "FIGHT"
+   },
+   "party": [
+    "PIKACHU Lv5"
+   ],
+   "battle": "trainer",
+   "screenshot": "media/runs/20261106-220130-rival_battle-ollama-qwen3-8b/000015.png",
+   "stop": "battle_menu",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1796,
+   "output_tokens": 20,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 16,
+   "frame": 18525,
+   "action": {
+    "tool": "use_move",
+    "slot": 1,
+    "move": "THUNDERSHOCK"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-220130-rival_battle-ollama-qwen3-8b/000016.png",
+   "stop": "limit",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1843,
+   "output_tokens": 20,
+   "cost_usd": 0.0
+  }
+ ]
+}
