@@ -18,6 +18,13 @@ Why this project, model split (Claude / local GPU / Codex) and agreed constraint
 - Tests must run without a ROM (use `tests/conftest.py`'s `FakeMemory`). Tests that need a ROM
   must be marked `@pytest.mark.rom` and skipped when `YELLOW_ROM` is unset.
 
+## Showcase site
+- The portfolio page in `site/` is a first-class deliverable (see "The showcase site" in
+  `docs/ROADMAP.md`). A phase is not done until its section exists: problem → how it works
+  (animated) → decision → result with real numbers.
+- Animations must be driven by real exported data (JSON snapshots, traces, benchmarks), never
+  invented numbers. Keep exporters in the Python package so the data can be regenerated.
+
 ## Before finishing a change
 ```bash
 ruff check . && ruff format --check . && pytest

@@ -12,6 +12,14 @@ integrador. O mapeamento de cada módulo para um entregável está em `ROADMAP.m
 
 A ideia é aprender os mesmos conceitos fazendo, independentemente de cursar a pós ou não.
 
+## Entregável principal: a página
+
+Tudo isto é pra estudo: entender como as coisas funcionam por dentro. O produto final é uma
+**página funcional e animada** explicando cada passo, como funciona e como cada problema foi
+resolvido. É o portfólio pra mostrar o nível em IA e arquitetura. As regras estão em `ROADMAP.md`
+("The showcase site"): cada fase só termina quando a seção dela está na página, e as animações
+usam dados reais exportados pelo agente.
+
 ## Por que este projeto (e não outros)
 
 Ideias descartadas e por quê:

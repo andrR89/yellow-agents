@@ -5,7 +5,9 @@ An AI agent that plays **Pokémon Yellow** through the [PyBoy](https://github.co
 **Final goal: beat the game** (Elite Four + Champion) with no human input.
 **Bonus:** once it can finish, make it fast (speedrun, measured in emulator frames).
 
-It's a study and portfolio project: every module of an applied AI engineering curriculum (LLMs,
+It's a study and portfolio project, and its main output is an **animated site that explains how
+each piece works and how each problem was solved** (`site/`, published with GitHub Pages).
+In short: every module of an applied AI engineering curriculum (LLMs,
 prompting, RAG, MCP, agents, system architecture, fine-tuning, AI for DevOps, security) gets a
 concrete, measurable deliverable here. See [docs/ROADMAP.md](docs/ROADMAP.md).
 

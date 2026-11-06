@@ -16,6 +16,26 @@ the curriculum modules, so by the end every module has a concrete deliverable.
 | 9 | Security & governance | Prompt injection via player/rival names, per-session spend cap and kill switch, decision audit log, agent model card. | 6 |
 | 10 | Capstone | Timelapse/live run with a side panel (goal, reasoning, badges, cost), README results, technical write-up. | 7 |
 
+## The showcase site (applies to every phase)
+
+The real deliverable is a **live, animated page** that explains how the agent works and how each
+problem was solved — the portfolio piece. It lives in `site/`, is published with GitHub Pages and
+grows phase by phase. Every phase is only "done" when its section is on the site.
+
+Each section follows the same shape:
+1. **Problem** — what was hard, in one paragraph.
+2. **How it works** — animated explanation of the mechanism.
+3. **Decision** — options considered and why this one (links to the ADR).
+4. **Result** — real numbers (success rate, frames, cost, latency) and what failed.
+
+Rule: animations are driven by **real recorded data** (state snapshots, traces, benchmark
+results exported as JSON by the agent), not hand-made mockups. Planned interactive pieces:
+- RAM decoder: hex bytes from a real snapshot → highlighted fields → the JSON the model sees.
+- MCP call flow: client → tool → emulator → state, step by step.
+- Run replay: map with the agent's path, decision timeline with its reasoning, live cost counter.
+- Model routing: which decisions went to the local model vs Claude, and why.
+- Benchmark charts: Claude × GPT × local per scenario.
+
 ## Phases
 
 ### Phase 1 — Emulator + state + MCP *(in progress)*
@@ -27,6 +47,9 @@ the curriculum modules, so by the end every module has a concrete deliverable.
 - [ ] Validate with a real ROM: walk around Pallet Town via Claude Code
 - [ ] Tune `HOLD_FRAMES` / `SETTLE_FRAMES` so one press = one tile, reliably
 - [ ] Detect "text box open" / "menu open" in the state (so the model knows when to press A)
+
+- [ ] Export state snapshots + raw RAM bytes to JSON (feeds the site's RAM decoder)
+- [ ] Site v1: architecture overview, RAM → state decoder, MCP call flow
 
 **Milestone:** Claude Code plays through MCP from a new game to receiving Pikachu.
 
