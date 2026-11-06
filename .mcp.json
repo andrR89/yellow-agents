@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "yellow": {
+      "command": ".venv/bin/yellow-mcp",
+      "args": [],
+      "env": {
+        "YELLOW_ROM": "roms/pokeyellow.gbc",
+        "YELLOW_SYM": "data/generated/pokeyellow.sym",
+        "YELLOW_DATA": "data/generated",
+        "YELLOW_SAVES": "saves"
+      }
+    }
+  }
+}

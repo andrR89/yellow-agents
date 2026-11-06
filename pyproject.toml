@@ -9,6 +9,7 @@ dependencies = [
     "pyboy>=2.5",
     "mcp>=2.0",
     "pydantic>=2.6",
+    "pillow>=10",  # PyBoy needs it for screen.image (screenshot tool)
 ]
 
 [project.optional-dependencies]
