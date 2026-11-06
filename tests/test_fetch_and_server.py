@@ -63,3 +63,22 @@ def test_model_spec_validation():
         load_model("qwen3")
     with pytest.raises(ValueError, match="unknown provider"):
         load_model("mistral:large")
+
+
+@pytest.mark.parametrize("direction, tiles", [("jump", 1), ("up", 0), ("up", 21)])
+def test_walk_validates_before_touching_emulator(direction, tiles):
+    with pytest.raises(ToolError):
+        mcp_server.walk(direction, tiles)
+    assert mcp_server._emu is None
+
+
+def test_use_move_validates_before_touching_emulator():
+    with pytest.raises(ToolError, match="slot"):
+        mcp_server.use_move(9)
+    assert mcp_server._emu is None
+
+
+def test_choose_needs_an_item():
+    with pytest.raises(ToolError, match="item"):
+        mcp_server.choose("  ")
+    assert mcp_server._emu is None

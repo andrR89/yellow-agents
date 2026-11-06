@@ -36,26 +36,27 @@ lists or `FakeMemory`:
 
 ```python
 class StopReason(StrEnum):
-    MENU = "menu"              # a choice is on screen (cursor ▶)
-    OVERWORLD = "overworld"    # the player has control again
+    MENU = "menu"  # a choice is on screen (cursor ▶)
+    OVERWORLD = "overworld"  # the player has control again
     BATTLE_MENU = "battle_menu"  # FIGHT/PKMN/ITEM/RUN is up
-    BLOCKED = "blocked"        # walk: something in the way
-    WARPED = "warped"          # walk: the map changed
-    TEXT = "text"              # walk: a text box opened (NPC, sign, trainer)
-    SCRIPT = "script"          # walk: the game took control (wJoyIgnore != 0), e.g. Oak
-                               # stopping you; its text comes a few frames later
-    BATTLE = "battle"          # walk: a battle started
-    DONE = "done"              # walk: all tiles walked
-    LIMIT = "limit"            # frame or press cap reached; the state says where we are
+    BLOCKED = "blocked"  # walk: something in the way
+    WARPED = "warped"  # walk: the map changed
+    TEXT = "text"  # walk: a text box opened (NPC, sign, trainer)
+    SCRIPT = "script"  # walk: the game took control (wJoyIgnore != 0), e.g. Oak
+    # stopping you; its text comes a few frames later
+    BATTLE = "battle"  # walk: a battle started
+    DONE = "done"  # walk: all tiles walked
+    LIMIT = "limit"  # frame or press cap reached; the state says where we are
+
 
 class ActionResult(BaseModel):
-    action: dict[str, Any]     # e.g. {"tool": "walk", "direction": "up", "tiles": 5}
+    action: dict[str, Any]  # e.g. {"tool": "walk", "direction": "up", "tiles": 5}
     stop: StopReason
-    frames: int                # emulator frames the action took
-    presses: int               # buttons actually pressed
-    tiles: int | None = None   # walk only: tiles moved
-    transcript: list[str] = [] # text lines shown during the action, in order, deduplicated
-    state: GameState           # state after the action
+    frames: int  # emulator frames the action took
+    presses: int  # buttons actually pressed
+    tiles: int | None = None  # walk only: tiles moved
+    transcript: list[str] = []  # text lines shown during the action, in order, deduplicated
+    state: GameState  # state after the action
 ```
 
 The MCP tools return `ActionResult` as JSON. The recorder stores `action` as the step's action
