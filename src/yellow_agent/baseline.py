@@ -122,7 +122,7 @@ def play_to_pikachu(
                 run.mark("oak_stops_you")
             emu.press("a")
             continue
-        input_enabled = emu._u8("wJoyIgnore") == 0
+        input_enabled = emu.input_enabled()
         emu.wait(30)
         idle = idle + 1 if input_enabled else 0
         if idle >= _IDLE_LIMIT and s.map_name == "OAKS_LAB" and not walked:

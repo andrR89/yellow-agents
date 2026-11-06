@@ -11,7 +11,7 @@ from typing import TYPE_CHECKING, Literal
 from pyboy import PyBoy
 
 from .gamedata import GameData
-from .state import SCREEN_COLS, SCREEN_ROWS, GameState, StateReader
+from .state import SCREEN_COLS, SCREEN_ROWS, GameState, Screen, StateReader
 from .symbols import SymbolTable
 
 if TYPE_CHECKING:
@@ -78,6 +78,17 @@ class Emulator:
     def tile_map(self) -> list[int]:
         """The 20x18 screen tile buffer (wTileMap)."""
         return self._read(self.symbols.addr("wTileMap"), SCREEN_COLS * SCREEN_ROWS)
+
+    def screen(self) -> Screen:
+        """Only the screen part of the state: cheap enough to poll every frame."""
+        return self.reader.screen()
+
+    def input_enabled(self) -> bool:
+        """False while a script drives the game (wJoyIgnore != 0): presses are ignored."""
+        return self._u8("wJoyIgnore") == 0
+
+    def in_battle(self) -> bool:
+        return self._u8("wIsInBattle") != 0
 
     # -- input ---------------------------------------------------------------
     def _u8(self, symbol: str) -> int:
