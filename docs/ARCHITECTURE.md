@@ -12,7 +12,9 @@
    visible text and the menu item under the cursor, so dialogue and menus need no screenshot.
 3. **Tools** (`mcp_server.py`): the action surface. Validated inputs (button whitelist, bounded
    sequences, save names that can't become paths). Same tools for any MCP client and, later, for
-   our own agent loop.
+   our own agent loop. High-level actions (`actions.py`): `advance_text`, `walk`, `talk`,
+   `choose`, `use_move`; each returns an `ActionResult` saying why it stopped (`menu`,
+   `overworld`, `blocked`, `script`…), with the transcript of what was said.
 4. **Models** (`models/`): one `ChatModel` interface; Claude, OpenAI and Ollama (via the
    OpenAI-compatible endpoint) are implementations chosen by a `provider:model` string.
 5. **Agent** *(phase 2+)*: planner / navigator / battle, memory, routing.

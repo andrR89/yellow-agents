@@ -93,6 +93,7 @@
   "state": "State after it",
   "compare": "Against the baseline",
   "result": "Claude reached Pikachu at frame {run}; the script at {base} ({pct} more). It made {calls} calls, {waits} of them wait. Of the {played} frames after new_game, {waitFrames} were spent inside wait.",
+  "actions": "With the high-level actions (advance_text, walk, talk, choose), the same route takes {calls} calls and ends at frame {frames}, against {mcp} calls.",
   "alt": "Game screen at {map} ({x},{y})",
   "caption": "Step {i}/{n} · frame {frame} · {tool}",
   "tip": "frame {frame} (≈ {s} s)",

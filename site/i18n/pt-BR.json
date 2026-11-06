@@ -93,6 +93,7 @@
   "state": "Estado depois dela",
   "compare": "Contra a linha de base",
   "result": "O Claude chegou ao Pikachu no frame {run}; o script, no {base} ({pct} a mais). Foram {calls} chamadas, {waits} delas wait. Dos {played} frames depois do new_game, {waitFrames} passaram dentro de wait.",
+  "actions": "Com as ações de alto nível (advance_text, walk, talk, choose), a mesma rota leva {calls} chamadas e termina no frame {frames}, contra {mcp} chamadas.",
   "alt": "Tela do jogo em {map} ({x},{y})",
   "caption": "Passo {i}/{n} · frame {frame} · {tool}",
   "tip": "frame {frame} (≈ {s} s)",

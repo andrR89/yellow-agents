@@ -1,0 +1,212 @@
+{
+ "calls": 22,
+ "actions": {
+  "walk": 14,
+  "advance_text": 2,
+  "choose": 4,
+  "talk": 1
+ },
+ "total_frames": 12156,
+ "steps": [
+  {
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "stop": "blocked",
+   "frames": 53,
+   "presses": 3
+  },
+  {
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 4
+   },
+   "stop": "done",
+   "frames": 75,
+   "presses": 4
+  },
+  {
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 6
+   },
+   "stop": "done",
+   "frames": 108,
+   "presses": 6
+  },
+  {
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "stop": "warped",
+   "frames": 91,
+   "presses": 1
+  },
+  {
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 5
+   },
+   "stop": "done",
+   "frames": 91,
+   "presses": 5
+  },
+  {
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 4
+   },
+   "stop": "done",
+   "frames": 74,
+   "presses": 4
+  },
+  {
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 2
+   },
+   "stop": "warped",
+   "frames": 104,
+   "presses": 2
+  },
+  {
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "stop": "done",
+   "frames": 21,
+   "presses": 1
+  },
+  {
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 5
+   },
+   "stop": "done",
+   "frames": 91,
+   "presses": 5
+  },
+  {
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 6
+   },
+   "stop": "done",
+   "frames": 108,
+   "presses": 6
+  },
+  {
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "stop": "text",
+   "frames": 21,
+   "presses": 1
+  },
+  {
+   "action": {
+    "tool": "advance_text"
+   },
+   "stop": "battle_menu",
+   "frames": 1029,
+   "presses": 7
+  },
+  {
+   "action": {
+    "tool": "choose",
+    "item": "FIGHT PKMN"
+   },
+   "stop": "battle_menu",
+   "frames": 32,
+   "presses": 1
+  },
+  {
+   "action": {
+    "tool": "choose",
+    "item": "ITEM"
+   },
+   "stop": "menu",
+   "frames": 32,
+   "presses": 1
+  },
+  {
+   "action": {
+    "tool": "choose",
+    "item": "POK\u00e9 BALL"
+   },
+   "stop": "limit",
+   "frames": 3091,
+   "presses": 30
+  },
+  {
+   "action": {
+    "tool": "advance_text"
+   },
+   "stop": "overworld",
+   "frames": 482,
+   "presses": 4
+  },
+  {
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "stop": "done",
+   "frames": 24,
+   "presses": 1
+  },
+  {
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 2
+   },
+   "stop": "done",
+   "frames": 40,
+   "presses": 2
+  },
+  {
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "stop": "blocked",
+   "frames": 17,
+   "presses": 1
+  },
+  {
+   "action": {
+    "tool": "talk"
+   },
+   "stop": "menu",
+   "frames": 2100,
+   "presses": 24
+  },
+  {
+   "action": {
+    "tool": "choose",
+    "item": "NO"
+   },
+   "stop": "overworld",
+   "frames": 136,
+   "presses": 2
+  }
+ ]
+}

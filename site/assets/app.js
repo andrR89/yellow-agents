@@ -374,6 +374,10 @@ function renderCompare() {
     calls: num(calls), waits: num(r.actions.wait || 0),
     waitFrames: num(r.wait_frames), played: num(last.run - r.start_frame),
   });
+  const ar = data.actionRoute;
+  $("#rp-result").textContent += " " + t("replay.actions", {
+    calls: num(ar.calls), frames: num(ar.total_frames), mcp: num(calls),
+  });
   $("#rp-source").innerHTML = `${esc(t("label.source"))}: <code>runs/${esc(r.run_id)}/run.jsonl</code> → <code>yellow-site-data run</code> · commit <code>${esc(r.git_commit || "?")}</code>`;
 }
 
@@ -448,7 +452,8 @@ async function main() {
   ]);
   const runs = await getJSON("data/runs/index.json");
   const replay = await getJSON(`data/runs/${runs[runs.length - 1]}.json`);
-  data = { baseline, walking, sessions, mcp, snapshots: snaps, replay };
+  const actionRoute = await getJSON("data/action_route.json");
+  data = { baseline, walking, sessions, mcp, snapshots: snaps, replay, actionRoute };
   $("#lang").addEventListener("change", (e) => setLocale(e.target.value));
   $("#dec-prev").addEventListener("click", () => { playDecoder(false); stepDecoder(-1); });
   $("#dec-next").addEventListener("click", () => { playDecoder(false); stepDecoder(1); });

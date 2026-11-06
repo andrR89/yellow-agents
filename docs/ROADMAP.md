@@ -82,7 +82,8 @@ Planned interactive pieces:
 **Milestone:** Claude Code plays through MCP from a new game to receiving Pikachu.
 
 ### Phase 2 — First agent loop + benchmark
-- [ ] Action schema: `press`, `walk(direction, tiles)`, `talk`, `use_move(slot)`, `switch(slot)`
+- [x] Action schema (`actions.py`, MCP tools): `advance_text`, `walk(direction, tiles)`, `talk`,
+      `choose(item)`, `use_move(slot)`; `switch(slot)` moves to Phase 4 (session 4)
 - [ ] Simple loop: state → model → action → state, with cost/latency logging
 - [ ] Scenario runner: from a save state, run N turns, score success
 - [ ] Benchmark Claude vs OpenAI vs Ollama (local) on 3 scenarios

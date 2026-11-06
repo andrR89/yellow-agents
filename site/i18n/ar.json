@@ -93,6 +93,7 @@
   "state": "الحالة بعده",
   "compare": "مقابل خط الأساس",
   "result": "وصل Claude إلى بيكاتشو عند الإطار {run}، والسكربت عند {base} ({pct} أكثر). أجرى {calls} استدعاءً، منها {waits} انتظار. من أصل {played} إطارًا بعد new_game، مرّ {waitFrames} داخل wait.",
+  "actions": "مع الإجراءات عالية المستوى (advance_text وwalk وtalk وchoose) يحتاج المسار نفسه {calls} استدعاءً وينتهي عند الإطار {frames}، مقابل {mcp} استدعاءً.",
   "alt": "شاشة اللعبة في {map} ({x},{y})",
   "caption": "الخطوة {i}/{n} · الإطار {frame} · {tool}",
   "tip": "الإطار {frame} (≈ {s} ث)",

@@ -93,6 +93,7 @@
   "state": "调用后的状态",
   "compare": "与基线对比",
   "result": "Claude 在第 {run} 帧拿到皮卡丘；脚本在第 {base} 帧（多 {pct}）。共 {calls} 次调用，其中 {waits} 次是 wait。new_game 之后的 {played} 帧中，有 {waitFrames} 帧花在 wait 里。",
+  "actions": "使用高层动作（advance_text、walk、talk、choose），同一路线只需 {calls} 次调用，在第 {frames} 帧结束，而之前是 {mcp} 次调用。",
   "alt": "游戏画面：{map} ({x},{y})",
   "caption": "第 {i}/{n} 步 · 第 {frame} 帧 · {tool}",
   "tip": "第 {frame} 帧（≈ {s} 秒）",
