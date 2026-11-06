@@ -103,8 +103,8 @@ def main() -> None:
         args=SFTConfig(
             dataset_text_field="text",
             max_seq_length=args.max_len,
-            per_device_train_batch_size=2,
-            gradient_accumulation_steps=4,
+            per_device_train_batch_size=1,  # VRAM headroom: the card also drives the desktop
+            gradient_accumulation_steps=8,
             num_train_epochs=args.epochs,
             learning_rate=args.lr,
             lr_scheduler_type="cosine",
