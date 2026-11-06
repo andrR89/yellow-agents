@@ -1,0 +1,14 @@
+{
+ "source": "docs/adr/0001-closed-loop-walking.md (measured on the real ROM, session 1)",
+ "fixed": [
+  {"hold": 8, "settle": 16, "tiles": [1, 1, 1, 1, 1, 0, 1, 1], "note": "old default"},
+  {"hold": 8, "settle": 8, "tiles": [0, 1, 1, 1, 1, 1, 0, 1]},
+  {"hold": 16, "settle": 0, "tiles": [0, 1, 1, 1, 1, 1, 1, 0]},
+  {"hold": 4, "settle": 12, "tiles": [0, 1, 0, 1, 1, 0, 0, 1]},
+  {"hold": 2, "settle": 14, "tiles": [0, 0, 1, 0, 0, 1, 0, 0]},
+  {"hold": 1, "settle": 15, "tiles": [0, 0, 0, 0, 0, 0, 0, 0]}
+ ],
+ "closed_loop": {"correct": 37, "total": 37, "moved": 34, "blocked": 1, "warped": 2},
+ "step_frames": [16, 18],
+ "stairs_input_back_after_frames": 64
+}

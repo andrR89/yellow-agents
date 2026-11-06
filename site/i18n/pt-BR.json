@@ -1,0 +1,94 @@
+{
+ "meta": { "title": "yellow-agents — uma IA jogando Pokémon Yellow" },
+ "nav": { "how": "Como funciona", "phase1": "Fase 1", "baseline": "Linha de base", "journal": "Diário", "language": "Idioma" },
+ "hero": {
+  "eyebrow": "Projeto de estudo · Fase 1 em andamento",
+  "title": "Uma IA que joga Pokémon Yellow lendo a memória do jogo",
+  "lead": "O jogo roda num emulador de Game Boy dentro do Python. O código lê a RAM e entrega à IA um resumo do jogo: onde ela está, o time, o texto na tela. A IA só decide quais botões apertar. Esta página mostra como cada parte funciona, com dados reais de cada sessão.",
+  "caption": "Linha de base gravada frame a frame: do jogo novo até receber o Pikachu, com o jogador CLAUDE e o rival GEMINI. Quem joga aqui é um script fixo, não a IA: é a régua com que cada agente vai ser comparado."
+ },
+ "status": {
+  "frames": "frames até o Pikachu (script)",
+  "steps": "passos certos com malha fechada",
+  "sessions": "sessões registradas",
+  "cost": "gasto com APIs até agora"
+ },
+ "how": {
+  "title": "Como funciona",
+  "lead": "Cada camada faz uma coisa. O que é mecânico fica no código, e o modelo só entra onde há decisão.",
+  "layers": [
+   { "name": "Emulador", "code": "emulator.py", "text": "PyBoy sem janela, em velocidade máxima. Aperta botões, salva e carrega o jogo. Um aperto de direção anda exatamente um quadrado." },
+   { "name": "Estado", "code": "state.py", "text": "Lê a RAM pelos símbolos do pret/pokeyellow e monta um JSON: mapa, posição, time, batalha e o que está escrito na tela." },
+   { "name": "Ferramentas MCP", "code": "mcp_server.py", "text": "As ações que qualquer cliente MCP (Claude Code, Codex…) pode chamar. Toda entrada é validada antes de tocar no jogo." },
+   { "name": "Gravação", "code": "recorder.py · snapshot.py", "text": "Cada partida vira um JSONL com estado, ação e screenshot. É de onde saem os dados desta página." },
+   { "name": "Modelos", "code": "models/", "text": "Uma interface para Claude, OpenAI e modelos locais (Ollama)." },
+   { "name": "Agente", "code": "Fase 2+", "text": "Planejador, navegação e batalha, com memória e roteamento entre modelo local e Claude.", "soon": true }
+  ],
+  "principle": "Regra do projeto: andar, ler a memória e cronometrar botões é código determinístico, nunca prompt. O modelo decide estratégia, objetivos e batalhas."
+ },
+ "phase1": { "eyebrow": "Fase 1 · Emulador + estado + MCP", "title": "Dar olhos e mãos à IA" },
+ "label": { "problem": "Problema", "how": "Como funciona", "decision": "Decisão", "result": "Resultado", "source": "Fonte" },
+ "walk": {
+  "title": "Um aperto, um quadrado",
+  "problem": "A ferramenta promete que um aperto de direção anda um quadrado. Com o botão segurado por um tempo fixo, o personagem às vezes não andava. Nenhuma combinação de tempo acertou os 8 movimentos.",
+  "how": "Um passo leva de 16 a 18 frames, e o jogo só lê uma direção nova entre um passo e outro. Agora o código olha a RAM: segura a direção até o contador de passo (wWalkCounter) começar, solta e espera ele voltar a zero. Se o mapa mudou (porta, escada), espera a troca terminar.",
+  "decision": "Malha fechada pela RAM no lugar de tempo fixo (ADR 0001). Os benchmarks contam frames do emulador, não apertos.",
+  "fixed": "{hold} + {settle} frames",
+  "oldDefault": "padrão antigo",
+  "closed": "malha fechada (rota até Pallet Town)",
+  "legend": "Cada quadrado é um aperto: 1 = andou um quadrado, 0 = não andou. Na rota com malha fechada: {moved} andaram, {blocked} bateu na parede (como esperado) e {warped} trocaram de mapa."
+ },
+ "decoder": {
+  "title": "Da RAM ao estado que a IA lê",
+  "problem": "Mandar screenshots para o modelo é caro, lento e impreciso. O modelo também precisa saber se há um diálogo aberto ou um menu esperando resposta.",
+  "how": "Bytes reais da memória, exportados de uma partida. Cada campo destacado vira uma chave do JSON que a IA recebe. A tela (wTileMap) é uma grade de 20×18 códigos de tile; as letras usam o mesmo charmap do jogo, então o texto sai direto da RAM.",
+  "decision": "O estado vem da RAM, com endereços tirados só do arquivo de símbolos do pret. Screenshot fica para quando é preciso ver onde as coisas estão no mapa.",
+  "ram": "RAM (hex)",
+  "field": "Campo",
+  "state": "Estado entregue ao modelo"
+ },
+ "mcp": {
+  "title": "Uma chamada MCP, passo a passo",
+  "problem": "Qualquer cliente de IA precisa conseguir jogar, e um modelo erra: pode mandar um botão que não existe ou um nome de arquivo perigoso.",
+  "how": "Sessão real gravada por stdio: o cliente chama a ferramenta, o servidor valida a entrada, o emulador roda os frames e o estado volta. Uma entrada inválida para no servidor e a mensagem de erro chega ao modelo.",
+  "decision": "Erros esperados usam ToolError, para o modelo ver o motivo. Antes ele recebia só \"Error executing tool\".",
+  "lane": { "client": "Cliente (modelo)", "server": "Servidor MCP", "emulator": "Emulador" },
+  "request": "Pedido",
+  "response": "Resposta",
+  "latency": "{ms} ms",
+  "note": {
+   "new_game": "liga o jogo, passa a abertura e digita o nome CLAUDE (o rival fica GEMINI).",
+   "press_buttons": "três apertos, três quadrados: de (3,6) para (1,5).",
+   "screenshot": "a foto da tela, sem avançar nenhum frame do jogo.",
+   "error": "botão inválido: o servidor recusa antes de tocar no emulador e explica por quê."
+  }
+ },
+ "ctl": { "prev": "◀ Anterior", "next": "Próximo ▶", "play": "▶ Tocar", "pause": "❚❚ Pausar" },
+ "ms": {
+  "bedroom": "No quarto",
+  "pallet_town": "Pallet Town",
+  "north_exit": "Saída norte",
+  "oak_stops_you": "O Oak te para",
+  "oak_battle_menu": "Batalha do Oak",
+  "oaks_lab": "Laboratório",
+  "got_pikachu": "Pikachu no time"
+ },
+ "baseline": {
+  "title": "Linha de base: um script até o Pikachu",
+  "lead": "A métrica do projeto são frames do emulador até cada marco: é determinística e não depende da máquina nem do modelo. Este é o resultado de um script fixo, sem IA nenhuma. Cada agente vai ser comparado com ele.",
+  "frames": "{n} frames ≈ {s} s de jogo",
+  "tip": "frame {frame} (≈ {s} s) · {map} ({x},{y})",
+  "table": "Ver como tabela",
+  "col": { "milestone": "Marco", "frame": "Frame", "where": "Onde" }
+ },
+ "journal": {
+  "title": "Diário do projeto",
+  "lead": "Cada sessão de trabalho registra objetivo, problemas (sintoma → causa → solução → evidência), decisões e números. Becos sem saída também contam.",
+  "session": "Sessão {n}",
+  "phase": "Fase {n}",
+  "hours": "{h} h",
+  "notMeasured": "duração não medida",
+  "ptOnly": ""
+ },
+ "footer": { "rom": "Nenhuma ROM é distribuída: o projeto roda com o dump do próprio usuário. Pokémon é marca da Nintendo, Creatures e GAME FREAK; este é um projeto de estudo sem fins comerciais." }
+}

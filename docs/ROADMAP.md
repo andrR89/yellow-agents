@@ -73,7 +73,9 @@ Planned interactive pieces:
 - [x] Export state snapshots + raw RAM bytes to JSON (`yellow-snapshot`, `site/data/snapshots/`)
 - [x] Run recorder format (`recorder.py`: frame, screenshot, state, prompt, response, action,
       tokens, latency, cost); the MCP server records when `YELLOW_RUNS` is set
-- [ ] Site v1: architecture overview, RAM → state decoder, MCP call flow
+- [x] Site v1: architecture overview, RAM → state decoder, MCP call flow, scripted baseline
+      (`yellow-baseline`), journal timeline, 5 locales; deployed to GitHub Pages on every push
+- [x] New game with typed names (`newgame.py`, MCP `new_game`): the AI plays as itself, rival GEMINI
 
 **Milestone:** Claude Code plays through MCP from a new game to receiving Pikachu.
 

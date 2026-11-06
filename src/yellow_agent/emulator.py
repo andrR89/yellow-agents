@@ -3,15 +3,19 @@
 from __future__ import annotations
 
 import io
+from collections.abc import Callable
 from enum import StrEnum
 from pathlib import Path
-from typing import Literal
+from typing import TYPE_CHECKING, Literal
 
 from pyboy import PyBoy
 
 from .gamedata import GameData
 from .state import SCREEN_COLS, SCREEN_ROWS, GameState, StateReader
 from .symbols import SymbolTable
+
+if TYPE_CHECKING:
+    import numpy as np
 
 Button = Literal["a", "b", "start", "select", "up", "down", "left", "right"]
 BUTTONS: tuple[str, ...] = ("a", "b", "start", "select", "up", "down", "left", "right")
@@ -53,6 +57,9 @@ class Emulator:
         # Every action renders its last frame, so screenshots never advance the game: a
         # recorded run (with screenshots) and an unrecorded one stay frame-identical.
         self._rendered = False
+        # Called with every emulated frame (160x144 RGBA array) when set, e.g. to record video.
+        # Rendering does not change the game: a run with a consumer stays frame-identical.
+        self.on_frame: Callable[[np.ndarray], None] | None = None
 
     @property
     def frame(self) -> int:
@@ -96,7 +103,7 @@ class Emulator:
         self.pyboy.button_press(direction)
         started = False
         for _ in range(STEP_START_FRAMES):
-            self.pyboy.tick(1, False)
+            self._run(1, render=False)
             if self._u8("wWalkCounter"):
                 started = True
                 break
@@ -104,7 +111,7 @@ class Emulator:
         for _ in range(STEP_FRAMES):
             if self._u8("wWalkCounter") == 0:
                 break
-            self.pyboy.tick(1, False)
+            self._run(1, render=False)
         self._tick(1)
         if self._u8("wCurMap") != start_map:
             self._tick(WARP_SETTLE_FRAMES)
@@ -120,8 +127,16 @@ class Emulator:
 
     def _tick(self, frames: int) -> None:
         """Run frames, rendering only the last one (cheap, and keeps screenshots free)."""
-        self.pyboy.tick(frames, True)
+        self._run(frames, render=True)
         self._rendered = True
+
+    def _run(self, frames: int, *, render: bool) -> None:
+        if self.on_frame is None:
+            self.pyboy.tick(frames, render)
+            return
+        for _ in range(frames):  # a frame consumer (video) needs every frame drawn
+            self.pyboy.tick(1, True)
+            self.on_frame(self.pyboy.screen.ndarray)
 
     # -- screen --------------------------------------------------------------
     def screenshot_png(self) -> bytes:

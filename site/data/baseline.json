@@ -1,0 +1,58 @@
+{
+ "player_name": "CLAUDE",
+ "rival_name": "GEMINI",
+ "total_frames": 11470,
+ "milestones": [
+  {
+   "name": "bedroom",
+   "frame": 4336,
+   "map_name": "REDS_HOUSE_2F",
+   "x": 3,
+   "y": 6
+  },
+  {
+   "name": "pallet_town",
+   "frame": 4904,
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6
+  },
+  {
+   "name": "north_exit",
+   "frame": 5110,
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 1
+  },
+  {
+   "name": "oak_stops_you",
+   "frame": 5157,
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0
+  },
+  {
+   "name": "oak_battle_menu",
+   "frame": 6087,
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0
+  },
+  {
+   "name": "oaks_lab",
+   "frame": 7623,
+   "map_name": "OAKS_LAB",
+   "x": 12,
+   "y": 11
+  },
+  {
+   "name": "got_pikachu",
+   "frame": 11470,
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3
+  }
+ ],
+ "git_commit": "b7607d0",
+ "generated_at": "2026-11-06T18:08:03.490609Z"
+}

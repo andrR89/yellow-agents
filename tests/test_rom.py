@@ -84,3 +84,9 @@ def test_new_game_types_custom_names():
     e.close()
     assert (s.player_name, s.rival_name, s.map_name) == ("CLAUDE", "GEMINI", "REDS_HOUSE_2F")
     assert s.screen.kind is ScreenKind.OVERWORLD
+
+
+def test_baseline_route_is_the_tested_route():
+    from yellow_agent.baseline import HOUSE_TO_NORTH_EXIT
+
+    assert [direction for direction, *_ in ROUTE] == HOUSE_TO_NORTH_EXIT

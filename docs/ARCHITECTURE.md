@@ -19,6 +19,10 @@
 6. **Recording** (`recorder.py`, `snapshot.py`): every run is a JSONL file (header + one line per
    action: frame, state, action, screenshot, prompt/response, tokens, latency, cost); RAM
    snapshots pair raw bytes with the fields they become. Both feed the showcase site.
+7. **Baseline & site data** (`baseline.py`, `site_data.py`, `newgame.py`): a scripted, model-free
+   run from power-on to Pikachu (the yardstick: frames per milestone), and the exporters behind
+   every number on the site. `Emulator.on_frame` streams every frame (video) without changing
+   the game.
 
 ## Principles
 

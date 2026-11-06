@@ -1,38 +1,60 @@
 {
- "label": "bedroom_snes_text",
- "frame": 1,
+ "label": "oak_battle_menu",
+ "frame": 6087,
  "state": {
-  "player_name": "YELLOW",
-  "rival_name": "BLUE",
-  "map_id": 38,
-  "map_name": "REDS_HOUSE_2F",
-  "x": 3,
-  "y": 6,
-  "facing": "up",
+  "player_name": "PROF.OAK",
+  "rival_name": "GEMINI",
+  "map_id": 0,
+  "map_name": "PALLET_TOWN",
+  "x": 10,
+  "y": 0,
+  "facing": "down",
   "money": 3000,
   "badges": [],
   "pikachu_happiness": 90,
   "pikachu_mood": 128,
   "party": [],
   "battle": {
-   "kind": "none",
+   "kind": "wild",
    "player_mon": null,
-   "enemy_mon": null
+   "enemy_mon": {
+    "species": "PIKACHU",
+    "nickname": null,
+    "level": 5,
+    "hp": 19,
+    "max_hp": 19,
+    "status": "ok",
+    "types": [
+     "ELECTRIC"
+    ],
+    "moves": [
+     {
+      "name": "THUNDERSHOCK",
+      "pp": 30
+     },
+     {
+      "name": "GROWL",
+      "pp": 40
+     }
+    ]
+   }
   },
   "screen": {
-   "kind": "text",
+   "kind": "menu",
    "lines": [
-    "YELLOW is",
-    "playing the SNES!"
+    "PIKACHU",
+    "Lv5",
+    "FIGHT PKMN",
+    "ITEM RUN"
    ],
-   "cursor": null
+   "cursor": "ITEM"
   }
  },
  "regions": [
   {
    "symbol": "wPlayerName",
    "address": 53591,
-   "hex": "98848b8b8e965080928750",
+   "hex": "8f918e85e88e808a50fa2d",
    "fields": [
     {
      "offset": 0,
@@ -45,7 +67,7 @@
   {
    "symbol": "wRivalName",
    "address": 54089,
-   "hex": "818b948450868091985089",
+   "hex": "86848c888d885000000000",
    "fields": [
     {
      "offset": 0,
@@ -58,7 +80,7 @@
   {
    "symbol": "wCurMap",
    "address": 54109,
-   "hex": "26",
+   "hex": "00",
    "fields": [
     {
      "offset": 0,
@@ -71,7 +93,7 @@
   {
    "symbol": "wYCoord",
    "address": 54112,
-   "hex": "06",
+   "hex": "00",
    "fields": [
     {
      "offset": 0,
@@ -84,7 +106,7 @@
   {
    "symbol": "wXCoord",
    "address": 54113,
-   "hex": "03",
+   "hex": "0a",
    "fields": [
     {
      "offset": 0,
@@ -97,7 +119,7 @@
   {
    "symbol": "wSpritePlayerStateData1FacingDirection",
    "address": 49417,
-   "hex": "04",
+   "hex": "00",
    "fields": [
     {
      "offset": 0,
@@ -162,7 +184,7 @@
   {
    "symbol": "wIsInBattle",
    "address": 53334,
-   "hex": "00",
+   "hex": "01",
    "fields": [
     {
      "offset": 0,
@@ -175,7 +197,7 @@
   {
    "symbol": "wFontLoaded",
    "address": 53187,
-   "hex": "01",
+   "hex": "00",
    "fields": [
     {
      "offset": 0,
@@ -188,7 +210,7 @@
   {
    "symbol": "wTileMap",
    "address": 50080,
-   "hex": "10100101010101010101010101010101010110101010010101010101010101010101010101011010101001010101010101010101010101010101101010100101010101010101010101010101010110101010010101010101060701010101010101011010101001010101010116170101010101010101101010100101010101010e0f0101010101010101101010100101010101011e1f0101010101010101101010102d2e0101010101010101010144450101101010103d3e0101010101010101010108090101101010103d3e0101010101010101010146470101101010103f2f01010101010101010101181901011010797a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7b7c7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7c7c98848b8b8e967fa8b27f7f7f7f7f7f7f7f7f7c7c7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7c7cafaba0b8a8ada67fb3a7a47f928d8492e7ee7c7d7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7e",
+   "hex": "7f8f888a808287947f7f7f7f00070e151c232a7f7f7f7f7f6efb7f7f7f7f7f7f01080f161d242b7f7f7371626b6b6b6b6b6b6c7f020910171e252c7f7f747676767676767676787f030a11181f262d7f7f7f7f7f7f7f7f7f7f7f7f7f040b121920272e7f7f31383f464d545b7f7f7f7f050c131a21282f7f7f323940474e555c7f7f7f7f060d141b2229307f7f333a41484f565d7f7f7f7f7f7f7f7f7f7f7f7f7f343b424950575e7f7f7f7f7f7f7f7f7f7f7f7f7f353c434a51585f7f7f7f7f7f7f7f7f7f7f7f7f7f363d444b5259607f7f7f7f7f7f7f7f7f7f7f7f7f373e454c535a617f7f7f7f7f7f7f7f7f7f7f7f797a7a7a7a7a7a7a797a7a7a7a7a7a7a7a7a7a7b7c7f7f7f7f7f7f7f7c7f7f7f7f7f7f7f7f7f7f7c7c7f7f7f7f7f7f7f7c7f85888687937fe1e27f7c7c7f7f7f7f7f7f7f7c7f7f7f7f7f7f7f7f7f7f7c7c7f7f7f7f7f7f7f7ced8893848c7f7f91948d7c7d7a7a7a7a7a7a7a7d7a7a7a7a7a7a7a7a7a7a7e",
    "fields": [
     {
      "offset": 0,

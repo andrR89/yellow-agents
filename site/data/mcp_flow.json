@@ -1,0 +1,71 @@
+[
+ {
+  "tool": "new_game",
+  "arguments": {
+   "player_name": "CLAUDE"
+  },
+  "is_error": false,
+  "latency_ms": 1731.2,
+  "result": {
+   "player_name": "CLAUDE",
+   "rival_name": "GEMINI",
+   "map_name": "REDS_HOUSE_2F",
+   "x": 3,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": 0
+  }
+ },
+ {
+  "tool": "press_buttons",
+  "arguments": {
+   "buttons": [
+    "left",
+    "left",
+    "up"
+   ]
+  },
+  "is_error": false,
+  "latency_ms": 21.3,
+  "result": {
+   "player_name": "CLAUDE",
+   "rival_name": "GEMINI",
+   "map_name": "REDS_HOUSE_2F",
+   "x": 1,
+   "y": 5,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": 0
+  }
+ },
+ {
+  "tool": "screenshot",
+  "arguments": {},
+  "is_error": false,
+  "latency_ms": 5.9,
+  "result": {
+   "image": "image/png",
+   "file": "media/mcp_screenshot.png"
+  }
+ },
+ {
+  "tool": "press_buttons",
+  "arguments": {
+   "buttons": [
+    "jump"
+   ]
+  },
+  "is_error": true,
+  "latency_ms": 0.8,
+  "result": "Error executing tool press_buttons: invalid buttons: ['jump']; valid: ['a', 'b', 'start', 'select', 'up', 'down', 'left', 'right']"
+ }
+]

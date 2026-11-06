@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>yellow-agents</title>
+<meta name="description" content="An AI agent that plays Pokémon Yellow: how it reads the game's RAM, the tools it uses, and every problem solved along the way.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;800&family=Noto+Sans+Arabic:wght@400;600;800&family=Noto+Sans+SC:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#">yellow<span>-agents</span></a>
+  <nav>
+    <a href="#how" data-i18n="nav.how"></a>
+    <a href="#phase1" data-i18n="nav.phase1"></a>
+    <a href="#baseline" data-i18n="nav.baseline"></a>
+    <a href="#journal" data-i18n="nav.journal"></a>
+  </nav>
+  <label class="lang"><span class="sr" data-i18n="nav.language"></span>
+    <select id="lang">
+      <option value="pt-BR">Português</option>
+      <option value="en">English</option>
+      <option value="es">Español</option>
+      <option value="zh">中文</option>
+      <option value="ar">العربية</option>
+    </select>
+  </label>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow" data-i18n="hero.eyebrow"></p>
+      <h1 data-i18n="hero.title"></h1>
+      <p class="lead" data-i18n="hero.lead"></p>
+      <ul class="status" id="status"></ul>
+    </div>
+    <figure class="screen-frame">
+      <video src="media/baseline.mp4" poster="media/baseline_poster.png" controls muted playsinline preload="metadata"></video>
+      <figcaption data-i18n="hero.caption"></figcaption>
+    </figure>
+  </section>
+
+  <section id="how">
+    <h2 data-i18n="how.title"></h2>
+    <p class="lead" data-i18n="how.lead"></p>
+    <ol class="layers" id="layers"></ol>
+    <p class="principle" data-i18n="how.principle"></p>
+  </section>
+
+  <section id="phase1">
+    <p class="eyebrow" data-i18n="phase1.eyebrow"></p>
+    <h2 data-i18n="phase1.title"></h2>
+
+    <article class="piece">
+      <h3 data-i18n="walk.title"></h3>
+      <div class="psdr">
+        <div><h4 data-i18n="label.problem"></h4><p data-i18n="walk.problem"></p></div>
+        <div><h4 data-i18n="label.how"></h4><p data-i18n="walk.how"></p></div>
+        <div><h4 data-i18n="label.decision"></h4><p data-i18n="walk.decision"></p></div>
+      </div>
+      <h4 data-i18n="label.result"></h4>
+      <div class="walk" id="walk"></div>
+      <p class="source" id="walk-source"></p>
+    </article>
+
+    <article class="piece">
+      <h3 data-i18n="decoder.title"></h3>
+      <div class="psdr">
+        <div><h4 data-i18n="label.problem"></h4><p data-i18n="decoder.problem"></p></div>
+        <div><h4 data-i18n="label.how"></h4><p data-i18n="decoder.how"></p></div>
+        <div><h4 data-i18n="label.decision"></h4><p data-i18n="decoder.decision"></p></div>
+      </div>
+      <div class="decoder">
+        <div class="tabs" id="snap-tabs" role="tablist"></div>
+        <div class="decoder-grid">
+          <div class="panel">
+            <h5 data-i18n="decoder.ram"></h5>
+            <div id="hex" class="hex" dir="ltr"></div>
+          </div>
+          <div class="panel">
+            <h5 data-i18n="decoder.field"></h5>
+            <div id="field" class="field-card" dir="ltr"></div>
+            <h5 data-i18n="decoder.state"></h5>
+            <pre id="state-json" class="json" dir="ltr"></pre>
+          </div>
+        </div>
+        <div class="controls">
+          <button id="dec-prev" type="button" data-i18n="ctl.prev"></button>
+          <button id="dec-play" type="button" data-i18n="ctl.pause"></button>
+          <button id="dec-next" type="button" data-i18n="ctl.next"></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="piece">
+      <h3 data-i18n="mcp.title"></h3>
+      <div class="psdr">
+        <div><h4 data-i18n="label.problem"></h4><p data-i18n="mcp.problem"></p></div>
+        <div><h4 data-i18n="label.how"></h4><p data-i18n="mcp.how"></p></div>
+        <div><h4 data-i18n="label.decision"></h4><p data-i18n="mcp.decision"></p></div>
+      </div>
+      <div class="flow" id="flow">
+        <div class="lanes" dir="ltr">
+          <div class="lane"><span data-i18n="mcp.lane.client"></span></div>
+          <div class="lane"><span data-i18n="mcp.lane.server"></span></div>
+          <div class="lane"><span data-i18n="mcp.lane.emulator"></span></div>
+          <div class="packet" id="packet"></div>
+        </div>
+        <div class="flow-detail">
+          <div class="panel"><h5 data-i18n="mcp.request"></h5><pre id="flow-req" class="json" dir="ltr"></pre></div>
+          <div class="panel"><h5 data-i18n="mcp.response"></h5><pre id="flow-res" class="json" dir="ltr"></pre><img id="flow-img" alt="" hidden></div>
+        </div>
+        <p class="flow-note" id="flow-note"></p>
+        <div class="controls">
+          <button id="flow-prev" type="button" data-i18n="ctl.prev"></button>
+          <button id="flow-play" type="button" data-i18n="ctl.pause"></button>
+          <button id="flow-next" type="button" data-i18n="ctl.next"></button>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section id="baseline">
+    <h2 data-i18n="baseline.title"></h2>
+    <p class="lead" data-i18n="baseline.lead"></p>
+    <div class="milestones" id="milestones"></div>
+    <details class="table-view">
+      <summary data-i18n="baseline.table"></summary>
+      <table id="milestone-table"></table>
+    </details>
+  </section>
+
+  <section id="journal">
+    <h2 data-i18n="journal.title"></h2>
+    <p class="lead" data-i18n="journal.lead"></p>
+    <ol class="timeline" id="timeline"></ol>
+  </section>
+</main>
+
+<footer>
+  <p data-i18n="footer.rom"></p>
+  <p><a href="https://github.com/andrR89/yellow-agents">github.com/andrR89/yellow-agents</a></p>
+</footer>
+<div class="tooltip" id="tooltip" role="status" hidden></div>
+<script type="module" src="assets/app.js"></script>
+</body>
+</html>

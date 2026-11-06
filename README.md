@@ -89,6 +89,19 @@ pytest          # no ROM needed: state parsing is tested against a fake memory
 ruff check .
 ```
 
+## Showcase site
+
+Live at **https://andrr89.github.io/yellow-agents/** (GitHub Pages, deployed by
+`.github/workflows/pages.yml`). Static HTML/JS in `site/`; every number on it comes from JSON
+exported by the package:
+
+```bash
+yellow-baseline --site site --video site/media/baseline.mp4   # scripted run to Pikachu (needs ROM)
+yellow-site-data mcp-flow                                     # real MCP session over stdio (needs ROM)
+yellow-site-data sessions                                     # docs/sessions -> site/data (CI does this)
+cd site && python -m http.server                              # preview
+```
+
 `AGENTS.md` holds the conventions for coding agents (Claude Code reads it through `CLAUDE.md`,
 Codex reads it directly).
 

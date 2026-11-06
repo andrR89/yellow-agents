@@ -1,0 +1,94 @@
+{
+ "meta": { "title": "yellow-agents — an AI playing Pokémon Yellow" },
+ "nav": { "how": "How it works", "phase1": "Phase 1", "baseline": "Baseline", "journal": "Journal", "language": "Language" },
+ "hero": {
+  "eyebrow": "Study project · Phase 1 in progress",
+  "title": "An AI that plays Pokémon Yellow by reading the game's memory",
+  "lead": "The game runs in a Game Boy emulator inside Python. The code reads the RAM and hands the AI a summary of the game: where it is, the party, the text on screen. The AI only decides which buttons to press. This page shows how each part works, with real data from every session.",
+  "caption": "Baseline recorded frame by frame: from a new game to receiving Pikachu, with player CLAUDE and rival GEMINI. A fixed script plays here, not the AI: it is the yardstick every agent will be compared against."
+ },
+ "status": {
+  "frames": "frames to Pikachu (script)",
+  "steps": "correct steps with closed loop",
+  "sessions": "sessions logged",
+  "cost": "API spend so far"
+ },
+ "how": {
+  "title": "How it works",
+  "lead": "Each layer does one thing. Whatever is mechanical stays in code; the model only comes in where there is a decision.",
+  "layers": [
+   { "name": "Emulator", "code": "emulator.py", "text": "Headless PyBoy at full speed. Presses buttons, saves and loads the game. One direction press walks exactly one tile." },
+   { "name": "State", "code": "state.py", "text": "Reads RAM through the pret/pokeyellow symbols and builds a JSON: map, position, party, battle and what is written on screen." },
+   { "name": "MCP tools", "code": "mcp_server.py", "text": "The actions any MCP client (Claude Code, Codex…) can call. Every input is validated before it touches the game." },
+   { "name": "Recording", "code": "recorder.py · snapshot.py", "text": "Every run becomes a JSONL with state, action and screenshot. That is where this page's data comes from." },
+   { "name": "Models", "code": "models/", "text": "One interface for Claude, OpenAI and local models (Ollama)." },
+   { "name": "Agent", "code": "Phase 2+", "text": "Planner, navigation and battle, with memory and routing between a local model and Claude.", "soon": true }
+  ],
+  "principle": "Project rule: walking, reading memory and timing buttons are deterministic code, never a prompt. The model decides strategy, goals and battles."
+ },
+ "phase1": { "eyebrow": "Phase 1 · Emulator + state + MCP", "title": "Giving the AI eyes and hands" },
+ "label": { "problem": "Problem", "how": "How it works", "decision": "Decision", "result": "Result", "source": "Source" },
+ "walk": {
+  "title": "One press, one tile",
+  "problem": "The tool promises that one direction press walks one tile. Holding the button for a fixed time, the player sometimes didn't move. No timing combination got all 8 moves right.",
+  "how": "A step takes 16 to 18 frames, and the game only reads a new direction between steps. Now the code watches RAM: it holds the direction until the step counter (wWalkCounter) starts, releases, and waits for it to reach zero. If the map changed (door, stairs), it waits for the transition to finish.",
+  "decision": "Closed loop on RAM instead of fixed timing (ADR 0001). Benchmarks count emulator frames, not presses.",
+  "fixed": "{hold} + {settle} frames",
+  "oldDefault": "old default",
+  "closed": "closed loop (route to Pallet Town)",
+  "legend": "Each square is one press: 1 = walked one tile, 0 = didn't move. On the closed-loop route: {moved} moved, {blocked} hit a wall (as expected) and {warped} changed map."
+ },
+ "decoder": {
+  "title": "From RAM to the state the AI reads",
+  "problem": "Sending screenshots to the model is expensive, slow and imprecise. The model also needs to know whether a dialogue is open or a menu is waiting for an answer.",
+  "how": "Real memory bytes, exported from a run. Each highlighted field becomes a key in the JSON the AI receives. The screen (wTileMap) is a 20×18 grid of tile codes; letters use the game's own charmap, so the text comes straight from RAM.",
+  "decision": "State comes from RAM, with addresses taken only from pret's symbol file. Screenshots are for when you need to see where things are on the map.",
+  "ram": "RAM (hex)",
+  "field": "Field",
+  "state": "State handed to the model"
+ },
+ "mcp": {
+  "title": "One MCP call, step by step",
+  "problem": "Any AI client must be able to play, and a model makes mistakes: it may send a button that doesn't exist or a dangerous file name.",
+  "how": "A real session recorded over stdio: the client calls the tool, the server validates the input, the emulator runs the frames and the state comes back. An invalid input stops at the server and the error message reaches the model.",
+  "decision": "Expected errors use ToolError, so the model sees the reason. Before, it only got \"Error executing tool\".",
+  "lane": { "client": "Client (model)", "server": "MCP server", "emulator": "Emulator" },
+  "request": "Request",
+  "response": "Response",
+  "latency": "{ms} ms",
+  "note": {
+   "new_game": "powers on, goes through the intro and types the name CLAUDE (the rival stays GEMINI).",
+   "press_buttons": "three presses, three tiles: from (3,6) to (1,5).",
+   "screenshot": "a picture of the screen, without advancing a single game frame.",
+   "error": "invalid button: the server rejects it before touching the emulator and explains why."
+  }
+ },
+ "ctl": { "prev": "◀ Previous", "next": "Next ▶", "play": "▶ Play", "pause": "❚❚ Pause" },
+ "ms": {
+  "bedroom": "In the bedroom",
+  "pallet_town": "Pallet Town",
+  "north_exit": "North exit",
+  "oak_stops_you": "Oak stops you",
+  "oak_battle_menu": "Oak's battle",
+  "oaks_lab": "Oak's lab",
+  "got_pikachu": "Pikachu in the party"
+ },
+ "baseline": {
+  "title": "Baseline: a script to Pikachu",
+  "lead": "The project's metric is emulator frames to each milestone: deterministic, independent of the machine and the model. This is the result of a fixed script with no AI at all. Every agent will be compared against it.",
+  "frames": "{n} frames ≈ {s} s of play",
+  "tip": "frame {frame} (≈ {s} s) · {map} ({x},{y})",
+  "table": "View as table",
+  "col": { "milestone": "Milestone", "frame": "Frame", "where": "Where" }
+ },
+ "journal": {
+  "title": "Project journal",
+  "lead": "Each work session records its goal, problems (symptom → cause → solution → evidence), decisions and numbers. Dead ends count too.",
+  "session": "Session {n}",
+  "phase": "Phase {n}",
+  "hours": "{h} h",
+  "notMeasured": "duration not measured",
+  "ptOnly": "The journal is written in Portuguese, the project's working language."
+ },
+ "footer": { "rom": "No ROM is distributed: the project runs on the user's own dump. Pokémon is a trademark of Nintendo, Creatures and GAME FREAK; this is a non-commercial study project." }
+}

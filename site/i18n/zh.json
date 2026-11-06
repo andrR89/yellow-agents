@@ -1,0 +1,94 @@
+{
+ "meta": { "title": "yellow-agents — 玩《宝可梦 黄》的 AI" },
+ "nav": { "how": "工作原理", "phase1": "第一阶段", "baseline": "基准", "journal": "日志", "language": "语言" },
+ "hero": {
+  "eyebrow": "学习项目 · 第一阶段进行中",
+  "title": "一个通过读取游戏内存来玩《宝可梦 黄》的 AI",
+  "lead": "游戏运行在 Python 里的 Game Boy 模拟器中。代码读取 RAM，把游戏概况交给 AI：所在位置、队伍、屏幕上的文字。AI 只负责决定按哪些键。本页用每次工作的真实数据展示各部分如何运作。",
+  "caption": "逐帧录制的基准：从新游戏到收到皮卡丘，玩家名 CLAUDE，劲敌名 GEMINI。这里操作的是固定脚本而不是 AI：它是衡量每个智能体的标尺。"
+ },
+ "status": {
+  "frames": "到皮卡丘的帧数（脚本）",
+  "steps": "闭环行走的正确步数",
+  "sessions": "已记录的工作会话",
+  "cost": "迄今的 API 花费"
+ },
+ "how": {
+  "title": "工作原理",
+  "lead": "每一层只做一件事。机械性的工作留在代码里，模型只在需要决策的地方介入。",
+  "layers": [
+   { "name": "模拟器", "code": "emulator.py", "text": "无窗口的 PyBoy，全速运行。负责按键、存档和读档。按一次方向键正好走一格。" },
+   { "name": "状态", "code": "state.py", "text": "通过 pret/pokeyellow 的符号读取 RAM，生成 JSON：地图、位置、队伍、战斗以及屏幕上的文字。" },
+   { "name": "MCP 工具", "code": "mcp_server.py", "text": "任何 MCP 客户端（Claude Code、Codex……）都能调用的操作。每个输入在接触游戏前都会被校验。" },
+   { "name": "录制", "code": "recorder.py · snapshot.py", "text": "每局游戏都记录为 JSONL，包含状态、操作和截图。本页的数据就来自这里。" },
+   { "name": "模型", "code": "models/", "text": "Claude、OpenAI 和本地模型（Ollama）共用一个接口。" },
+   { "name": "智能体", "code": "第二阶段起", "text": "规划、导航和战斗，带记忆，并在本地模型和 Claude 之间分配任务。", "soon": true }
+  ],
+  "principle": "项目规则：行走、读取内存和按键计时都是确定性的代码，绝不交给提示词。模型负责策略、目标和战斗。"
+ },
+ "phase1": { "eyebrow": "第一阶段 · 模拟器 + 状态 + MCP", "title": "给 AI 眼睛和双手" },
+ "label": { "problem": "问题", "how": "工作原理", "decision": "决策", "result": "结果", "source": "来源" },
+ "walk": {
+  "title": "按一次，走一格",
+  "problem": "工具承诺按一次方向键走一格。用固定时长按住按键时，角色有时不动。没有任何一组时长能让 8 次移动全部正确。",
+  "how": "一步需要 16 到 18 帧，而游戏只在两步之间读取新方向。现在代码会观察 RAM：按住方向键直到步数计数器（wWalkCounter）开始计数，然后松开，等它归零。如果地图变了（门、楼梯），就等待切换完成。",
+  "decision": "用基于 RAM 的闭环取代固定时长（ADR 0001）。基准测试统计模拟器帧数，而不是按键次数。",
+  "fixed": "{hold} + {settle} 帧",
+  "oldDefault": "旧默认值",
+  "closed": "闭环（前往真新镇的路线）",
+  "legend": "每个方块代表一次按键：1 = 走了一格，0 = 没动。闭环路线中：{moved} 步移动，{blocked} 步撞墙（符合预期），{warped} 步切换了地图。"
+ },
+ "decoder": {
+  "title": "从 RAM 到 AI 读取的状态",
+  "problem": "把截图发给模型既贵又慢，还不精确。模型还需要知道是否有对话框打开，或者菜单在等待回答。",
+  "how": "这些是从一局游戏中导出的真实内存字节。每个高亮字段都会变成 AI 收到的 JSON 中的一个键。屏幕（wTileMap）是 20×18 的图块代码网格；字母使用游戏自身的字符表，所以文字可以直接从 RAM 读出。",
+  "decision": "状态来自 RAM，地址只取自 pret 的符号文件。截图只在需要看清地图上物体位置时使用。",
+  "ram": "RAM（十六进制）",
+  "field": "字段",
+  "state": "交给模型的状态"
+ },
+ "mcp": {
+  "title": "一次 MCP 调用，逐步演示",
+  "problem": "任何 AI 客户端都应该能玩，而模型会犯错：可能发送不存在的按键，或者危险的文件名。",
+  "how": "通过 stdio 录制的真实会话：客户端调用工具，服务器校验输入，模拟器运行帧，然后返回状态。无效输入会停在服务器，错误信息会传回模型。",
+  "decision": "预期内的错误使用 ToolError，让模型看到原因。之前它只会收到 \"Error executing tool\"。",
+  "lane": { "client": "客户端（模型）", "server": "MCP 服务器", "emulator": "模拟器" },
+  "request": "请求",
+  "response": "响应",
+  "latency": "{ms} 毫秒",
+  "note": {
+   "new_game": "开机，跳过开场并输入名字 CLAUDE（劲敌为 GEMINI）。",
+   "press_buttons": "按三次，走三格：从 (3,6) 到 (1,5)。",
+   "screenshot": "屏幕截图，不推进任何一帧游戏。",
+   "error": "无效按键：服务器在接触模拟器之前拒绝，并说明原因。"
+  }
+ },
+ "ctl": { "prev": "◀ 上一步", "next": "下一步 ▶", "play": "▶ 播放", "pause": "❚❚ 暂停" },
+ "ms": {
+  "bedroom": "在卧室",
+  "pallet_town": "真新镇",
+  "north_exit": "北出口",
+  "oak_stops_you": "大木博士拦住你",
+  "oak_battle_menu": "大木博士的战斗",
+  "oaks_lab": "研究所",
+  "got_pikachu": "皮卡丘入队"
+ },
+ "baseline": {
+  "title": "基准：用脚本走到皮卡丘",
+  "lead": "项目的指标是到达每个里程碑所用的模拟器帧数：它是确定性的，与机器和模型无关。这是一个完全没有 AI 的固定脚本的结果，每个智能体都会与它比较。",
+  "frames": "{n} 帧 ≈ 游戏时间 {s} 秒",
+  "tip": "第 {frame} 帧（≈ {s} 秒）· {map} ({x},{y})",
+  "table": "以表格查看",
+  "col": { "milestone": "里程碑", "frame": "帧", "where": "位置" }
+ },
+ "journal": {
+  "title": "项目日志",
+  "lead": "每次工作会话都记录目标、问题（现象 → 原因 → 解决 → 证据）、决策和数字。走过的弯路也算在内。",
+  "session": "第 {n} 次",
+  "phase": "第 {n} 阶段",
+  "hours": "{h} 小时",
+  "notMeasured": "时长未测量",
+  "ptOnly": "日志以葡萄牙语撰写，这是项目的工作语言。"
+ },
+ "footer": { "rom": "本项目不分发任何 ROM：需使用用户自己的游戏卡带转储。宝可梦是任天堂、Creatures 和 GAME FREAK 的商标；这是一个非商业的学习项目。" }
+}

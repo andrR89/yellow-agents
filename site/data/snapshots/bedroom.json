@@ -1,9 +1,9 @@
 {
- "label": "new_game_bedroom",
- "frame": 1,
+ "label": "bedroom",
+ "frame": 4336,
  "state": {
-  "player_name": "YELLOW",
-  "rival_name": "BLUE",
+  "player_name": "CLAUDE",
+  "rival_name": "GEMINI",
   "map_id": 38,
   "map_name": "REDS_HOUSE_2F",
   "x": 3,
@@ -29,7 +29,7 @@
   {
    "symbol": "wPlayerName",
    "address": 53591,
-   "hex": "98848b8b8e965080928750",
+   "hex": "828b809483845000000000",
    "fields": [
     {
      "offset": 0,
@@ -42,7 +42,7 @@
   {
    "symbol": "wRivalName",
    "address": 54089,
-   "hex": "818b948450868091985089",
+   "hex": "86848c888d885000000000",
    "fields": [
     {
      "offset": 0,

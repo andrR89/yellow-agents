@@ -1,9 +1,9 @@
 {
  "label": "got_pikachu",
- "frame": 1,
+ "frame": 11470,
  "state": {
-  "player_name": "YELLOW",
-  "rival_name": "BLUE",
+  "player_name": "CLAUDE",
+  "rival_name": "GEMINI",
   "map_id": 40,
   "map_name": "OAKS_LAB",
   "x": 5,
@@ -51,7 +51,7 @@
   {
    "symbol": "wPlayerName",
    "address": 53591,
-   "hex": "98848b8b8e965080928750",
+   "hex": "828b809483845000000000",
    "fields": [
     {
      "offset": 0,
@@ -64,7 +64,7 @@
   {
    "symbol": "wRivalName",
    "address": 54089,
-   "hex": "818b948450868091985089",
+   "hex": "86848c888d885000000000",
    "fields": [
     {
      "offset": 0,
@@ -233,7 +233,7 @@
   {
    "symbol": "wPartyMons",
    "address": 53610,
-   "hex": "54001300001717a3542d0000d7fd00007d00000000000000000000d8e51e280000050013000b0008000f000a",
+   "hex": "54001300001717a3542d000045bb00007d00000000000000000000c12f1e280000050013000b0008000e000b",
    "fields": [
     {
      "offset": 0,

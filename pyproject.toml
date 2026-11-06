@@ -21,6 +21,8 @@ dev = ["pytest>=8", "ruff>=0.6"]
 yellow-mcp = "yellow_agent.mcp_server:main"
 yellow-fetch-data = "yellow_agent.tools.fetch_pret_data:main"
 yellow-snapshot = "yellow_agent.snapshot:main"
+yellow-baseline = "yellow_agent.baseline:main"
+yellow-site-data = "yellow_agent.site_data:main"
 
 [build-system]
 requires = ["hatchling"]
