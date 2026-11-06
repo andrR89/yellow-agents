@@ -327,7 +327,8 @@ function shortModel(spec) {
   return s.slice(s.indexOf(":") + 1).split("/").pop(); // "ollama:llama3.1:8b" -> "llama3.1:8b"
 }
 
-const SCENARIO_ORDER = ["rival_battle", "pikachu", "route1"];
+// in the order they happen in the game
+const SCENARIO_ORDER = ["mcp", "pikachu", "rival_battle", "route1"];
 const runModel = (e) => (e.source === "mcp" ? "mcp" : e.model);
 const runScenario = (e) => (e.source === "mcp" ? "mcp" : e.scenario);
 
@@ -336,8 +337,11 @@ function modelLabel(key) {
   return key.startsWith("ollama:") ? `${shortModel(key)} · ${t("replay.local")}` : shortModel(key);
 }
 
+const STAGE = { mcp: 1, pikachu: 1, rival_battle: 2, route1: 3 };
+
 function scenarioLabel(scenario) {
-  return scenario === "mcp" ? t("replay.run.mcp") : t(`bench.scenario.${scenario}`);
+  const name = scenario === "mcp" ? t("replay.run.mcp") : t(`bench.scenario.${scenario}`);
+  return `${num(STAGE[scenario])} · ${name}`;
 }
 
 // model -> scenario -> latest run entry (run ids sort by time)
@@ -468,7 +472,7 @@ function renderBench() {
       <span>${esc(t("bench.cell", { turns: num(r.turns), frames: num(r.frames), cost, invalid: num(r.invalid_actions) }))}</span></button></td>`;
   };
   $("#bench-table").innerHTML = `<tr><th>${esc(t("bench.col.scenario"))}</th>${models.map((m) => `<th>${esc(m.startsWith("ollama:") ? `${shortModel(m)} · ${t("replay.local")}` : shortModel(m))}</th>`).join("")}</tr>` +
-    scenarios.map((s) => `<tr><th scope="row">${esc(t(`bench.scenario.${s}`))}</th>${models.map((m) => cell(rows.find((r) => r.scenario === s && r.model === m))).join("")}</tr>`).join("");
+    scenarios.map((s) => `<tr><th scope="row">${esc(scenarioLabel(s))}</th>${models.map((m) => cell(rows.find((r) => r.scenario === s && r.model === m))).join("")}</tr>`).join("");
   document.querySelectorAll(".bench-cell").forEach((b) => b.addEventListener("click", () => selectRun(b.dataset.run, true)));
   const wins = rows.filter((r) => r.success).length;
   const spent = rows.reduce((a, r) => a + r.cost_usd, 0);

@@ -90,20 +90,10 @@ class Scenario:
     judge: Callable[[], Judge]  # a fresh judge per run (some keep state)
 
 
+# In the order they happen in the game.
 SCENARIOS: dict[str, Scenario] = {
     s.name: s
     for s in [
-        Scenario(
-            name="rival_battle",
-            goal=(
-                "You are in Professor Oak's lab with your PIKACHU, free to move. Walk south "
-                "towards the lab's exit: your rival GEMINI will stop you and challenge you to "
-                "a battle. Win the battle. PIKACHU's attacking move is THUNDERSHOCK."
-            ),
-            max_turns=25,
-            setup=_setup_lab_with_pikachu,
-            judge=_won_battle,
-        ),
         Scenario(
             name="pikachu",
             goal=(
@@ -120,6 +110,17 @@ SCENARIOS: dict[str, Scenario] = {
             max_turns=40,
             setup=_setup_new_game,
             judge=_got_pikachu,
+        ),
+        Scenario(
+            name="rival_battle",
+            goal=(
+                "You are in Professor Oak's lab with your PIKACHU, free to move. Walk south "
+                "towards the lab's exit: your rival GEMINI will stop you and challenge you to "
+                "a battle. Win the battle. PIKACHU's attacking move is THUNDERSHOCK."
+            ),
+            max_turns=25,
+            setup=_setup_lab_with_pikachu,
+            judge=_won_battle,
         ),
         Scenario(
             name="route1",
