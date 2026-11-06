@@ -23,6 +23,7 @@ yellow-fetch-data = "yellow_agent.tools.fetch_pret_data:main"
 yellow-snapshot = "yellow_agent.snapshot:main"
 yellow-baseline = "yellow_agent.baseline:main"
 yellow-site-data = "yellow_agent.site_data:main"
+yellow-action-route = "yellow_agent.action_route:main"
 
 [build-system]
 requires = ["hatchling"]

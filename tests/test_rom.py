@@ -90,3 +90,29 @@ def test_baseline_route_is_the_tested_route():
     from yellow_agent.baseline import HOUSE_TO_NORTH_EXIT
 
     assert [direction for direction, *_ in ROUTE] == HOUSE_TO_NORTH_EXIT
+
+
+def test_actions_alone_reach_pikachu():
+    from yellow_agent.action_route import play_to_pikachu_with_actions
+
+    e = Emulator(os.environ["YELLOW_ROM"], sym=SYM, data_dir=DATA)
+    try:
+        route = play_to_pikachu_with_actions(e)
+    finally:
+        e.close()
+    last = route.results[-1].state
+    assert [m.species for m in last.party] == ["PIKACHU"]
+    assert last.screen.kind is ScreenKind.OVERWORLD
+    assert route.calls <= 40, route.calls  # session 3 needed 107
+
+
+def test_walk_into_a_wall_is_blocked():
+    from yellow_agent.actions import StopReason, walk
+
+    e = Emulator(os.environ["YELLOW_ROM"], sym=SYM, data_dir=DATA)
+    try:
+        new_game(e)
+        r = walk(e, "left", 3)  # bedroom (3,6): wall after 2 tiles
+    finally:
+        e.close()
+    assert (r.stop, r.tiles) == (StopReason.BLOCKED, 2)

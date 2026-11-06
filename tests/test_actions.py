@@ -6,6 +6,7 @@ import pytest
 
 from tests.fake_game import FakeGame, menu, overworld, text
 from yellow_agent.actions import (
+    QUIET_FRAMES,
     STABLE_FRAMES,
     ActionError,
     StopReason,
@@ -121,14 +122,14 @@ def test_advance_text_waits_through_a_script_between_boxes():
     r = advance_text(game)
     assert r.stop is StopReason.OVERWORLD
     assert game.pressed == ["a", "a"]
-    assert r.frames >= 200 + STABLE_FRAMES
+    assert r.frames >= 200 + QUIET_FRAMES
 
 
 def test_text_without_arrow_is_pressed_once_it_stays_still():
     game = FakeGame([text("PIKACHU used", "THUNDERSHOCK!", arrow=False), overworld()])
     r = advance_text(game)
     assert game.pressed == ["a"] and r.stop is StopReason.OVERWORLD
-    assert r.frames >= STABLE_FRAMES
+    assert r.frames >= STABLE_FRAMES + QUIET_FRAMES
 
 
 def test_advance_text_on_free_overworld_returns_at_once():
@@ -260,3 +261,33 @@ def test_use_move_rejects_empty_slots_and_moves_without_pp():
     with pytest.raises(ActionError, match="GROWL has no PP"):
         use_move(game, 2)
     assert game.pressed == []
+
+
+def test_walk_notices_a_script_that_starts_just_after_the_last_step():
+    # Oak's trigger in the grass locks input 1 frame after the step ends (measured on the ROM).
+    game = FakeGame([overworld(frames=18), overworld(input_enabled=False)], steps=[M])
+    r = walk(game, "up", 1)
+    assert (r.stop, r.tiles) == (StopReason.SCRIPT, 1)
+
+
+def test_a_step_ignored_by_a_script_is_not_a_wall():
+    game = FakeGame([overworld(frames=17), overworld(input_enabled=False)], steps=[M, B])
+    game.phases[0].frames = 30  # locks between the two steps
+    r = walk(game, "up", 2)
+    assert r.stop is StopReason.SCRIPT
+
+
+def test_a_short_pause_with_input_enabled_is_not_free_control():
+    # After Oak's catch the game leaves input enabled for ~32 frames before he speaks again.
+    game = FakeGame(
+        [text("PIKACHU was caught!"), overworld(frames=40), text("OAK: Whew..."), overworld()]
+    )
+    r = advance_text(game)
+    assert r.transcript == ["PIKACHU was caught!", "OAK: Whew..."]
+
+
+def test_choose_on_the_battle_grid_compares_places_not_text():
+    grid = menu("EEVEE", "FIGHT PKMN", "ITEM RUN", cursor="FIGHT PKMN")
+    game = FakeGame([grid, text("OK"), overworld()], in_battle=True)
+    choose(game, "FIGHT")
+    assert game.pressed[0] == "a"

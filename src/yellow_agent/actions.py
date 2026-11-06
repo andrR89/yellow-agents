@@ -16,12 +16,18 @@ from .state import SCREEN_COLS, GameState, Screen, ScreenKind
 from .text import MORE_TEXT
 
 STABLE_FRAMES = 30  # text with no ▼ that has not changed this long is waiting for A
+# Free control only counts after this long with input enabled and nothing on screen changing:
+# scripts pause with input enabled between parts (after Oak's catch: ~32 frames, measured).
+QUIET_FRAMES = 90
 TEXT_BOX_FIRST_ROW = 12  # dialogue / battle text box: rows 12-17 of the 20x18 screen
 MAX_ADVANCE_FRAMES = 3000
 MAX_WALK_TILES = 20
 MAX_CURSOR_MOVES = 10
 SETTLE_STABLE_FRAMES = 8  # after choosing: the next screen is drawn once tiles stop changing
 SETTLE_MAX_FRAMES = 90
+# A map script (Oak in the grass) locks input 1 frame after the step that triggers it
+# (measured); walk looks a few frames past its last step so it can report `script`.
+SCRIPT_CHECK_FRAMES = 4
 
 
 class StopReason(StrEnum):
@@ -152,7 +158,7 @@ def _advance(game: Game, max_frames: int) -> tuple[StopReason, int, list[str]]:
                 presses += 1
                 prev, stable = None, 0
                 continue
-        elif game.input_enabled() and stable >= STABLE_FRAMES:
+        elif game.input_enabled() and stable >= QUIET_FRAMES:
             return StopReason.OVERWORLD, presses, transcript
         game.wait(1)
     return StopReason.LIMIT, presses, transcript
@@ -241,6 +247,15 @@ def walk(game: Game, direction: str, tiles: int = 1) -> ActionResult:
         if not game.input_enabled():
             stop = StopReason.SCRIPT
             break
+    if stop in (StopReason.DONE, StopReason.BLOCKED):
+        # A script that starts right after the last step, or that made the step be ignored.
+        game.wait(SCRIPT_CHECK_FRAMES)
+        if game.in_battle():
+            stop = StopReason.BATTLE
+        elif game.screen().kind is not ScreenKind.OVERWORLD:
+            stop = StopReason.TEXT
+        elif not game.input_enabled():
+            stop = StopReason.SCRIPT
     return _result(game, action, start, stop, presses, [], tiles=moved)
 
 
@@ -265,8 +280,9 @@ def _choose(game: Game, item: str) -> tuple[StopReason, int, list[str]]:
     presses = 0
     for _ in range(MAX_CURSOR_MOVES + 1):
         screen = game.screen()
-        if (screen.cursor or "").upper() == target:
-            break
+        here = _position(screen, screen.cursor) if screen.cursor else None
+        if here is not None and here == _position(screen, target):
+            break  # compare places, not text: the battle grid reads "FIGHT PKMN" under ▶
         moves = cursor_moves(screen, target)
         if not moves:
             raise ActionError(f"cursor is on {screen.cursor!r}, cannot reach {item!r}")
