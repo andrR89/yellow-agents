@@ -61,3 +61,26 @@ def test_request_without_forcing_a_tool():
     tools = [ToolSpec(name="talk", description="Talk.", parameters={"type": "object"})]
     req = build_request("m", "sys", [], tools, 256, provider="openrouter", force_tool=False)
     assert "tool_choice" not in req and req["tools"]
+
+
+def test_ollama_native_request_turns_thinking_off_and_keeps_the_context_small():
+    from yellow_agent.models.ollama import NUM_CTX, build_chat
+
+    tools = [ToolSpec(name="talk", description="Talk.", parameters={"type": "object"})]
+    body = build_chat("qwen3:4b", "sys", [], tools, 300)
+    assert body["think"] is False and body["stream"] is False
+    assert body["options"]["num_ctx"] == NUM_CTX == 4096 and body["options"]["num_predict"] == 300
+    assert body["tools"][0]["function"]["name"] == "talk"
+
+
+def test_ollama_native_response_parsing():
+    from yellow_agent.models.ollama import parse_chat
+
+    data = {"message": {"content": "", "tool_calls": [
+        {"function": {"name": "walk", "arguments": {"direction": "up", "tiles": 2}}}]},
+        "prompt_eval_count": 600, "eval_count": 25}  # fmt: skip
+    r = parse_chat(data, "ollama:q", 1.5)
+    assert [(c.name, c.arguments) for c in r.tool_calls] == [
+        ("walk", {"direction": "up", "tiles": 2})
+    ]
+    assert (r.usage.input_tokens, r.usage.output_tokens, r.cost_usd) == (600, 25, 0.0)

@@ -3,8 +3,6 @@
 
 from __future__ import annotations
 
-import os
-
 from .base import ChatModel, Message, ModelResponse, ToolCall, ToolSpec, Usage
 
 __all__ = ["ChatModel", "Message", "ModelResponse", "ToolCall", "ToolSpec", "Usage", "load_model"]
@@ -28,8 +26,7 @@ def load_model(spec: str) -> ChatModel:
 
         return OpenAICompatModel(model, base_url=OPENROUTER_BASE_URL, provider="openrouter")
     if provider == "ollama":
-        from .openai_compat import OLLAMA_BASE_URL, OpenAICompatModel
+        from .ollama import OllamaModel
 
-        base = os.environ.get("OLLAMA_BASE_URL", OLLAMA_BASE_URL)
-        return OpenAICompatModel(model, base_url=base, provider="ollama")
+        return OllamaModel(model)
     raise ValueError(f"unknown provider {provider!r} (use claude, openai, openrouter or ollama)")
