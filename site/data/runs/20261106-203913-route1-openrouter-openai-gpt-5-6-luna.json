@@ -1,0 +1,327 @@
+{
+ "run_id": "20261106-203913-route1-openrouter-openai-gpt-5-6-luna",
+ "source": "eval",
+ "player_name": "GPT",
+ "rival_name": "GEMINI",
+ "started_at": "2026-11-06T20:39:22.110815+00:00",
+ "git_commit": "4f5b894",
+ "start_frame": 18771,
+ "total_frames": 18771,
+ "actions": {
+  "walk": 9
+ },
+ "wait_frames": 0,
+ "start_state": "route1",
+ "notes": {
+  "model": "openrouter:openai/gpt-5.6-luna",
+  "scenario": "route1",
+  "goal": "You are in Professor Oak's lab after your first battle with GEMINI. Leave the lab: the exit is at the bottom of the room (x=4, y=11). Outside, the lab blocks the way north: walk left to x=9, north to y=2, right to x=10, then north onto ROUTE_1. Done when you are on ROUTE_1."
+ },
+ "cost_usd": 0.002896,
+ "milestones": [
+  {
+   "name": "pallet_town",
+   "frame": 18947,
+   "step": 2,
+   "map_name": "PALLET_TOWN",
+   "x": 12,
+   "y": 12
+  },
+  {
+   "name": "north_exit",
+   "frame": 19226,
+   "step": 6,
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 1
+  },
+  {
+   "name": "oaks_lab",
+   "frame": 18771,
+   "step": 0,
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 6
+  },
+  {
+   "name": "got_pikachu",
+   "frame": 18771,
+   "step": 0,
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 6
+  }
+ ],
+ "steps": [
+  {
+   "index": 0,
+   "frame": 18771,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 6,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-203913-route1-openrouter-openai-gpt-5-6-luna/000000.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I’m moving toward the lab’s bottom exit at x=4.",
+   "input_tokens": 876,
+   "output_tokens": 108,
+   "cost_usd": 0.000305
+  },
+  {
+   "index": 1,
+   "frame": 18862,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 5
+   },
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 11,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-203913-route1-openrouter-openai-gpt-5-6-luna/000001.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I’m walking south to the lab’s bottom exit at y=11.",
+   "input_tokens": 918,
+   "output_tokens": 67,
+   "cost_usd": 0.000569
+  },
+  {
+   "index": 2,
+   "frame": 18947,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 12,
+   "y": 12,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-203913-route1-openrouter-openai-gpt-5-6-luna/000002.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I am moving through the lab’s bottom exit to reach the outside.",
+   "input_tokens": 959,
+   "output_tokens": 67,
+   "cost_usd": 0.000841
+  },
+  {
+   "index": 3,
+   "frame": 19004,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 12,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-203913-route1-openrouter-openai-gpt-5-6-luna/000003.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I’m moving west to x=9 so I can go north around the lab.",
+   "input_tokens": 999,
+   "output_tokens": 108,
+   "cost_usd": 0.00117
+  },
+  {
+   "index": 4,
+   "frame": 19180,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 10
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 9,
+   "y": 2,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-203913-route1-openrouter-openai-gpt-5-6-luna/000004.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I’m walking north along the lab’s west side to reach the upper route around the building.",
+   "input_tokens": 1039,
+   "output_tokens": 97,
+   "cost_usd": 0.001495
+  },
+  {
+   "index": 5,
+   "frame": 19203,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-203913-route1-openrouter-openai-gpt-5-6-luna/000005.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "Move right to x=10 so I can take the northern exit to Route 1.",
+   "input_tokens": 1079,
+   "output_tokens": 61,
+   "cost_usd": 0.001784
+  },
+  {
+   "index": 6,
+   "frame": 19226,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 1,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-203913-route1-openrouter-openai-gpt-5-6-luna/000006.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I’m walking north from the path entrance to reach Route 1.",
+   "input_tokens": 1119,
+   "output_tokens": 65,
+   "cost_usd": 0.002085
+  },
+  {
+   "index": 7,
+   "frame": 19247,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-203913-route1-openrouter-openai-gpt-5-6-luna/000007.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I am stepping north from Pallet Town onto Route 1 to complete the objective.",
+   "input_tokens": 1159,
+   "output_tokens": 77,
+   "cost_usd": 0.002461
+  },
+  {
+   "index": 8,
+   "frame": 19336,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "ROUTE_1",
+   "x": 10,
+   "y": 35,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-203913-route1-openrouter-openai-gpt-5-6-luna/000008.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I am stepping north from the town’s top edge to enter ROUTE_1.",
+   "input_tokens": 1199,
+   "output_tokens": 117,
+   "cost_usd": 0.002896
+  }
+ ]
+}

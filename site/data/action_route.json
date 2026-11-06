@@ -6,7 +6,7 @@
   "choose": 4,
   "talk": 1
  },
- "total_frames": 12156,
+ "total_frames": 12142,
  "steps": [
   {
    "action": {
@@ -124,7 +124,7 @@
    },
    "stop": "battle_menu",
    "frames": 1029,
-   "presses": 7
+   "presses": 5
   },
   {
    "action": {
@@ -151,14 +151,14 @@
    },
    "stop": "limit",
    "frames": 3091,
-   "presses": 30
+   "presses": 23
   },
   {
    "action": {
     "tool": "advance_text"
    },
    "stop": "overworld",
-   "frames": 482,
+   "frames": 468,
    "presses": 4
   },
   {

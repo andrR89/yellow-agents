@@ -1,0 +1,1073 @@
+{
+ "run_id": "20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna",
+ "source": "eval",
+ "player_name": "GPT",
+ "rival_name": "GEMINI",
+ "started_at": "2026-11-06T20:42:55.300152+00:00",
+ "git_commit": "137dac3",
+ "start_frame": 4256,
+ "total_frames": 12800,
+ "actions": {
+  "walk": 23,
+  "advance_text": 5,
+  "choose": 3,
+  "talk": 4
+ },
+ "wait_frames": 0,
+ "start_state": "pikachu",
+ "notes": {
+  "model": "openrouter:openai/gpt-5.6-luna",
+  "scenario": "pikachu",
+  "goal": "A new game: you are in your bedroom, on the 2nd floor of your house in Pallet Town. The stairs are at the top right of the bedroom (x=7, y=1). Downstairs, the front door is the mat at the bottom of the room (x=3, y=7): stand on it and walk down to go outside. In Pallet Town, walk north to the top edge of town (x=10-11, y=0) and into the tall grass: Professor Oak stops you and takes you to his lab; let the scene play. When you can move in the lab, take the Poké Ball on the table to your right: stand right below it and talk to it facing up. Decline to give a nickname. Done when PIKACHU is in your party and you can move again."
+ },
+ "cost_usd": 0.015003,
+ "milestones": [
+  {
+   "name": "bedroom",
+   "frame": 4256,
+   "step": 0,
+   "map_name": "REDS_HOUSE_2F",
+   "x": 5,
+   "y": 6
+  },
+  {
+   "name": "pallet_town",
+   "frame": 4895,
+   "step": 10,
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6
+  },
+  {
+   "name": "north_exit",
+   "frame": 5094,
+   "step": 12,
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0
+  },
+  {
+   "name": "oak_stops_you",
+   "frame": 5094,
+   "step": 12,
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0
+  },
+  {
+   "name": "oak_battle_menu",
+   "frame": 6123,
+   "step": 13,
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0
+  },
+  {
+   "name": "oaks_lab",
+   "frame": 9202,
+   "step": 17,
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3
+  },
+  {
+   "name": "got_pikachu",
+   "frame": 12800,
+   "step": 34,
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3
+  }
+ ],
+ "steps": [
+  {
+   "index": 0,
+   "frame": 4256,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 4
+   },
+   "map_name": "REDS_HOUSE_2F",
+   "x": 5,
+   "y": 6,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000000.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I am moving toward the stairs at the top-right of the bedroom.",
+   "input_tokens": 913,
+   "output_tokens": 76,
+   "cost_usd": 0.000274
+  },
+  {
+   "index": 1,
+   "frame": 4348,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 5
+   },
+   "map_name": "REDS_HOUSE_2F",
+   "x": 5,
+   "y": 1,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000001.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I’m moving north toward the staircase at the top-right of the bedroom.",
+   "input_tokens": 957,
+   "output_tokens": 77,
+   "cost_usd": 0.000558
+  },
+  {
+   "index": 2,
+   "frame": 4456,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 2
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 7,
+   "y": 1,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000002.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I am moving to the staircase at the top right of the bedroom.",
+   "input_tokens": 1000,
+   "output_tokens": 65,
+   "cost_usd": 0.000836
+  },
+  {
+   "index": 3,
+   "frame": 4526,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 4
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 4,
+   "y": 1,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000003.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I’m moving left across the upstairs room toward the front-door mat.",
+   "input_tokens": 1044,
+   "output_tokens": 152,
+   "cost_usd": 0.001227
+  },
+  {
+   "index": 4,
+   "frame": 4580,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 6
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 4,
+   "y": 3,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000004.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I’m heading down to the front-door mat so I can leave the house.",
+   "input_tokens": 1087,
+   "output_tokens": 78,
+   "cost_usd": 0.001538
+  },
+  {
+   "index": 5,
+   "frame": 4604,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 1
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 3,
+   "y": 3,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000005.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I’m moving toward the downstairs exit mat before heading outside.",
+   "input_tokens": 1130,
+   "output_tokens": 98,
+   "cost_usd": 0.001881
+  },
+  {
+   "index": 6,
+   "frame": 4621,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 4
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 3,
+   "y": 3,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000006.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I’m walking down to the front-door mat so I can exit the house.",
+   "input_tokens": 1173,
+   "output_tokens": 68,
+   "cost_usd": 0.00225
+  },
+  {
+   "index": 7,
+   "frame": 4679,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 3
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 6,
+   "y": 3,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000007.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I’m moving around the central obstruction to reach the hallway toward the front door.",
+   "input_tokens": 1216,
+   "output_tokens": 159,
+   "cost_usd": 0.002739
+  },
+  {
+   "index": 8,
+   "frame": 4753,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 4
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 6,
+   "y": 7,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000008.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I’m moving down toward the bottom doorway area of the house.",
+   "input_tokens": 1259,
+   "output_tokens": 111,
+   "cost_usd": 0.003181
+  },
+  {
+   "index": 9,
+   "frame": 4810,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 3,
+   "y": 7,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000009.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I am moving onto the front-door mat at the bottom of the room.",
+   "input_tokens": 1259,
+   "output_tokens": 78,
+   "cost_usd": 0.003583
+  },
+  {
+   "index": 10,
+   "frame": 4895,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000010.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "Walk down from the front-door mat to exit the house.",
+   "input_tokens": 1259,
+   "output_tokens": 53,
+   "cost_usd": 0.003955
+  },
+  {
+   "index": 11,
+   "frame": 4986,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 5
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 6,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000011.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I’m moving east to the town’s northern path so I can enter the tall grass.",
+   "input_tokens": 1253,
+   "output_tokens": 90,
+   "cost_usd": 0.00437
+  },
+  {
+   "index": 12,
+   "frame": 5094,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 6
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000012.png",
+   "stop": "text",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I’m walking north into the tall grass at Pallet Town’s northern edge to trigger Professor Oak.",
+   "input_tokens": 1250,
+   "output_tokens": 74,
+   "cost_usd": 0.004766
+  },
+  {
+   "index": 13,
+   "frame": 6123,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "menu",
+    "lines": [
+     "PIKACHU",
+     "Lv5",
+     "FIGHT PKMN",
+     "ITEM RUN"
+    ],
+    "cursor": "FIGHT PKMN"
+   },
+   "party": [],
+   "battle": "wild",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000013.png",
+   "stop": "battle_menu",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "Advance Professor Oak’s interruption and let the scripted scene continue.",
+   "input_tokens": 1245,
+   "output_tokens": 41,
+   "cost_usd": 0.00512
+  },
+  {
+   "index": 14,
+   "frame": 6175,
+   "action": {
+    "tool": "choose",
+    "item": "RUN"
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "PIKACHU",
+     "Lv5",
+     "POKé BALL",
+     "× 1",
+     "CANCEL"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "wild",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000014.png",
+   "stop": null,
+   "error": "ERROR: no menu cursor on screen",
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I’m fleeing the unexpected wild battle so Professor Oak’s scene can proceed.",
+   "input_tokens": 1318,
+   "output_tokens": 72,
+   "cost_usd": 0.00553
+  },
+  {
+   "index": 15,
+   "frame": 6176,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "menu",
+    "lines": [
+     "PIKACHU",
+     "Lv5",
+     "POKé BALL",
+     "× 1",
+     "CANCEL"
+    ],
+    "cursor": "POKé BALL"
+   },
+   "party": [],
+   "battle": "wild",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000015.png",
+   "stop": "menu",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "Advance the Poké Ball acquisition dialogue so I can reach the nickname choice.",
+   "input_tokens": 1295,
+   "output_tokens": 88,
+   "cost_usd": 0.005953
+  },
+  {
+   "index": 16,
+   "frame": 6202,
+   "action": {
+    "tool": "choose",
+    "item": "CANCEL"
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "PIKACHU",
+     "Lv5"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "wild",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000016.png",
+   "stop": null,
+   "error": "ERROR: no menu cursor on screen",
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I am leaving the item bag without using the Poké Ball so I can return to the battle menu and run.",
+   "input_tokens": 1307,
+   "output_tokens": 84,
+   "cost_usd": 0.006374
+  },
+  {
+   "index": 17,
+   "frame": 9202,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "You may have it!",
+     "Go on, take it!"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000017.png",
+   "stop": "limit",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I am advancing the current Pikachu dialogue to reach the next game state.",
+   "input_tokens": 1265,
+   "output_tokens": 63,
+   "cost_usd": 0.00676
+  },
+  {
+   "index": 18,
+   "frame": 9765,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000018.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I’m advancing Oak’s dialogue so the Poké Ball pickup scene can continue.",
+   "input_tokens": 1258,
+   "output_tokens": 49,
+   "cost_usd": 0.007127
+  },
+  {
+   "index": 19,
+   "frame": 9782,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 2
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000019.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I am moving to the square directly below the Poké Ball on the right-hand table.",
+   "input_tokens": 1268,
+   "output_tokens": 122,
+   "cost_usd": 0.007585
+  },
+  {
+   "index": 20,
+   "frame": 9806,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 4,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000020.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I am moving below the table area so I can approach the Poké Ball from underneath.",
+   "input_tokens": 1269,
+   "output_tokens": 158,
+   "cost_usd": 0.008085
+  },
+  {
+   "index": 21,
+   "frame": 9829,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000021.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I will face the Poké Ball from directly below it so I can interact with it next.",
+   "input_tokens": 1271,
+   "output_tokens": 200,
+   "cost_usd": 0.008637
+  },
+  {
+   "index": 22,
+   "frame": 10068,
+   "action": {
+    "tool": "talk"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000022.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I am facing the Poké Ball from directly below it, so I will interact with it.",
+   "input_tokens": 1258,
+   "output_tokens": 143,
+   "cost_usd": 0.009117
+  },
+  {
+   "index": 23,
+   "frame": 10158,
+   "action": {
+    "tool": "advance_text"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000023.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "Continue Oak’s prompt so the Poké Ball can be collected.",
+   "input_tokens": 1274,
+   "output_tokens": 146,
+   "cost_usd": 0.009605
+  },
+  {
+   "index": 24,
+   "frame": 10396,
+   "action": {
+    "tool": "talk"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000024.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I will interact with the Poké Ball above me now that Oak has told me to take it.",
+   "input_tokens": 1254,
+   "output_tokens": 119,
+   "cost_usd": 0.010055
+  },
+  {
+   "index": 25,
+   "frame": 10419,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 4,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000025.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I am moving below the table so I can approach the Poké Ball from underneath.",
+   "input_tokens": 1269,
+   "output_tokens": 122,
+   "cost_usd": 0.010512
+  },
+  {
+   "index": 26,
+   "frame": 10442,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000026.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "Move directly below the Poké Ball and face upward so I can inspect it.",
+   "input_tokens": 1244,
+   "output_tokens": 196,
+   "cost_usd": 0.011052
+  },
+  {
+   "index": 27,
+   "frame": 10465,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 4,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000027.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I am moving below the table so I can approach the Poké Ball from underneath.",
+   "input_tokens": 1222,
+   "output_tokens": 305,
+   "cost_usd": 0.011718
+  },
+  {
+   "index": 28,
+   "frame": 10488,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 6,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000028.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I am moving to the tile below the Poké Ball on the table to the right.",
+   "input_tokens": 1222,
+   "output_tokens": 157,
+   "cost_usd": 0.012206
+  },
+  {
+   "index": 29,
+   "frame": 10505,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 6,
+   "y": 4,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000029.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I am moving to the tile directly below the Poké Ball so I can face it.",
+   "input_tokens": 1222,
+   "output_tokens": 180,
+   "cost_usd": 0.012721
+  },
+  {
+   "index": 30,
+   "frame": 10559,
+   "action": {
+    "tool": "talk"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 6,
+   "y": 4,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000030.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I am directly below the Poké Ball and facing up, so I will interact with it.",
+   "input_tokens": 1222,
+   "output_tokens": 88,
+   "cost_usd": 0.013126
+  },
+  {
+   "index": 31,
+   "frame": 10583,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000031.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I am moving around the table to reach the Poké Ball from directly below.",
+   "input_tokens": 1209,
+   "output_tokens": 301,
+   "cost_usd": 0.013783
+  },
+  {
+   "index": 32,
+   "frame": 10600,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 4,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000032.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I am moving up from below the right-hand Poké Ball to trigger its interaction.",
+   "input_tokens": 1223,
+   "output_tokens": 149,
+   "cost_usd": 0.014262
+  },
+  {
+   "index": 33,
+   "frame": 12664,
+   "action": {
+    "tool": "talk"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "menu",
+    "lines": [
+     "YES",
+     "NO",
+     "give a nickname",
+     "to PIKACHU?"
+    ],
+    "cursor": "YES"
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000033.png",
+   "stop": "menu",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "I am facing the Poké Ball from directly below, so I will interact with it.",
+   "input_tokens": 1225,
+   "output_tokens": 78,
+   "cost_usd": 0.014656
+  },
+  {
+   "index": 34,
+   "frame": 12800,
+   "action": {
+    "tool": "choose",
+    "item": "NO"
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv5"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204253-pikachu-openrouter-openai-gpt-5-6-luna/000034.png",
+   "stop": "overworld",
+   "error": null,
+   "model": "openrouter:openai/gpt-5.6-luna",
+   "said": "Decline the nickname so Pikachu joins the party unchanged.",
+   "input_tokens": 1260,
+   "output_tokens": 32,
+   "cost_usd": 0.015003
+  }
+ ]
+}

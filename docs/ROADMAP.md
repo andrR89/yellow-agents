@@ -81,14 +81,18 @@ Planned interactive pieces:
 
 **Milestone:** Claude Code plays through MCP from a new game to receiving Pikachu.
 
-### Phase 2 — First agent loop + benchmark
+### Phase 2 — First agent loop + benchmark *(done, session 5)*
 - [x] Action schema (`actions.py`, MCP tools): `advance_text`, `walk(direction, tiles)`, `talk`,
       `choose(item)`, `use_move(slot)`; `switch(slot)` moves to Phase 4 (session 4)
-- [ ] Simple loop: state → model → action → state, with cost/latency logging
-- [ ] Scenario runner: from a save state, run N turns, score success
-- [ ] Benchmark Claude vs OpenAI vs Ollama (local) on 3 scenarios
+- [x] Simple loop: state → model → action → state, with cost/latency logging (`agent.py`;
+      real cost per call from OpenRouter, spend cap per run and per bench)
+- [x] Scenario runner: scripted start (no save files), N turns, a RAM judge (`scenarios.py`:
+      `rival_battle`, `pikachu`, `route1`)
+- [x] Benchmark on 3 scenarios (`yellow-bench`, site section): Claude Haiku 5.5 vs GPT-5.6 Luna.
+      Ollama left out (the local model froze the machine: GPU shared with the desktop); Sonnet 5.5
+      not run (OpenRouter credits ran out)
 
-**Milestone:** beat the rival's Eevee in Oak's lab, unattended.
+**Milestone:** beat the rival's Eevee in Oak's lab, unattended. *(Reached in session 5 by Claude Haiku 5.5 and GPT-5.6 Luna.)*
 
 ### Phase 3 — Navigation + evals in CI
 - [ ] Collision grid per map (pokeyellow map data / `game_area_collision`)

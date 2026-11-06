@@ -105,7 +105,7 @@
  },
  "bench": {
   "eyebrow": "Fase 2 · loop do agente",
-  "title": "Três modelos, os mesmos cenários",
+  "title": "Dois modelos, os mesmos cenários",
   "lead": "Nosso próprio loop: a cada turno o código lê o estado da RAM, monta o prompt com o objetivo e as últimas ações, e o modelo escolhe uma ferramenta. Cada modelo joga com o próprio nome, a partir do mesmo estado do emulador.",
   "problem": "Comparar modelos de forma justa: mesmo início, mesmas ferramentas, mesmo limite de turnos, e o custo real de cada chamada.",
   "how": "O início de cada cenário é montado por script com as ações de alto nível, sem save. Um juiz lê a RAM e decide: venceu a batalha (wBattleResult), tem o Pikachu, chegou à ROUTE_1. Cada turno fica gravado com prompt, resposta, tokens e custo informado pelo OpenRouter.",

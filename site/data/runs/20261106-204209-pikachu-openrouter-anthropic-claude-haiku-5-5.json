@@ -1,0 +1,1161 @@
+{
+ "run_id": "20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5",
+ "source": "eval",
+ "player_name": "CLAUDE",
+ "rival_name": "GEMINI",
+ "started_at": "2026-11-06T20:42:11.060776+00:00",
+ "git_commit": "137dac3",
+ "start_frame": 4389,
+ "total_frames": 7136,
+ "actions": {
+  "walk": 40
+ },
+ "wait_frames": 0,
+ "start_state": "pikachu",
+ "notes": {
+  "model": "openrouter:anthropic/claude-haiku-5.5",
+  "scenario": "pikachu",
+  "goal": "A new game: you are in your bedroom, on the 2nd floor of your house in Pallet Town. The stairs are at the top right of the bedroom (x=7, y=1). Downstairs, the front door is the mat at the bottom of the room (x=3, y=7): stand on it and walk down to go outside. In Pallet Town, walk north to the top edge of town (x=10-11, y=0) and into the tall grass: Professor Oak stops you and takes you to his lab; let the scene play. When you can move in the lab, take the Poké Ball on the table to your right: stand right below it and talk to it facing up. Decline to give a nickname. Done when PIKACHU is in your party and you can move again."
+ },
+ "cost_usd": 0.011917,
+ "milestones": [
+  {
+   "name": "bedroom",
+   "frame": 4389,
+   "step": 0,
+   "map_name": "REDS_HOUSE_2F",
+   "x": 5,
+   "y": 6
+  },
+  {
+   "name": "pallet_town",
+   "frame": 4856,
+   "step": 5,
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6
+  }
+ ],
+ "steps": [
+  {
+   "index": 0,
+   "frame": 4389,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 4
+   },
+   "map_name": "REDS_HOUSE_2F",
+   "x": 5,
+   "y": 6,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000000.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Head toward the stairs at x=7, y=1 in the bedroom.",
+   "input_tokens": 2030,
+   "output_tokens": 105,
+   "cost_usd": 0.000255
+  },
+  {
+   "index": 1,
+   "frame": 4481,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 5
+   },
+   "map_name": "REDS_HOUSE_2F",
+   "x": 5,
+   "y": 1,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000001.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Head toward the stairs at top right (x=7, y=1) by going up first.",
+   "input_tokens": 2092,
+   "output_tokens": 106,
+   "cost_usd": 0.000518
+  },
+  {
+   "index": 2,
+   "frame": 4589,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 2
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 7,
+   "y": 1,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000002.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Head to the stairs at x=7, y=1 from my position at x=5, y=1.",
+   "input_tokens": 2151,
+   "output_tokens": 109,
+   "cost_usd": 0.000787
+  },
+  {
+   "index": 3,
+   "frame": 4697,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 6
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 7,
+   "y": 7,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000003.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Head down toward the front door mat at bottom of the downstairs room.",
+   "input_tokens": 2211,
+   "output_tokens": 103,
+   "cost_usd": 0.00106
+  },
+  {
+   "index": 4,
+   "frame": 4771,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 4
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 3,
+   "y": 7,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000004.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Move left toward the front door mat at x=3 on the bottom row.",
+   "input_tokens": 2270,
+   "output_tokens": 103,
+   "cost_usd": 0.001338
+  },
+  {
+   "index": 5,
+   "frame": 4856,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000005.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Step onto the front door mat at (3,7) to leave the house... I'm already at (3,7), so walking down exits to Pallet Town.",
+   "input_tokens": 2329,
+   "output_tokens": 126,
+   "cost_usd": 0.001634
+  },
+  {
+   "index": 6,
+   "frame": 4947,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 6
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 2,
+   "y": 7,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000006.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Head north through Pallet Town toward the tall grass at the top edge.",
+   "input_tokens": 2383,
+   "output_tokens": 104,
+   "cost_usd": 0.001925
+  },
+  {
+   "index": 7,
+   "frame": 4970,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 1
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 3,
+   "y": 7,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000007.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Step onto the front door mat at (3,7) to head outside.",
+   "input_tokens": 2446,
+   "output_tokens": 101,
+   "cost_usd": 0.00222
+  },
+  {
+   "index": 8,
+   "frame": 5055,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000008.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Step onto the front door mat to exit the house into Pallet Town.",
+   "input_tokens": 2505,
+   "output_tokens": 103,
+   "cost_usd": 0.002522
+  },
+  {
+   "index": 9,
+   "frame": 5146,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 6
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 2,
+   "y": 7,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000009.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Head north toward the tall grass at the top edge of Pallet Town to trigger Oak.",
+   "input_tokens": 2498,
+   "output_tokens": 111,
+   "cost_usd": 0.002827
+  },
+  {
+   "index": 10,
+   "frame": 5169,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 1
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 3,
+   "y": 7,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000010.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Move onto the front door mat at (3,7) to exit the house.",
+   "input_tokens": 2502,
+   "output_tokens": 102,
+   "cost_usd": 0.003128
+  },
+  {
+   "index": 11,
+   "frame": 5254,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000011.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Step onto the front door mat to exit the house to Pallet Town.",
+   "input_tokens": 2501,
+   "output_tokens": 103,
+   "cost_usd": 0.00343
+  },
+  {
+   "index": 12,
+   "frame": 5345,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 6
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 2,
+   "y": 7,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000012.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Head north through Pallet Town toward the tall grass at the top edge of town.",
+   "input_tokens": 2496,
+   "output_tokens": 106,
+   "cost_usd": 0.003732
+  },
+  {
+   "index": 13,
+   "frame": 5368,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 1
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 3,
+   "y": 7,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000013.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Move onto the front door mat at (3,7) to go outside.",
+   "input_tokens": 2500,
+   "output_tokens": 101,
+   "cost_usd": 0.004033
+  },
+  {
+   "index": 14,
+   "frame": 5453,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000014.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Stand on the front door mat to exit the house to Pallet Town.",
+   "input_tokens": 2502,
+   "output_tokens": 103,
+   "cost_usd": 0.004335
+  },
+  {
+   "index": 15,
+   "frame": 5544,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 6
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 2,
+   "y": 7,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000015.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Previous attempts bounced back into Red's house; I need to head north toward the tall grass at the top of town.",
+   "input_tokens": 2496,
+   "output_tokens": 115,
+   "cost_usd": 0.004642
+  },
+  {
+   "index": 16,
+   "frame": 5567,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 1
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 3,
+   "y": 7,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000016.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Move onto the front door mat at (3,7) to exit the house.",
+   "input_tokens": 2500,
+   "output_tokens": 102,
+   "cost_usd": 0.004943
+  },
+  {
+   "index": 17,
+   "frame": 5652,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000017.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Step onto the front door mat to exit the house into Pallet Town.",
+   "input_tokens": 2502,
+   "output_tokens": 103,
+   "cost_usd": 0.005244
+  },
+  {
+   "index": 18,
+   "frame": 5743,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 6
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 2,
+   "y": 7,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000018.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Previous attempts looped in and out of Red's house; I'm now outside at (5,6), so I'll head north toward the tall grass at the top of town.",
+   "input_tokens": 2496,
+   "output_tokens": 129,
+   "cost_usd": 0.005559
+  },
+  {
+   "index": 19,
+   "frame": 5766,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 1
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 3,
+   "y": 7,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000019.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Move to x=3 so I can step onto the front door mat at (3,7).",
+   "input_tokens": 2500,
+   "output_tokens": 105,
+   "cost_usd": 0.005861
+  },
+  {
+   "index": 20,
+   "frame": 5851,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000020.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Stand on the front door mat to exit the house to Pallet Town.",
+   "input_tokens": 2502,
+   "output_tokens": 103,
+   "cost_usd": 0.006163
+  },
+  {
+   "index": 21,
+   "frame": 5942,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 6
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 2,
+   "y": 7,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000021.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Recent attempts bounced between Red's house and town; I need to get out of the loop and head north toward tall grass.",
+   "input_tokens": 2496,
+   "output_tokens": 117,
+   "cost_usd": 0.006471
+  },
+  {
+   "index": 22,
+   "frame": 5965,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 1
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 3,
+   "y": 7,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000022.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Step onto the door mat at (3,7) to leave the house.",
+   "input_tokens": 2500,
+   "output_tokens": 101,
+   "cost_usd": 0.006771
+  },
+  {
+   "index": 23,
+   "frame": 6050,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000023.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Step onto the front door mat to exit the house to Pallet Town.",
+   "input_tokens": 2502,
+   "output_tokens": 103,
+   "cost_usd": 0.007073
+  },
+  {
+   "index": 24,
+   "frame": 6141,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 10
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 2,
+   "y": 7,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000024.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Head north toward the tall grass at the top edge of Pallet Town.",
+   "input_tokens": 2496,
+   "output_tokens": 104,
+   "cost_usd": 0.007375
+  },
+  {
+   "index": 25,
+   "frame": 6164,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 1
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 3,
+   "y": 7,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000025.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Move to x=3 so I can step onto the front door mat at (3,7).",
+   "input_tokens": 2500,
+   "output_tokens": 105,
+   "cost_usd": 0.007677
+  },
+  {
+   "index": 26,
+   "frame": 6249,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000026.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Step onto the front door mat to exit the house to Pallet Town.",
+   "input_tokens": 2502,
+   "output_tokens": 103,
+   "cost_usd": 0.007979
+  },
+  {
+   "index": 27,
+   "frame": 6340,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 10
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 2,
+   "y": 7,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000027.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Head north toward the tall grass at the top edge of Pallet Town to trigger Oak.",
+   "input_tokens": 2496,
+   "output_tokens": 111,
+   "cost_usd": 0.008284
+  },
+  {
+   "index": 28,
+   "frame": 6363,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 1
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 3,
+   "y": 7,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000028.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Move onto the front door mat column at x=3 so I can exit downstairs.",
+   "input_tokens": 2500,
+   "output_tokens": 106,
+   "cost_usd": 0.008587
+  },
+  {
+   "index": 29,
+   "frame": 6448,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000029.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Step onto the front door mat to exit the house to Pallet Town.",
+   "input_tokens": 2502,
+   "output_tokens": 103,
+   "cost_usd": 0.008889
+  },
+  {
+   "index": 30,
+   "frame": 6539,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 10
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 2,
+   "y": 7,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000030.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Head north toward the tall grass at the top of Pallet Town to trigger Oak.",
+   "input_tokens": 2496,
+   "output_tokens": 109,
+   "cost_usd": 0.009193
+  },
+  {
+   "index": 31,
+   "frame": 6562,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 1
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 3,
+   "y": 7,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000031.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Move onto the front door mat at (3,7) to leave the house.",
+   "input_tokens": 2500,
+   "output_tokens": 102,
+   "cost_usd": 0.009494
+  },
+  {
+   "index": 32,
+   "frame": 6647,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000032.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Step onto the front door mat to exit the house to Pallet Town.",
+   "input_tokens": 2502,
+   "output_tokens": 103,
+   "cost_usd": 0.009795
+  },
+  {
+   "index": 33,
+   "frame": 6738,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 10
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 2,
+   "y": 7,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000033.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Head north toward the tall grass at the top of Pallet Town to trigger Oak.",
+   "input_tokens": 2496,
+   "output_tokens": 109,
+   "cost_usd": 0.0101
+  },
+  {
+   "index": 34,
+   "frame": 6761,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 1
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 3,
+   "y": 7,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000034.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Move to x=3 so I can step onto the front door mat at (3,7) and go outside.",
+   "input_tokens": 2500,
+   "output_tokens": 110,
+   "cost_usd": 0.010405
+  },
+  {
+   "index": 35,
+   "frame": 6846,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000035.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Stand on the front door mat to exit the house into Pallet Town.",
+   "input_tokens": 2502,
+   "output_tokens": 103,
+   "cost_usd": 0.010706
+  },
+  {
+   "index": 36,
+   "frame": 6937,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 10
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 2,
+   "y": 7,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000036.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Head north toward the tall grass at the top of Pallet Town to trigger Oak.",
+   "input_tokens": 2496,
+   "output_tokens": 109,
+   "cost_usd": 0.01101
+  },
+  {
+   "index": 37,
+   "frame": 6960,
+   "action": {
+    "tool": "walk",
+    "direction": "right",
+    "tiles": 1
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 3,
+   "y": 7,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000037.png",
+   "stop": "done",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Move onto the front door mat at (3,7) to exit the house.",
+   "input_tokens": 2500,
+   "output_tokens": 102,
+   "cost_usd": 0.011311
+  },
+  {
+   "index": 38,
+   "frame": 7045,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000038.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Step onto the front door mat to exit the house to Pallet Town.",
+   "input_tokens": 2502,
+   "output_tokens": 103,
+   "cost_usd": 0.011613
+  },
+  {
+   "index": 39,
+   "frame": 7136,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 10
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 2,
+   "y": 7,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-204209-pikachu-openrouter-anthropic-claude-haiku-5-5/000039.png",
+   "stop": "warped",
+   "error": null,
+   "model": "openrouter:anthropic/claude-haiku-5.5",
+   "said": "Head north toward the tall grass at the top of Pallet Town to trigger Oak.",
+   "input_tokens": 2496,
+   "output_tokens": 109,
+   "cost_usd": 0.011917
+  }
+ ]
+}

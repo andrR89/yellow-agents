@@ -17,7 +17,10 @@
    `overworld`, `blocked`, `script`…), with the transcript of what was said.
 4. **Models** (`models/`): one `ChatModel` interface; Claude, OpenAI and Ollama (via the
    OpenAI-compatible endpoint) are implementations chosen by a `provider:model` string.
-5. **Agent** *(phase 2+)*: planner / navigator / battle, memory, routing.
+5. **Agent** (`agent.py`, `scenarios.py`, `bench.py`): one turn = one model call = one tool call.
+   The prompt is rebuilt every turn from the goal, the trimmed RAM state and the last 8 actions
+   with their outcomes. Scenarios start from scripted states and are judged from RAM. Later
+   phases add planner / navigator / battle, memory and routing.
 6. **Recording** (`recorder.py`, `snapshot.py`): every run is a JSONL file (header + one line per
    action: frame, state, action, screenshot, prompt/response, tokens, latency, cost); RAM
    snapshots pair raw bytes with the fields they become. Both feed the showcase site.
