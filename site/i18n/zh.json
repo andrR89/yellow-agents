@@ -1,6 +1,6 @@
 {
  "meta": { "title": "yellow-agents — 玩《宝可梦 黄》的 AI" },
- "nav": { "how": "工作原理", "phase1": "第一阶段", "baseline": "基准", "replay": "回放", "journal": "日志", "language": "语言" },
+ "nav": { "how": "工作原理", "phase1": "第一阶段", "baseline": "基准", "replay": "回放", "bench": "基准测试", "journal": "日志", "language": "语言" },
  "hero": {
   "eyebrow": "学习项目 · 第一阶段已完成",
   "title": "一个通过读取游戏内存来玩《宝可梦 黄》的 AI",
@@ -94,10 +94,27 @@
   "compare": "与基线对比",
   "result": "Claude 在第 {run} 帧拿到皮卡丘；脚本在第 {base} 帧（多 {pct}）。共 {calls} 次调用，其中 {waits} 次是 wait。new_game 之后的 {played} 帧中，有 {waitFrames} 帧花在 wait 里。",
   "actions": "使用高层动作（advance_text、walk、talk、choose），同一路线只需 {calls} 次调用，在第 {frames} 帧结束，而之前是 {mcp} 次调用。",
+  "pick": "运行：",
+  "said": "模型说",
+  "modelMeta": "{model} · 输入 {inTok} 个 token，输出 {outTok} 个 · 累计花费：{cost}",
+  "run": {"mcp": "{name} 通过 MCP（Claude Code，第 3 次会话）", "eval": "{scenario} · {model}"},
   "alt": "游戏画面：{map} ({x},{y})",
   "caption": "第 {i}/{n} 步 · 第 {frame} 帧 · {tool}",
   "tip": "第 {frame} 帧（≈ {s} 秒）",
   "series": {"baseline": "脚本（基线）", "run": "{name} 通过 MCP"}
+ },
+ "bench": {
+  "eyebrow": "第 2 阶段 · 智能体循环",
+  "title": "三个模型，相同的场景",
+  "lead": "我们自己的循环：每一回合，代码从 RAM 读取状态，用目标和最近的动作构建提示，模型选择一个工具。每个模型用自己的名字，从同一个模拟器状态开始。",
+  "problem": "公平地比较模型：相同的起点、相同的工具、相同的回合上限，以及每次调用的真实费用。",
+  "how": "每个场景的起点都由脚本用高层动作搭建，不用存档。裁判读取 RAM 来判定：赢下对战（wBattleResult）、队伍里有皮卡丘、到达 ROUTE_1。每一回合都记录提示、回复、token 和 OpenRouter 报告的费用。",
+  "decision": "每回合根据状态和最近 8 个动作重新构建提示，而不是让对话越来越长：每回合费用保持稳定，所有模型看到的内容相同。本地模型没有参与：它用的 GPU 也是桌面用的，曾让机器死机。",
+  "col": {"scenario": "场景"},
+  "scenario": {"rival_battle": "击败 GEMINI", "pikachu": "新游戏 → 皮卡丘", "route1": "研究所 → 1 号道路"},
+  "stop": {"success": "完成", "failure": "失败", "max_turns": "回合用完", "budget": "预算用完", "model_error": "模型错误"},
+  "cell": "{turns} 回合 · {frames} 帧 · {cost} · {invalid} 次无效动作",
+  "result": "{runs} 次运行中有 {wins} 次达成目标，总花费 {cost}。点击单元格可查看回放，以及模型每回合说的话。"
  },
  "journal": {
   "title": "项目日志",

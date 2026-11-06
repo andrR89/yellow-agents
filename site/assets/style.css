@@ -239,3 +239,25 @@ footer { max-width: 1120px; margin: 0 auto; padding: 2rem clamp(1rem, 4vw, 2rem)
 .cmp-delta { position: absolute; inset-inline-start: calc(100% + 0.75rem); top: 50%; transform: translateY(-50%); font: 0.78rem var(--mono); color: var(--ink-2); font-variant-numeric: tabular-nums; }
 @media (max-width: 560px) { .cmp-plot { margin-inline-start: 6.5rem; margin-inline-end: 3.5rem; } .cmp-lbl { font-size: 0.72rem; white-space: normal; width: 6rem; text-align: end; } }
 #replay > .controls { margin-block-end: 2.5rem; }
+
+/* ---------------------------------------------------------------- run picker, model words */
+.rp-pick { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; margin-block: 1.25rem 0; color: var(--ink-2); font-size: 0.9rem; }
+.rp-pick select { background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 0.35rem 0.6rem; font: inherit; max-width: 100%; }
+.rp-said { margin-block-start: 0.75rem; border-block-start: 1px solid var(--line); padding-block-start: 0.6rem; }
+.rp-said p { margin: 0.2rem 0; color: var(--ink); font-size: 0.9rem; }
+.rp-said p.err { color: var(--bad); font: 0.8rem/1.45 var(--mono); }
+.rp-said p.meta { color: var(--ink-3); font-size: 0.76rem; font-variant-numeric: tabular-nums; }
+
+/* ---------------------------------------------------------------- benchmark */
+.bench-wrap { overflow-x: auto; margin-block: 1.5rem 1rem; }
+table.bench { border-collapse: separate; border-spacing: 6px; min-width: 640px; width: 100%; }
+table.bench th { text-align: start; font-size: 0.85rem; color: var(--ink-2); font-weight: 600; padding: 0.2rem 0.4rem; }
+table.bench th[scope="row"] { white-space: nowrap; }
+table.bench td { padding: 0; vertical-align: top; }
+table.bench td.na { color: var(--ink-3); text-align: center; }
+.bench-cell { display: grid; gap: 0.2rem; width: 100%; text-align: start; padding: 0.6rem 0.75rem; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); color: var(--ink); cursor: pointer; font: inherit; }
+.bench-cell b { font-size: 0.9rem; }
+.bench-cell span { font-size: 0.76rem; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.bench-cell.ok { border-inline-start: 4px solid var(--good); }
+.bench-cell.fail { border-inline-start: 4px solid var(--bad); }
+.bench-cell:hover, .bench-cell:focus-visible { border-color: var(--accent); outline: none; }

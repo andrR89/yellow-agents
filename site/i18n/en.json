@@ -1,6 +1,6 @@
 {
  "meta": { "title": "yellow-agents — an AI playing Pokémon Yellow" },
- "nav": { "how": "How it works", "phase1": "Phase 1", "baseline": "Baseline", "replay": "Replay", "journal": "Journal", "language": "Language" },
+ "nav": { "how": "How it works", "phase1": "Phase 1", "baseline": "Baseline", "replay": "Replay", "bench": "Benchmark", "journal": "Journal", "language": "Language" },
  "hero": {
   "eyebrow": "Study project · Phase 1 done",
   "title": "An AI that plays Pokémon Yellow by reading the game's memory",
@@ -94,10 +94,27 @@
   "compare": "Against the baseline",
   "result": "Claude reached Pikachu at frame {run}; the script at {base} ({pct} more). It made {calls} calls, {waits} of them wait. Of the {played} frames after new_game, {waitFrames} were spent inside wait.",
   "actions": "With the high-level actions (advance_text, walk, talk, choose), the same route takes {calls} calls and ends at frame {frames}, against {mcp} calls.",
+  "pick": "Run:",
+  "said": "The model said",
+  "modelMeta": "{model} · {inTok} input tokens, {outTok} output · spent so far: {cost}",
+  "run": {"mcp": "{name} over MCP (Claude Code, session 3)", "eval": "{scenario} · {model}"},
   "alt": "Game screen at {map} ({x},{y})",
   "caption": "Step {i}/{n} · frame {frame} · {tool}",
   "tip": "frame {frame} (≈ {s} s)",
   "series": {"baseline": "Script (baseline)", "run": "{name} over MCP"}
+ },
+ "bench": {
+  "eyebrow": "Phase 2 · agent loop",
+  "title": "Three models, the same scenarios",
+  "lead": "Our own loop: every turn the code reads the state from RAM, builds the prompt with the goal and the last actions, and the model picks one tool. Each model plays under its own name, from the same emulator state.",
+  "problem": "Compare models fairly: same start, same tools, same turn limit, and the real cost of every call.",
+  "how": "Each scenario's start is scripted with the high-level actions, no save files. A judge reads RAM and decides: battle won (wBattleResult), Pikachu in the party, on ROUTE_1. Every turn is recorded with prompt, response, tokens and the cost reported by OpenRouter.",
+  "decision": "The prompt is rebuilt every turn from the state and the last 8 actions instead of a growing conversation: cost per turn stays flat and every model sees the same thing. The local model was left out: its GPU is the desktop's, and it froze the machine.",
+  "col": {"scenario": "Scenario"},
+  "scenario": {"rival_battle": "Beat GEMINI", "pikachu": "New game → Pikachu", "route1": "Lab → Route 1"},
+  "stop": {"success": "done", "failure": "lost", "max_turns": "out of turns", "budget": "out of budget", "model_error": "model error"},
+  "cell": "{turns} turns · {frames} frames · {cost} · {invalid} invalid actions",
+  "result": "{wins} of {runs} runs reached the goal, {cost} spent in total. Click a cell to watch the replay with what the model said each turn."
  },
  "journal": {
   "title": "Project journal",

@@ -1,6 +1,6 @@
 {
  "meta": { "title": "yellow-agents — una IA jugando Pokémon Amarillo" },
- "nav": { "how": "Cómo funciona", "phase1": "Fase 1", "baseline": "Línea base", "replay": "Replay", "journal": "Diario", "language": "Idioma" },
+ "nav": { "how": "Cómo funciona", "phase1": "Fase 1", "baseline": "Línea base", "replay": "Replay", "bench": "Benchmark", "journal": "Diario", "language": "Idioma" },
  "hero": {
   "eyebrow": "Proyecto de estudio · Fase 1 completada",
   "title": "Una IA que juega Pokémon Amarillo leyendo la memoria del juego",
@@ -94,10 +94,27 @@
   "compare": "Contra la línea base",
   "result": "Claude llegó a Pikachu en el frame {run}; el script, en el {base} ({pct} más). Hizo {calls} llamadas, {waits} de ellas wait. De los {played} frames después de new_game, {waitFrames} pasaron dentro de wait.",
   "actions": "Con las acciones de alto nivel (advance_text, walk, talk, choose), la misma ruta lleva {calls} llamadas y termina en el frame {frames}, frente a {mcp} llamadas.",
+  "pick": "Run:",
+  "said": "El modelo dijo",
+  "modelMeta": "{model} · {inTok} tokens de entrada, {outTok} de salida · gastado hasta aquí: {cost}",
+  "run": {"mcp": "{name} por MCP (Claude Code, sesión 3)", "eval": "{scenario} · {model}"},
   "alt": "Pantalla del juego en {map} ({x},{y})",
   "caption": "Paso {i}/{n} · frame {frame} · {tool}",
   "tip": "frame {frame} (≈ {s} s)",
   "series": {"baseline": "Script (línea base)", "run": "{name} vía MCP"}
+ },
+ "bench": {
+  "eyebrow": "Fase 2 · bucle del agente",
+  "title": "Tres modelos, los mismos escenarios",
+  "lead": "Nuestro propio bucle: en cada turno el código lee el estado de la RAM, arma el prompt con el objetivo y las últimas acciones, y el modelo elige una herramienta. Cada modelo juega con su propio nombre, desde el mismo estado del emulador.",
+  "problem": "Comparar modelos de forma justa: mismo inicio, mismas herramientas, mismo límite de turnos y el costo real de cada llamada.",
+  "how": "El inicio de cada escenario se arma por script con las acciones de alto nivel, sin saves. Un juez lee la RAM y decide: batalla ganada (wBattleResult), Pikachu en el equipo, en ROUTE_1. Cada turno queda grabado con prompt, respuesta, tokens y el costo que informa OpenRouter.",
+  "decision": "El prompt se rehace en cada turno con el estado y las 8 últimas acciones, en vez de una conversación que crece: el costo por turno se mantiene estable y todos los modelos ven lo mismo. El modelo local quedó fuera: su GPU es la del escritorio y congeló la máquina.",
+  "col": {"scenario": "Escenario"},
+  "scenario": {"rival_battle": "Vencer a GEMINI", "pikachu": "Partida nueva → Pikachu", "route1": "Laboratorio → Ruta 1"},
+  "stop": {"success": "lo logró", "failure": "perdió", "max_turns": "sin turnos", "budget": "sin presupuesto", "model_error": "error del modelo"},
+  "cell": "{turns} turnos · {frames} frames · {cost} · {invalid} acciones inválidas",
+  "result": "{wins} de {runs} runs alcanzaron el objetivo, con {cost} gastados en total. Haz clic en una celda para ver el replay con lo que el modelo dijo en cada turno."
  },
  "journal": {
   "title": "Diario del proyecto",
