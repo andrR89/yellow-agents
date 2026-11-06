@@ -1,0 +1,1249 @@
+{
+ "run_id": "20261106-215549-route1-ollama-llama3-1-8b",
+ "source": "eval",
+ "player_name": "LLAMA",
+ "rival_name": "GEMINI",
+ "started_at": "2026-11-06T21:55:58.621535+00:00",
+ "git_commit": "fca99da",
+ "start_frame": 18466,
+ "total_frames": 18466,
+ "actions": {
+  "go_to": 40
+ },
+ "wait_frames": 0,
+ "start_state": "route1",
+ "notes": {
+  "model": "ollama:llama3.1:8b",
+  "scenario": "route1",
+  "goal": "You are in Professor Oak's lab after your first battle with GEMINI. Leave the lab: the exit is at the bottom of the room (x=4, y=11). Outside, the lab blocks the way north: walk left to x=9, north to y=2, right to x=10, then north onto ROUTE_1. Done when you are on ROUTE_1."
+ },
+ "cost_usd": 0.0,
+ "milestones": [
+  {
+   "name": "pallet_town",
+   "frame": 18655,
+   "step": 3,
+   "map_name": "PALLET_TOWN",
+   "x": 12,
+   "y": 12
+  },
+  {
+   "name": "oaks_lab",
+   "frame": 18466,
+   "step": 0,
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6
+  },
+  {
+   "name": "got_pikachu",
+   "frame": 18466,
+   "step": 0,
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6
+  }
+ ],
+ "steps": [
+  {
+   "index": 0,
+   "frame": 18466,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000000.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by walking to the exit at the bottom of the room.",
+   "input_tokens": 1399,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 1,
+   "frame": 18466,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000001.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1442,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 2,
+   "frame": 18466,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000002.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1484,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 3,
+   "frame": 18655,
+   "action": {
+    "tool": "go_to",
+    "x": 4,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 12,
+   "y": 12,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000003.png",
+   "stop": "warped",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1572,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 4,
+   "frame": 18655,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 12,
+   "y": 12,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000004.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1573,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 5,
+   "frame": 18655,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 12,
+   "y": 12,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000005.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1614,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 6,
+   "frame": 18655,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 12,
+   "y": 12,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000006.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1655,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 7,
+   "frame": 18655,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 12,
+   "y": 12,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000007.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1742,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 8,
+   "frame": 18655,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 12,
+   "y": 12,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000008.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1783,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 9,
+   "frame": 18814,
+   "action": {
+    "tool": "go_to",
+    "x": 4,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 4,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000009.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1782,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 10,
+   "frame": 18814,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 4,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000010.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by walking to the exit at the bottom of the room.",
+   "input_tokens": 1735,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 11,
+   "frame": 18814,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 4,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000011.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by walking to the exit at the bottom of the room.",
+   "input_tokens": 1734,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 12,
+   "frame": 18814,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 4,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000012.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by walking to the exit at the bottom of the room.",
+   "input_tokens": 1733,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 13,
+   "frame": 18814,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 4,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000013.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1779,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 14,
+   "frame": 18814,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 4,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000014.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1779,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 15,
+   "frame": 18814,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 4,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000015.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1779,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 16,
+   "frame": 19075,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000016.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1779,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 17,
+   "frame": 19075,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000017.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1715,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 18,
+   "frame": 19075,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000018.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by walking to the exit at the bottom of the room.",
+   "input_tokens": 1715,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 19,
+   "frame": 19075,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000019.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1715,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 20,
+   "frame": 19075,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000020.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1761,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 21,
+   "frame": 19075,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000021.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1761,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 22,
+   "frame": 19075,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000022.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1761,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 23,
+   "frame": 19075,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000023.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1761,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 24,
+   "frame": 19075,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000024.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1761,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 25,
+   "frame": 19404,
+   "action": {
+    "tool": "go_to",
+    "x": 12,
+    "y": 11
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000025.png",
+   "stop": "warped",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1761,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 26,
+   "frame": 19520,
+   "action": {
+    "tool": "go_to",
+    "x": 4,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 12,
+   "y": 12,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000026.png",
+   "stop": "warped",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by walking to the exit at the bottom.",
+   "input_tokens": 1712,
+   "output_tokens": 40,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 27,
+   "frame": 19679,
+   "action": {
+    "tool": "go_to",
+    "x": 4,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 4,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000027.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1736,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 28,
+   "frame": 19679,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 4,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000028.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by walking to the exit at the bottom of the room.",
+   "input_tokens": 1736,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 29,
+   "frame": 19679,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 4,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000029.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by walking to the exit at the bottom of the room.",
+   "input_tokens": 1736,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 30,
+   "frame": 19679,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 4,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000030.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by walking to the exit at the bottom of the room.",
+   "input_tokens": 1736,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 31,
+   "frame": 19940,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 2
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000031.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1782,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 32,
+   "frame": 19940,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000032.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by walking to the exit at the bottom of the room.",
+   "input_tokens": 1718,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 33,
+   "frame": 19940,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000033.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by walking to the exit at the bottom of the room.",
+   "input_tokens": 1718,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 34,
+   "frame": 19940,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000034.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1716,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 35,
+   "frame": 19940,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000035.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1761,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 36,
+   "frame": 19940,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000036.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1761,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 37,
+   "frame": 19940,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000037.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1761,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 38,
+   "frame": 19940,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000038.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1761,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 39,
+   "frame": 19940,
+   "action": {
+    "tool": "go_to",
+    "x": 10,
+    "y": 11
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 2,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-215549-route1-ollama-llama3-1-8b/000039.png",
+   "stop": "no_path",
+   "error": null,
+   "model": "ollama:llama3.1:8b",
+   "said": "Leave the lab by going to the exit at the bottom of the room.",
+   "input_tokens": 1761,
+   "output_tokens": 43,
+   "cost_usd": 0.0
+  }
+ ]
+}

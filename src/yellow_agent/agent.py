@@ -282,7 +282,10 @@ def run_agent(
     errors_in_a_row = 0
     for turn in range(1, max_turns + 1):
         state = game.state()
-        grid = game.map_grid() if hasattr(game, "map_grid") else None
+        # MAP only when walking around: in text, menus and battles it distracted small models
+        # (llama3.1:8b called go_to 8 times from the move list, session 8).
+        walking = state.screen.kind.value == "overworld" and state.battle.kind.value == "none"
+        grid = game.map_grid() if walking and hasattr(game, "map_grid") else None
         prompt = build_prompt(goal, turn, max_turns, state, history, grid)
         try:
             resp = model.complete(SYSTEM, [Message("user", prompt)], TOOLS, MAX_OUTPUT_TOKENS)

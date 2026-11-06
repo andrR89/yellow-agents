@@ -334,9 +334,16 @@ def use_move(game: Game, slot: int) -> ActionResult:
     """In battle: FIGHT, the move in `slot`, then the turn's messages until the next decision."""
     validate_slot(slot)
     state = game.state()
-    if not is_battle_menu(state.screen, game.in_battle()):
-        raise ActionError("use_move needs the battle menu (FIGHT / PKMN / ITEM / RUN)")
+    on_main_menu = is_battle_menu(state.screen, game.in_battle())
     mon = state.battle.player_mon
+    move_names = [m.name for m in mon.moves] if mon else []
+    on_move_list = (
+        game.in_battle()
+        and state.screen.kind is ScreenKind.MENU
+        and (state.screen.cursor or "") in move_names  # FIGHT already chosen (session 8)
+    )
+    if not (on_main_menu or on_move_list):
+        raise ActionError("use_move needs the battle menu (FIGHT / PKMN / ITEM / RUN)")
     moves = mon.moves if mon else []
     if slot > len(moves):
         raise ActionError(f"no move in slot {slot}; moves: {[m.name for m in moves]}")
@@ -345,7 +352,10 @@ def use_move(game: Game, slot: int) -> ActionResult:
         raise ActionError(f"{move.name} has no PP left")
     action = {"tool": "use_move", "slot": slot, "move": move.name}
     start = game.frame
-    stop, presses, transcript = _choose(game, "FIGHT")
+    if on_move_list:
+        stop, presses, transcript = StopReason.MENU, 0, []
+    else:
+        stop, presses, transcript = _choose(game, "FIGHT")
     if stop is StopReason.MENU:  # the move list
         stop, more, rest = _choose(game, move.name)
         presses += more

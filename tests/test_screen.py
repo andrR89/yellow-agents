@@ -113,3 +113,13 @@ def test_battle_hp_bar_tiles_are_not_text():
     screen = read_screen(tiles, font_loaded=True, player_loaded=True)
     assert screen.lines == ["PIKACHU", "Lv5", "ITEM RUN"]
     assert screen.cursor == "ITEM"
+
+
+def test_battle_menu_cursor_reads_one_item():
+    from yellow_agent.state import _item_after_cursor
+    from yellow_agent.text import CURSOR, encode
+
+    row = [CURSOR, *encode("FIGHT")[:-1], 0x7F, *encode("PKMN")[:-1]]
+    assert _item_after_cursor(row) == "FIGHT"
+    row = [CURSOR, *encode("POKé BALL")[:-1]]
+    assert _item_after_cursor(row) == "POKé BALL"

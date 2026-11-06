@@ -140,6 +140,11 @@ def _row_segments(row: list[int]) -> list[str]:
     return out
 
 
+# The battle menu is a 2x2 grid where FIGHT and PKMN are one space apart (that space is PKMN's
+# cursor column), so "text up to a double space" read "FIGHT PKMN" under the cursor.
+BATTLE_MENU_ITEMS = ("FIGHT", "PKMN", "ITEM", "RUN")
+
+
 def _item_after_cursor(row: list[int]) -> str:
     """Text right after ▶, up to a border, a non-font tile or a double space."""
     item = ""
@@ -148,7 +153,9 @@ def _item_after_cursor(row: list[int]) -> str:
         if ch is None or tile in BOX_TILES or (ch == " " and item.endswith(" ")):
             break
         item += ch
-    return item.strip()
+    item = item.strip()
+    first = item.split(" ", 1)[0]
+    return first if first in BATTLE_MENU_ITEMS else item
 
 
 def read_screen(tiles: list[int], *, font_loaded: bool, player_loaded: bool) -> Screen:

@@ -356,3 +356,12 @@ def test_wait_runs_frames_and_validates():
     assert (r.stop, r.frames) == (StopReason.TEXT, 30)
     with pytest.raises(ActionError):
         wait(game, 601)
+
+
+def test_use_move_also_works_from_the_move_list():
+    # qwen3:14b chose FIGHT itself, then called use_move on the move list (session 8).
+    moves = menu("THUNDERSHOCK", "GROWL", "-", cursor="THUNDERSHOCK")
+    main = menu("EEVEE", "FIGHT PKMN", "ITEM RUN", cursor="FIGHT")
+    game = FakeGame([moves, text("PIKACHU used", "THUNDERSHOCK!"), main], in_battle=True)
+    r = use_move(game, 1)
+    assert game.pressed[0] == "a" and r.stop is StopReason.BATTLE_MENU
