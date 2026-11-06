@@ -1,1 +1,10 @@
-["20261106-183217"]
+[
+ {
+  "run_id": "20261106-183217",
+  "source": "mcp",
+  "player_name": "CLAUDE",
+  "model": null,
+  "scenario": null,
+  "steps": 107
+ }
+]

@@ -154,6 +154,13 @@ class ReplayStep(BaseModel):
     party: list[str]  # "PIKACHU Lv5"
     battle: str
     screenshot: str | None  # path relative to site/
+    stop: str | None = None  # why the action stopped (high-level actions)
+    error: str | None = None  # the action was rejected (agent runs)
+    model: str | None = None  # agent runs: who decided, and what it said before the call
+    said: str | None = None
+    input_tokens: int = 0
+    output_tokens: int = 0
+    cost_usd: float = 0.0  # running total up to and including this step
 
 
 class Replay(BaseModel):
@@ -167,6 +174,9 @@ class Replay(BaseModel):
     total_frames: int  # frame of the got_pikachu milestone (same clock as the baseline)
     actions: dict[str, int]  # tool -> count
     wait_frames: int  # frames spent inside `wait` calls
+    start_state: str | None = None
+    notes: dict[str, Any] = {}  # agent runs: model, scenario, goal
+    cost_usd: float = 0.0
     milestones: list[dict[str, Any]]
     steps: list[ReplayStep]
 
@@ -205,6 +215,41 @@ def run_milestones(steps: list[Any]) -> list[dict[str, Any]]:
     return out
 
 
+def _notes(raw: str | None) -> dict[str, Any]:
+    if not raw:
+        return {}
+    try:
+        value = json.loads(raw)
+    except ValueError:
+        return {"text": raw}
+    return value if isinstance(value, dict) else {"text": raw}
+
+
+def write_replay(run_dir: Path, site: Path) -> Replay:
+    """Export one run to site/data/runs/<id>.json and refresh the runs index."""
+    replay = export_run(run_dir, site)
+    runs = site / "data" / "runs"
+    runs.mkdir(parents=True, exist_ok=True)
+    (runs / f"{replay.run_id}.json").write_text(
+        replay.model_dump_json(indent=1) + "\n", encoding="utf-8"
+    )
+    index = []
+    for p in sorted(runs.glob("*.json")):
+        if p.stem == "index":
+            continue
+        r = json.loads(p.read_text(encoding="utf-8"))
+        notes = r.get("notes") or {}
+        index.append({
+            "run_id": r["run_id"], "source": r["source"], "player_name": r["player_name"],
+            "model": notes.get("model"), "scenario": notes.get("scenario"),
+            "steps": len(r["steps"]),
+        })  # fmt: skip
+    (runs / "index.json").write_text(
+        json.dumps(index, ensure_ascii=False, indent=1) + "\n", encoding="utf-8"
+    )
+    return replay
+
+
 def export_run(run_dir: Path, site: Path) -> Replay:
     from .recorder import load_run
 
@@ -216,6 +261,7 @@ def export_run(run_dir: Path, site: Path) -> Replay:
     out_steps = []
     actions: dict[str, int] = {}
     wait_frames = 0
+    spent = 0.0
     for st in steps:
         tool = str(st.action.get("tool"))
         actions[tool] = actions.get(tool, 0) + 1
@@ -227,6 +273,13 @@ def export_run(run_dir: Path, site: Path) -> Replay:
             shutil.copyfile(run_dir / st.screenshot, media / name)
             shot = f"media/runs/{header.run_id}/{name}"
         s = st.state
+        spent += st.cost_usd
+        said = None
+        if st.response:
+            try:
+                said = json.loads(st.response).get("text") or None
+            except ValueError:
+                said = st.response
         out_steps.append(
             ReplayStep(
                 index=st.index,
@@ -240,6 +293,13 @@ def export_run(run_dir: Path, site: Path) -> Replay:
                 party=[f"{p.species} Lv{p.level}" for p in s.party],
                 battle=str(s.battle.kind),
                 screenshot=shot,
+                stop=st.extra.get("stop"),
+                error=st.extra.get("error"),
+                model=st.model,
+                said=said,
+                input_tokens=st.input_tokens,
+                output_tokens=st.output_tokens,
+                cost_usd=round(spent, 6),
             )
         )
     milestones = run_milestones(steps)
@@ -256,6 +316,9 @@ def export_run(run_dir: Path, site: Path) -> Replay:
         total_frames=last["frame"] if last else steps[-1].frame,
         actions=actions,
         wait_frames=wait_frames,
+        start_state=header.start_state,
+        notes=_notes(header.notes),
+        cost_usd=round(spent, 6),
         milestones=milestones,
         steps=out_steps,
     )
@@ -278,12 +341,8 @@ def main() -> None:
     elif args.what == "run":
         if args.run_dir is None:
             parser.error("run: give the run directory, e.g. runs/20261106-183217")
-        replay = export_run(args.run_dir, args.site)
-        (out_dir / "runs").mkdir(exist_ok=True)
+        replay = write_replay(args.run_dir, args.site)
         out = out_dir / "runs" / f"{replay.run_id}.json"
-        out.write_text(replay.model_dump_json(indent=1) + "\n", encoding="utf-8")
-        index = sorted(p.stem for p in (out_dir / "runs").glob("*.json") if p.stem != "index")
-        (out_dir / "runs" / "index.json").write_text(json.dumps(index) + "\n", encoding="utf-8")
         for m in replay.milestones:
             print(f"{m['frame']:6d}  {m['name']:16} step {m['step']}")
         print(f"wrote {out} ({len(replay.steps)} steps)")
