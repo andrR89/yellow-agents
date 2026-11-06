@@ -26,6 +26,7 @@ yellow-site-data = "yellow_agent.site_data:main"
 yellow-action-route = "yellow_agent.action_route:main"
 yellow-bench = "yellow_agent.bench:main"
 yellow-gpu-guard = "yellow_agent.tools.gpu_guard:main"
+yellow-teach = "yellow_agent.teach:main"
 
 [build-system]
 requires = ["hatchling"]
