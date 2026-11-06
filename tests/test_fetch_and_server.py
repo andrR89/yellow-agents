@@ -1,4 +1,6 @@
+import anyio
 import pytest
+from mcp.server.mcpserver.exceptions import ToolError
 
 from yellow_agent import mcp_server
 from yellow_agent.models import load_model
@@ -22,7 +24,7 @@ def test_parse_types_handles_gaps():
 
 @pytest.mark.parametrize("name", ["../etc/passwd", "a/b", "", "x" * 65, "with space"])
 def test_save_names_cannot_escape_saves_dir(name):
-    with pytest.raises(ValueError):
+    with pytest.raises(ToolError):
         mcp_server._save_path(name)
 
 
@@ -32,10 +34,21 @@ def test_save_name_ok(tmp_path, monkeypatch):
 
 
 def test_press_buttons_validates_before_touching_emulator():
-    with pytest.raises(ValueError, match="invalid buttons"):
+    with pytest.raises(ToolError, match="invalid buttons"):
         mcp_server.press_buttons(["a", "jump"])
-    with pytest.raises(ValueError, match="at most"):
+    with pytest.raises(ToolError, match="at most"):
         mcp_server.press_buttons(["a"] * 31)
+
+
+def test_validation_message_reaches_the_model():
+    # A plain exception is treated as a crash by the MCP SDK and the client only sees
+    # "Error executing tool ..."; the model needs the reason to correct itself.
+    async def call() -> str:
+        with pytest.raises(ToolError) as exc:
+            await mcp_server.server.call_tool("press_buttons", {"buttons": ["jump"]})
+        return str(exc.value)
+
+    assert "invalid buttons" in anyio.run(call)
 
 
 def test_model_spec_validation():
