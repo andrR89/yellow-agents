@@ -82,3 +82,9 @@ def test_choose_needs_an_item():
     with pytest.raises(ToolError, match="item"):
         mcp_server.choose("  ")
     assert mcp_server._emu is None
+
+
+def test_go_to_validates_before_touching_emulator():
+    with pytest.raises(ToolError, match="integers"):
+        mcp_server.go_to("north", 1)
+    assert mcp_server._emu is None

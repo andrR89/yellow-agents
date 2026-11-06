@@ -159,6 +159,25 @@ def walk(direction: str, tiles: int = 1) -> dict:
 
 
 @server.tool()
+def go_to(x: int, y: int) -> dict:
+    """Walk the shortest way to cell (x, y) of the current map, around walls and people, out
+    through a door on the map's edge. Stops early like walk; `no_path` when unreachable."""
+    try:
+        actions.validate_go_to(x, y)
+    except ActionError as err:
+        raise ToolError(str(err)) from None
+    return _run_action(actions.go_to, x, y)
+
+
+@server.tool()
+def get_map() -> dict:
+    """The current map: size, exits (doors, stairs, edges to other maps) and people on it."""
+    from .agent import observe_map
+
+    return observe_map(emu().map_grid())
+
+
+@server.tool()
 def talk() -> dict:
     """Interact with what the player faces (person, sign, item) and read what it says."""
     return _run_action(actions.talk)

@@ -22,6 +22,7 @@ if TYPE_CHECKING:
     from .scenarios import Judge
 
 HISTORY_TURNS = 8
+LOOP_TURNS = 3  # the same action and outcome this many times in a row -> a warning in the prompt
 TRANSCRIPT_LINES = 6
 MAX_MODEL_ERRORS = 3  # consecutive failed model calls before the run is abandoned
 MAX_OUTPUT_TOKENS = 400
@@ -32,10 +33,14 @@ actions with what happened. Call exactly one tool per turn.
 
 - screen 'text': call advance_text. It reads the whole dialogue and stops at the next choice.
 - screen 'menu': call choose with an item that is on screen (e.g. YES, NO, FIGHT).
-- screen 'overworld': walk(direction, tiles) or talk() to whatever you are facing.
+- screen 'overworld': go_to(x, y) walks the shortest way to a cell of this map (it goes around
+  walls and people, and walks out through a door on the map's edge). MAP lists the exits (doors,
+  stairs, and the map edges that lead to other maps) and the people around. walk(direction,
+  tiles) takes single steps; talk() talks to whatever you are facing.
   Coordinates: x grows to the right, y grows downward, so 'up' decreases y.
-  A walk stops early with 'blocked' (something is in the way: go around), 'warped' (you went
-  through a door or stairs), 'text' or 'script' (the game took over: call advance_text).
+  A walk or go_to stops early with 'blocked', 'warped' (you went through a door or stairs),
+  'text' or 'script' (the game took over: call advance_text); go_to says 'no_path' when the cell
+  can't be reached. To leave a map by its edge, go_to a cell on that edge, then walk off it.
 - In a battle at FIGHT / PKMN / ITEM / RUN: use_move(slot) picks a move and plays the turn.
 - press_buttons and wait are fallbacks for anything else.
 Fill each tool's `reason` with one short sentence: what you are doing and why."""
@@ -49,6 +54,10 @@ TOOLS: list[ToolSpec] = [
                  "direction": _DIRECTION,
                  "tiles": {"type": "integer", "minimum": 1, "maximum": actions.MAX_WALK_TILES}},
               "required": ["direction", "tiles"]}),
+    ToolSpec("go_to", "Walk the shortest way to cell (x, y) of the current map.",
+             {"type": "object", "properties": {
+                 "x": {"type": "integer", "minimum": 0}, "y": {"type": "integer", "minimum": 0}},
+              "required": ["x", "y"]}),
     ToolSpec("talk", "Interact with whatever the player is facing (person, sign, item).",
              {"type": "object", "properties": {}}),
     ToolSpec("choose", "Pick a menu item by its name as shown on screen.",
@@ -131,10 +140,40 @@ def describe(result: ActionResult) -> str:
     return ", ".join(parts)
 
 
+def observe_map(grid: Any) -> dict[str, Any]:
+    """Size, exits and people of the current map (navigation.MapGrid)."""
+    exits = []
+    for e in grid.exits:
+        if e.kind == "warp":
+            exits.append({"to": e.to, "x": e.x, "y": e.y})
+        else:
+            exits.append({"to": e.to, "edge": e.side})
+    return {
+        "size": {"width": grid.width, "height": grid.height},
+        "exits": exits,
+        "people": [{"who": p.who, "x": p.x, "y": p.y} for p in grid.people],
+    }
+
+
+def loop_warning(history: list[HistoryItem]) -> str | None:
+    """The same action with the same outcome LOOP_TURNS times in a row: say so, loudly."""
+    last = history[-LOOP_TURNS:]
+    if len(last) < LOOP_TURNS:
+        return None
+    first = (json.dumps(last[0].action, sort_keys=True), last[0].outcome)
+    if all((json.dumps(h.action, sort_keys=True), h.outcome) == first for h in last):
+        return (f"WARNING: your last {LOOP_TURNS} actions were the same and got the same result. "
+                "Doing it again will not work: do something different (another direction, go_to "
+                "an exit from MAP, or advance_text if the game is busy).")  # fmt: skip
+    return None
+
+
 def build_prompt(goal: str, turn: int, max_turns: int, state: GameState,
-                 history: list[HistoryItem]) -> str:  # fmt: skip
+                 history: list[HistoryItem], grid: Any = None) -> str:  # fmt: skip
     lines = [f"GOAL: {goal}", f"TURN {turn} of {max_turns}", ""]
     lines.append("STATE: " + json.dumps(observe(state), ensure_ascii=False))
+    if grid is not None:
+        lines.append("MAP: " + json.dumps(observe_map(grid), ensure_ascii=False))
     lines.append("")
     if history:
         lines.append("RECENT ACTIONS (oldest first):")
@@ -143,6 +182,9 @@ def build_prompt(goal: str, turn: int, max_turns: int, state: GameState,
     else:
         lines.append("RECENT ACTIONS: none yet.")
     lines.append("")
+    if warning := loop_warning(history):
+        lines.append(warning)
+        lines.append("")
     lines.append("Call exactly one tool.")
     return "\n".join(lines)
 
@@ -176,6 +218,8 @@ def execute(game: actions.Game, call: ToolCall) -> ActionResult:
             return actions.advance_text(game)
         case "walk":
             return actions.walk(game, _str(a, "direction"), _int(a, "tiles"))
+        case "go_to":
+            return actions.go_to(game, a.get("x"), a.get("y"))
         case "talk":
             return actions.talk(game)
         case "choose":
@@ -238,7 +282,8 @@ def run_agent(
     errors_in_a_row = 0
     for turn in range(1, max_turns + 1):
         state = game.state()
-        prompt = build_prompt(goal, turn, max_turns, state, history)
+        grid = game.map_grid() if hasattr(game, "map_grid") else None
+        prompt = build_prompt(goal, turn, max_turns, state, history, grid)
         try:
             resp = model.complete(SYSTEM, [Message("user", prompt)], TOOLS, MAX_OUTPUT_TOKENS)
         except Exception as err:  # network, rate limit, provider error: count and retry

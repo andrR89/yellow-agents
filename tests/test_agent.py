@@ -125,7 +125,7 @@ def test_prompt_has_goal_state_and_recent_actions():
 
 def test_every_tool_has_a_json_schema_object():
     assert {t.name for t in TOOLS} == {
-        "advance_text", "walk", "talk", "choose", "use_move", "press_buttons", "wait",
+        "advance_text", "go_to", "walk", "talk", "choose", "use_move", "press_buttons", "wait",
     }  # fmt: skip
     assert all(t.parameters["type"] == "object" for t in TOOLS)
 
@@ -136,3 +136,29 @@ def test_reason_is_kept_as_what_the_model_said_and_not_passed_to_the_action():
     run = run_agent(game, model, "g", on_overworld, max_turns=3, budget_usd=1)
     assert run.stop == "success" and run.invalid_actions == 0
     assert all("reason" in t.parameters["properties"] for t in TOOLS)
+
+
+def test_three_identical_failures_in_a_row_get_a_warning():
+    from yellow_agent.agent import HistoryItem, loop_warning
+
+    bump = HistoryItem(1, {"tool": "walk", "direction": "down", "tiles": 1}, "stop=blocked")
+    assert loop_warning([bump, bump]) is None
+    assert "WARNING" in loop_warning([bump, bump, bump])
+    moved = HistoryItem(4, {"tool": "walk", "direction": "left", "tiles": 1}, "stop=done")
+    assert loop_warning([bump, bump, moved]) is None
+
+
+def test_prompt_shows_the_map_exits_and_people():
+    from yellow_agent.navigation import Exit, MapGrid, Person
+
+    grid = MapGrid(width=8, height=8, walkable=[[True] * 8] * 8,
+                   exits=[Exit(kind="warp", to="REDS_HOUSE_1F", x=7, y=1),
+                          Exit(kind="edge", to="ROUTE_1", side="north")],
+                   people=[Person(x=4, y=3, who="pikachu")])  # fmt: skip
+    p = build_prompt("g", 1, 5, FakeGame([overworld()]).state(), [], grid)
+    m = json.loads(p.split("MAP: ", 1)[1].split("\n", 1)[0])
+    assert m["exits"] == [
+        {"to": "REDS_HOUSE_1F", "x": 7, "y": 1},
+        {"to": "ROUTE_1", "edge": "north"},
+    ]
+    assert m["people"] == [{"who": "pikachu", "x": 4, "y": 3}] and m["size"]["width"] == 8
