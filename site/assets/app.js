@@ -298,7 +298,15 @@ function showStep() {
     ["party", s.party.length ? s.party.join(", ") : "—"],
     ["battle", s.battle],
   ];
+  if (s.stop) rows.unshift(["stop", s.stop]);
   $("#rp-state").innerHTML = rows.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("");
+  const said = $("#rp-said");
+  said.hidden = !(s.model || s.error);
+  if (!said.hidden) {
+    const meta = s.model ? t("replay.modelMeta", { model: shortModel(s.model), inTok: num(s.input_tokens), outTok: num(s.output_tokens),
+      cost: num(s.cost_usd, { style: "currency", currency: "USD", maximumFractionDigits: 4 }) }) : "";
+    said.innerHTML = `<h5>${esc(t("replay.said"))}</h5>${s.said ? `<p>${esc(s.said)}</p>` : ""}${s.error ? `<p class="err">${esc(s.error)}</p>` : ""}<p class="meta">${esc(meta)}</p>`;
+  }
   $("#rp-scrub").value = rp.i;
   document.querySelectorAll("#rp-jumps button").forEach((b) => b.classList.toggle("on", +b.dataset.step <= rp.i && rp.i < +b.dataset.until));
 }
@@ -314,7 +322,30 @@ function playReplay(on) {
   $("#rp-play").textContent = timers.rp ? t("ctl.pause") : t("ctl.play");
 }
 
+function shortModel(spec) { return (spec || "").split(":").pop().split("/").pop(); }
+
+function runLabel(entry) {
+  if (entry.source === "mcp") return t("replay.run.mcp", { name: entry.player_name });
+  return t("replay.run.eval", { scenario: t(`bench.scenario.${entry.scenario}`), model: shortModel(entry.model) });
+}
+
+async function selectRun(runId, scroll = false) {
+  playReplay(false);
+  data.replay = data.runCache[runId] || (data.runCache[runId] = await getJSON(`data/runs/${runId}.json`));
+  $("#rp-run").value = runId;
+  rp.i = 0;
+  renderPlayer();
+  if (scroll) $("#replay").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+}
+
 function renderReplay() {
+  $("#rp-run").innerHTML = data.runs.map((e) => `<option value="${esc(e.run_id)}">${esc(runLabel(e))}</option>`).join("");
+  $("#rp-run").value = data.replay.run_id;
+  renderPlayer();
+  renderCompare();
+}
+
+function renderPlayer() {
   const r = data.replay;
   $("#rp-scrub").max = r.steps.length - 1;
   const ms = r.milestones;
@@ -326,11 +357,10 @@ function renderReplay() {
     playReplay(false); rp.i = +b.dataset.step; showStep();
   }));
   showStep();
-  renderCompare();
 }
 
 function renderCompare() {
-  const r = data.replay, b = data.baseline;
+  const r = data.mcpRun, b = data.baseline;
   const base = Object.fromEntries(b.milestones.map((m) => [m.name, m]));
   const rows = r.milestones.filter((m) => base[m.name]).map((m) => ({ name: m.name, run: m.frame, base: base[m.name].frame }));
   const max = Math.ceil(Math.max(...rows.flatMap((x) => [x.run, x.base])) / 5000) * 5000;
@@ -379,6 +409,30 @@ function renderCompare() {
     calls: num(ar.calls), frames: num(ar.total_frames), mcp: num(calls),
   });
   $("#rp-source").innerHTML = `${esc(t("label.source"))}: <code>runs/${esc(r.run_id)}/run.jsonl</code> → <code>yellow-site-data run</code> · commit <code>${esc(r.git_commit || "?")}</code>`;
+}
+
+// ---------------------------------------------------------------- benchmark
+function renderBench() {
+  const rows = data.bench;
+  const scenarios = [...new Set(rows.map((r) => r.scenario))];
+  const models = [...new Set(rows.map((r) => r.model))];
+  const cell = (r) => {
+    if (!r) return `<td class="na">—</td>`;
+    const ok = r.success;
+    const cost = num(r.cost_usd, { style: "currency", currency: "USD", maximumFractionDigits: 4 });
+    return `<td><button type="button" class="bench-cell ${ok ? "ok" : "fail"}" data-run="${esc(r.run_id)}">
+      <b>${ok ? "✓" : "✗"} ${esc(t(`bench.stop.${r.stop}`))}</b>
+      <span>${esc(t("bench.cell", { turns: num(r.turns), frames: num(r.frames), cost, invalid: num(r.invalid_actions) }))}</span></button></td>`;
+  };
+  $("#bench-table").innerHTML = `<tr><th>${esc(t("bench.col.scenario"))}</th>${models.map((m) => `<th>${esc(shortModel(m))}</th>`).join("")}</tr>` +
+    scenarios.map((s) => `<tr><th scope="row">${esc(t(`bench.scenario.${s}`))}</th>${models.map((m) => cell(rows.find((r) => r.scenario === s && r.model === m))).join("")}</tr>`).join("");
+  document.querySelectorAll(".bench-cell").forEach((b) => b.addEventListener("click", () => selectRun(b.dataset.run, true)));
+  const wins = rows.filter((r) => r.success).length;
+  const spent = rows.reduce((a, r) => a + r.cost_usd, 0);
+  $("#bench-result").textContent = t("bench.result", { wins: num(wins), runs: num(rows.length),
+    cost: num(spent, { style: "currency", currency: "USD", maximumFractionDigits: 2 }) });
+  const commits = [...new Set(rows.map((r) => r.git_commit).filter(Boolean))].join(", ");
+  $("#bench-source").innerHTML = `${esc(t("label.source"))}: <code>yellow-bench</code> → <code>site/data/benchmark.json</code> · commit <code>${esc(commits)}</code>`;
 }
 
 // ---------------------------------------------------------------- journal
@@ -442,6 +496,7 @@ function renderAll() {
   renderMilestones();
   renderReplay();
   playReplay(false);
+  renderBench();
   renderJournal();
 }
 
@@ -450,10 +505,13 @@ async function main() {
     getJSON("data/baseline.json"), getJSON("data/walking.json"), getJSON("data/sessions.json"),
     getJSON("data/mcp_flow.json"), ...SNAPSHOTS.map((n) => getJSON(`data/snapshots/${n}.json`)),
   ]);
-  const runs = await getJSON("data/runs/index.json");
-  const replay = await getJSON(`data/runs/${runs[runs.length - 1]}.json`);
-  const actionRoute = await getJSON("data/action_route.json");
-  data = { baseline, walking, sessions, mcp, snapshots: snaps, replay, actionRoute };
+  const [runs, actionRoute, bench] = await Promise.all([
+    getJSON("data/runs/index.json"), getJSON("data/action_route.json"), getJSON("data/benchmark.json"),
+  ]);
+  const mcpEntry = runs.find((e) => e.source === "mcp");
+  const mcpRun = await getJSON(`data/runs/${mcpEntry.run_id}.json`);
+  data = { baseline, walking, sessions, mcp, snapshots: snaps, runs, runCache: { [mcpRun.run_id]: mcpRun },
+    replay: mcpRun, mcpRun, actionRoute, bench };
   $("#lang").addEventListener("change", (e) => setLocale(e.target.value));
   $("#dec-prev").addEventListener("click", () => { playDecoder(false); stepDecoder(-1); });
   $("#dec-next").addEventListener("click", () => { playDecoder(false); stepDecoder(1); });
@@ -464,6 +522,7 @@ async function main() {
   $("#rp-prev").addEventListener("click", () => { playReplay(false); stepReplay(-1); });
   $("#rp-next").addEventListener("click", () => { playReplay(false); stepReplay(1); });
   $("#rp-play").addEventListener("click", () => playReplay(!timers.rp));
+  $("#rp-run").addEventListener("change", (e) => selectRun(e.target.value));
   $("#rp-scrub").addEventListener("input", (e) => { playReplay(false); rp.i = +e.target.value; showStep(); });
   await setLocale(pickLocale());
 }

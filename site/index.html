@@ -18,6 +18,7 @@
     <a href="#phase1" data-i18n="nav.phase1"></a>
     <a href="#baseline" data-i18n="nav.baseline"></a>
     <a href="#replay" data-i18n="nav.replay"></a>
+    <a href="#bench" data-i18n="nav.bench"></a>
     <a href="#journal" data-i18n="nav.journal"></a>
   </nav>
   <label class="lang"><span class="sr" data-i18n="nav.language"></span>
@@ -145,6 +146,9 @@
       <div><h4 data-i18n="label.decision"></h4><p data-i18n="replay.decision"></p></div>
     </div>
 
+    <label class="rp-pick"><span data-i18n="replay.pick"></span>
+      <select id="rp-run"></select>
+    </label>
     <div class="player">
       <figure class="screen-frame player-screen">
         <img id="rp-img" alt="" width="160" height="144">
@@ -156,6 +160,7 @@
           <pre id="rp-action" class="json" dir="ltr"></pre>
           <h5 data-i18n="replay.state"></h5>
           <dl id="rp-state" class="rp-state" dir="ltr"></dl>
+          <div id="rp-said" class="rp-said" hidden></div>
         </div>
         <div class="rp-jumps" id="rp-jumps"></div>
       </div>
@@ -176,6 +181,20 @@
       <table id="cmp-table"></table>
     </details>
     <p class="source" id="rp-source"></p>
+  </section>
+
+  <section id="bench">
+    <p class="eyebrow" data-i18n="bench.eyebrow"></p>
+    <h2 data-i18n="bench.title"></h2>
+    <p class="lead" data-i18n="bench.lead"></p>
+    <div class="psdr">
+      <div><h4 data-i18n="label.problem"></h4><p data-i18n="bench.problem"></p></div>
+      <div><h4 data-i18n="label.how"></h4><p data-i18n="bench.how"></p></div>
+      <div><h4 data-i18n="label.decision"></h4><p data-i18n="bench.decision"></p></div>
+    </div>
+    <div class="bench-wrap"><table class="bench" id="bench-table"></table></div>
+    <p class="lead" id="bench-result"></p>
+    <p class="source" id="bench-source"></p>
   </section>
 
   <section id="journal">
