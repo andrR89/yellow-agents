@@ -10,7 +10,7 @@ from typing import Literal
 from pyboy import PyBoy
 
 from .gamedata import GameData
-from .state import GameState, StateReader
+from .state import SCREEN_COLS, SCREEN_ROWS, GameState, StateReader
 from .symbols import SymbolTable
 
 Button = Literal["a", "b", "start", "select", "up", "down", "left", "right"]
@@ -67,6 +67,10 @@ class Emulator:
 
     def state(self) -> GameState:
         return self.reader.read()
+
+    def tile_map(self) -> list[int]:
+        """The 20x18 screen tile buffer (wTileMap)."""
+        return self._read(self.symbols.addr("wTileMap"), SCREEN_COLS * SCREEN_ROWS)
 
     # -- input ---------------------------------------------------------------
     def _u8(self, symbol: str) -> int:

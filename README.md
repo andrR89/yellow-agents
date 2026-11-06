@@ -74,6 +74,7 @@ way: any MCP client can launch `yellow-mcp` over stdio.
 | `wait` | Run frames without input |
 | `screenshot` | PNG of the screen (for menus/dialogue) |
 | `save_state` / `load_state` / `list_states` | Named checkpoints |
+| `new_game` | Power on and start over, typing the player name (the AI's own, e.g. `CLAUDE`) and the rival (default `GEMINI`) |
 
 ## Models
 

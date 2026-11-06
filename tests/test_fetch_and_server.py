@@ -40,6 +40,13 @@ def test_press_buttons_validates_before_touching_emulator():
         mcp_server.press_buttons(["a"] * 31)
 
 
+@pytest.mark.parametrize("player, rival", [("claude", "GEMINI"), ("CLAUDE", "GEMINI-2"), ("", "X")])
+def test_new_game_validates_names_before_touching_emulator(player, rival):
+    with pytest.raises(ToolError, match="name must be"):
+        mcp_server.new_game(player, rival)
+    assert mcp_server._emu is None
+
+
 def test_validation_message_reaches_the_model():
     # A plain exception is treated as a crash by the MCP SDK and the client only sees
     # "Error executing tool ..."; the model needs the reason to correct itself.

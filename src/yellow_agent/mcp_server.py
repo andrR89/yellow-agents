@@ -20,6 +20,8 @@ from mcp.server.mcpserver import Image, MCPServer
 from mcp.server.mcpserver.exceptions import ToolError
 
 from .emulator import BUTTONS, Emulator
+from .newgame import new_game as _start_new_game
+from .newgame import validate_name
 from .recorder import RunRecorder
 
 MAX_BUTTONS_PER_CALL = 30
@@ -34,7 +36,8 @@ server = MCPServer(
         "kind ('overworld', 'text' or 'menu'), the visible text lines and the menu item under "
         "the cursor. On 'text' press a to advance; on 'menu' move with up/down and choose with a. "
         "Use screenshot only when that is not enough (e.g. where things are on the map). "
-        "Save a state before anything risky."
+        "Save a state before anything risky. To start over, call new_game with your own name "
+        "as player_name (e.g. CLAUDE)."
     ),
 )
 
@@ -43,8 +46,11 @@ _recorder: RunRecorder | None = None
 _last_loaded: str | None = None
 
 
-def emu() -> Emulator:
+def emu(*, fresh: bool = False) -> Emulator:
     global _emu
+    if fresh and _emu is not None:
+        _emu.close()
+        _emu = None
     if _emu is None:
         rom = os.environ.get("YELLOW_ROM")
         if not rom or not Path(rom).exists():
@@ -140,6 +146,26 @@ def load_state(name: str) -> dict:
     emu().load_state(path)
     _last_loaded = name
     return _after_action({"tool": "load_state", "name": name})
+
+
+@server.tool()
+def new_game(player_name: str, rival_name: str = "GEMINI") -> dict:
+    """Power on and start a NEW GAME, typing the names (1-7 letters A-Z). Ends in the bedroom.
+
+    Use your own name as player_name (e.g. CLAUDE). The rival defaults to GEMINI.
+    Unsaved progress is lost; a recorded run starts a new recording.
+    """
+    global _recorder, _last_loaded
+    try:
+        names = validate_name(player_name), validate_name(rival_name)
+    except ValueError as err:
+        raise ToolError(str(err)) from None
+    if _recorder is not None:
+        _recorder.close()
+        _recorder = None
+    _last_loaded = f"new_game:{names[0]}/{names[1]}"
+    _start_new_game(emu(fresh=True), *names)
+    return _after_action({"tool": "new_game", "player_name": names[0], "rival_name": names[1]})
 
 
 @server.tool()

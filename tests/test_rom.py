@@ -8,6 +8,7 @@ from pathlib import Path
 import pytest
 
 from yellow_agent.emulator import Emulator, StepResult
+from yellow_agent.newgame import new_game
 from yellow_agent.state import ScreenKind
 
 pytestmark = pytest.mark.rom
@@ -38,31 +39,10 @@ ROUTE: list[tuple[str, StepResult, tuple[str, int, int]]] = [
 ]
 
 
-def _new_game(emu: Emulator, max_actions: int = 400) -> None:
-    """Title -> NEW GAME -> Oak's speech with the preset names, using only `screen`."""
-    for _ in range(max_actions):
-        s = emu.state()
-        if s.map_name == "REDS_HOUSE_2F" and s.screen.kind is ScreenKind.OVERWORLD:
-            emu.wait(60)  # let the fade-in finish
-            if emu.state().screen.kind is ScreenKind.OVERWORLD:
-                return
-        if s.screen.kind is ScreenKind.MENU:
-            if s.screen.cursor == "NEW NAME":
-                emu.press("down")  # first preset name (YELLOW / BLUE)
-            emu.press("a")
-        elif s.screen.kind is ScreenKind.TEXT:
-            emu.press("a")
-        elif s.screen.kind is ScreenKind.CUTSCENE:
-            emu.press("start")  # skip the intro / leave the title screen
-        else:
-            emu.wait(10)
-    raise AssertionError("did not reach the bedroom")
-
-
 @pytest.fixture(scope="module")
 def emu():
     e = Emulator(os.environ["YELLOW_ROM"], sym=SYM, data_dir=DATA)
-    _new_game(e)
+    new_game(e)
     yield e
     e.close()
 
@@ -87,7 +67,7 @@ def test_screenshots_do_not_advance_the_game(tmp_path):
     runs = []
     for with_screens in (False, True):
         e = Emulator(os.environ["YELLOW_ROM"], sym=SYM, data_dir=DATA)
-        _new_game(e)
+        new_game(e)
         for direction, *_ in ROUTE[:10]:
             e.step(direction)
             if with_screens:
@@ -95,3 +75,12 @@ def test_screenshots_do_not_advance_the_game(tmp_path):
         runs.append((e.frame, e.state()))
         e.close()
     assert runs[0] == runs[1]
+
+
+def test_new_game_types_custom_names():
+    e = Emulator(os.environ["YELLOW_ROM"], sym=SYM, data_dir=DATA)
+    new_game(e, player_name="CLAUDE", rival_name="GEMINI")
+    s = e.state()
+    e.close()
+    assert (s.player_name, s.rival_name, s.map_name) == ("CLAUDE", "GEMINI", "REDS_HOUSE_2F")
+    assert s.screen.kind is ScreenKind.OVERWORLD
