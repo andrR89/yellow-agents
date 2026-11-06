@@ -25,6 +25,12 @@ Why this project, model split (Claude / local GPU / Codex) and agreed constraint
 - Animations must be driven by real exported data (JSON snapshots, traces, benchmarks), never
   invented numbers. Keep exporters in the Python package so the data can be regenerated.
 
+## Session log
+- At the end of every work session, add `docs/sessions/AAAA-MM-DD-NN.md` following the template in
+  `docs/sessions/README.md` (pt-BR): goal, problems (symptom → cause → solution → evidence),
+  decisions, numbers, next session. Dead ends count. Never invent numbers.
+- The site renders these files as the project's timeline/report, up to beating the game.
+
 ## Before finishing a change
 ```bash
 ruff check . && ruff format --check . && pytest

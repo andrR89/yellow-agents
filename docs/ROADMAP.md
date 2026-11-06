@@ -43,7 +43,11 @@ Requires every run to record: frame number, screenshot, state JSON, prompt, mode
 chosen action, tokens and latency.
 
 Rule: animations are driven by **real recorded data** (state snapshots, traces, benchmark
-results exported as JSON by the agent), not hand-made mockups. Planned interactive pieces:
+results exported as JSON by the agent), not hand-made mockups. **Project journal:** a timeline page built from `docs/sessions/*.md`. Each session shows its
+goal, the problems found (symptom → cause → solution → evidence), decisions and numbers. It is
+the running report of the whole project, from session 0 (planning) to beating the game.
+
+Planned interactive pieces:
 - RAM decoder: hex bytes from a real snapshot → highlighted fields → the JSON the model sees.
 - MCP call flow: client → tool → emulator → state, step by step.
 - Run replay: map with the agent's path, decision timeline with its reasoning, live cost counter.
