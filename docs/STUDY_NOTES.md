@@ -20,6 +20,12 @@ resolvido. É o portfólio pra mostrar o nível em IA e arquitetura. As regras e
 ("The showcase site"): cada fase só termina quando a seção dela está na página, e as animações
 usam dados reais exportados pelo agente.
 
+- **Idiomas:** pt-BR (original), en, es, chinês e árabe. Estrutura de tradução e suporte a
+  árabe (direita pra esquerda) desde a primeira versão, pra não refazer depois.
+- **Peça final:** vídeo ou replay interativo da IA jogando, mostrando ao lado o que ela está
+  fazendo pra escolher cada ação. Escopo mínimo: **até vencer o Brock**. Por isso todo run
+  precisa ser gravado desde cedo, num formato que o replay consiga ler.
+
 ## Por que este projeto (e não outros)
 
 Ideias descartadas e por quê:

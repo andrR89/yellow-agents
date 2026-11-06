@@ -28,6 +28,20 @@ Each section follows the same shape:
 3. **Decision** — options considered and why this one (links to the ADR).
 4. **Result** — real numbers (success rate, frames, cost, latency) and what failed.
 
+**Languages:** pt-BR, en, es, zh (Simplified Chinese) and ar (Arabic). Built in from site v1:
+all UI text in per-locale JSON files (no hardcoded strings), `dir="rtl"` support for Arabic
+(use CSS logical properties: `margin-inline-start`, not `margin-left`), fonts with CJK and
+Arabic coverage, numbers and dates formatted per locale (`Intl`). pt-BR is the source language;
+other locales are machine-translated and then reviewed.
+
+**Final piece — "watch the AI play" (scope: at least until beating Brock):** an interactive
+replay (and an exported video) of a real run: game screen on one side, and next to it what the
+agent is doing to choose each action — current goal, state it read, what it retrieved (RAG),
+options it considered, which model decided (local or Claude) and why, cost so far. Scrubbable
+timeline, jump to key moments (first battle, catching Pokémon for Brock, the Brock fight).
+Requires every run to record: frame number, screenshot, state JSON, prompt, model response,
+chosen action, tokens and latency.
+
 Rule: animations are driven by **real recorded data** (state snapshots, traces, benchmark
 results exported as JSON by the agent), not hand-made mockups. Planned interactive pieces:
 - RAM decoder: hex bytes from a real snapshot → highlighted fields → the JSON the model sees.
@@ -49,6 +63,8 @@ results exported as JSON by the agent), not hand-made mockups. Planned interacti
 - [ ] Detect "text box open" / "menu open" in the state (so the model knows when to press A)
 
 - [ ] Export state snapshots + raw RAM bytes to JSON (feeds the site's RAM decoder)
+- [ ] Run recorder format (frame, screenshot, state, prompt, response, action, tokens, latency)
+      — defined now so every later run can be replayed on the site
 - [ ] Site v1: architecture overview, RAM → state decoder, MCP call flow
 
 **Milestone:** Claude Code plays through MCP from a new game to receiving Pikachu.
