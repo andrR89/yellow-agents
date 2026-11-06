@@ -1,14 +1,15 @@
 {
  "meta": { "title": "yellow-agents — an AI playing Pokémon Yellow" },
- "nav": { "how": "How it works", "phase1": "Phase 1", "baseline": "Baseline", "journal": "Journal", "language": "Language" },
+ "nav": { "how": "How it works", "phase1": "Phase 1", "baseline": "Baseline", "replay": "Replay", "journal": "Journal", "language": "Language" },
  "hero": {
-  "eyebrow": "Study project · Phase 1 in progress",
+  "eyebrow": "Study project · Phase 1 done",
   "title": "An AI that plays Pokémon Yellow by reading the game's memory",
   "lead": "The game runs in a Game Boy emulator inside Python. The code reads the RAM and hands the AI a summary of the game: where it is, the party, the text on screen. The AI only decides which buttons to press. This page shows how each part works, with real data from every session.",
   "caption": "Baseline recorded frame by frame: from a new game to receiving Pikachu, with player CLAUDE and rival GEMINI. A fixed script plays here, not the AI: it is the yardstick every agent will be compared against."
  },
  "status": {
   "frames": "frames to Pikachu (script)",
+  "runFrames": "frames to Pikachu ({name} over MCP)",
   "steps": "correct steps with closed loop",
   "sessions": "sessions logged",
   "cost": "API spend so far"
@@ -81,12 +82,29 @@
   "table": "View as table",
   "col": { "milestone": "Milestone", "frame": "Frame", "where": "Where" }
  },
+ "replay": {
+  "eyebrow": "Phase 1 · milestone",
+  "title": "Claude playing over MCP",
+  "lead": "Claude Code used the MCP server's tools, with no script, from a new game until it received Pikachu. Every call was recorded with the state and the screen. This is the replay of that game, compared with the baseline.",
+  "problem": "Find out whether the tool layer is enough for a model to play on its own: read the state, pick the button, deal with text and cutscenes.",
+  "how": "With YELLOW_RUNS set, the server records every call in runs/<id>/run.jsonl: the action, the emulator frame and the state after it, plus a screenshot. The exporter finds the baseline's milestones in that file.",
+  "decision": "The comparison is in emulator frames, not seconds: the model's thinking time doesn't count, only how far it moved the game. That keeps the result independent of the machine and of API latency.",
+  "action": "MCP call",
+  "state": "State after it",
+  "compare": "Against the baseline",
+  "result": "Claude reached Pikachu at frame {run}; the script at {base} ({pct} more). It made {calls} calls, {waits} of them wait. Of the {played} frames after new_game, {waitFrames} were spent inside wait.",
+  "alt": "Game screen at {map} ({x},{y})",
+  "caption": "Step {i}/{n} · frame {frame} · {tool}",
+  "tip": "frame {frame} (≈ {s} s)",
+  "series": {"baseline": "Script (baseline)", "run": "{name} over MCP"}
+ },
  "journal": {
   "title": "Project journal",
   "lead": "Each work session records its goal, problems (symptom → cause → solution → evidence), decisions and numbers. Dead ends count too.",
   "session": "Session {n}",
   "phase": "Phase {n}",
   "hours": "{h} h",
+  "costNotMeasured": "cost not measured",
   "notMeasured": "duration not measured",
   "ptOnly": "The journal is written in Portuguese, the project's working language."
  },

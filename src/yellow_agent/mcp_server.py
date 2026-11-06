@@ -116,7 +116,7 @@ def press_buttons(buttons: list[str]) -> dict:
 
 @server.tool()
 def wait(frames: int = 60) -> dict:
-    """Let the game run without input (60 frames ≈ 1 second). Returns the new state."""
+    """Let the game run without input (60 frames ≈ 1 s; at most 600 per call). Returns the state."""
     frames = max(1, min(frames, MAX_WAIT_FRAMES))
     emu().wait(frames)
     return _after_action({"tool": "wait", "frames": frames})

@@ -1,0 +1,2635 @@
+{
+ "run_id": "20261106-183217",
+ "source": "mcp",
+ "player_name": "CLAUDE",
+ "rival_name": "GEMINI",
+ "started_at": "2026-11-06T18:32:17.227769+00:00",
+ "git_commit": "50d8cf0",
+ "start_frame": 4336,
+ "total_frames": 19138,
+ "actions": {
+  "new_game": 1,
+  "press_buttons": 55,
+  "wait": 51
+ },
+ "wait_frames": 12400,
+ "milestones": [
+  {
+   "name": "bedroom",
+   "frame": 4336,
+   "step": 0,
+   "map_name": "REDS_HOUSE_2F",
+   "x": 3,
+   "y": 6
+  },
+  {
+   "name": "pallet_town",
+   "frame": 4848,
+   "step": 3,
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6
+  },
+  {
+   "name": "north_exit",
+   "frame": 5037,
+   "step": 4,
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0
+  },
+  {
+   "name": "oak_stops_you",
+   "frame": 5097,
+   "step": 5,
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0
+  },
+  {
+   "name": "oak_battle_menu",
+   "frame": 6321,
+   "step": 13,
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0
+  },
+  {
+   "name": "oaks_lab",
+   "frame": 11091,
+   "step": 30,
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 5
+  },
+  {
+   "name": "got_pikachu",
+   "frame": 19138,
+   "step": 106,
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3
+  }
+ ],
+ "steps": [
+  {
+   "index": 0,
+   "frame": 4336,
+   "action": {
+    "tool": "new_game",
+    "player_name": "CLAUDE",
+    "rival_name": "GEMINI"
+   },
+   "map_name": "REDS_HOUSE_2F",
+   "x": 3,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000000.png"
+  },
+  {
+   "index": 1,
+   "frame": 4485,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "right",
+     "right",
+     "right",
+     "right",
+     "up",
+     "up",
+     "up",
+     "up",
+     "up"
+    ]
+   },
+   "map_name": "REDS_HOUSE_2F",
+   "x": 5,
+   "y": 1,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000001.png"
+  },
+  {
+   "index": 2,
+   "frame": 4591,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "right",
+     "right"
+    ]
+   },
+   "map_name": "REDS_HOUSE_1F",
+   "x": 7,
+   "y": 1,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000002.png"
+  },
+  {
+   "index": 3,
+   "frame": 4848,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "down",
+     "down",
+     "down",
+     "down",
+     "down",
+     "down",
+     "left",
+     "left",
+     "left",
+     "left",
+     "down"
+    ]
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 5,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000003.png"
+  },
+  {
+   "index": 4,
+   "frame": 5037,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "right",
+     "right",
+     "right",
+     "right",
+     "right",
+     "up",
+     "up",
+     "up",
+     "up",
+     "up",
+     "up"
+    ]
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000004.png"
+  },
+  {
+   "index": 5,
+   "frame": 5097,
+   "action": {
+    "tool": "wait",
+    "frames": 60
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "OAK: Hey! Wa"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000005.png"
+  },
+  {
+   "index": 6,
+   "frame": 5169,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a",
+     "a",
+     "a"
+    ]
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "OAK: Hey! Wait!",
+     "Don't go out!"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000006.png"
+  },
+  {
+   "index": 7,
+   "frame": 5193,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "OAK: Hey! Wait!",
+     "Don't go out!"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000007.png"
+  },
+  {
+   "index": 8,
+   "frame": 5433,
+   "action": {
+    "tool": "wait",
+    "frames": 240
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "OAK: That was",
+     "close!"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000008.png"
+  },
+  {
+   "index": 9,
+   "frame": 5505,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a",
+     "a",
+     "a"
+    ]
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "Wild POKéMON live",
+     "in tall gra"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000009.png"
+  },
+  {
+   "index": 10,
+   "frame": 5805,
+   "action": {
+    "tool": "wait",
+    "frames": 300
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "Wild POKéMON live",
+     "in tall grass!"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000010.png"
+  },
+  {
+   "index": 11,
+   "frame": 5901,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a",
+     "a",
+     "a",
+     "a"
+    ]
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "wild",
+   "screenshot": "media/runs/20261106-183217/000011.png"
+  },
+  {
+   "index": 12,
+   "frame": 6201,
+   "action": {
+    "tool": "wait",
+    "frames": 300
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "Wild P"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "wild",
+   "screenshot": "media/runs/20261106-183217/000012.png"
+  },
+  {
+   "index": 13,
+   "frame": 6321,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a",
+     "a",
+     "a",
+     "a",
+     "a"
+    ]
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "menu",
+    "lines": [
+     "PIKACHU",
+     "Lv5",
+     "FIGHT PKMN",
+     "ITEM RUN"
+    ],
+    "cursor": "ITEM"
+   },
+   "party": [],
+   "battle": "wild",
+   "screenshot": "media/runs/20261106-183217/000013.png"
+  },
+  {
+   "index": 14,
+   "frame": 6921,
+   "action": {
+    "tool": "wait",
+    "frames": 600
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "PIKACHU",
+     "Lv5",
+     "All right!",
+     "PIKACHU was"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "wild",
+   "screenshot": "media/runs/20261106-183217/000014.png"
+  },
+  {
+   "index": 15,
+   "frame": 6993,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a",
+     "a",
+     "a"
+    ]
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "PIKACHU",
+     "Lv5",
+     "PIKACHU was",
+     "caught!"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "wild",
+   "screenshot": "media/runs/20261106-183217/000015.png"
+  },
+  {
+   "index": 16,
+   "frame": 7593,
+   "action": {
+    "tool": "wait",
+    "frames": 600
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "PIKACHU",
+     "Lv5",
+     "PIKACHU was",
+     "caught!"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "wild",
+   "screenshot": "media/runs/20261106-183217/000016.png"
+  },
+  {
+   "index": 17,
+   "frame": 7617,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000017.png"
+  },
+  {
+   "index": 18,
+   "frame": 8217,
+   "action": {
+    "tool": "wait",
+    "frames": 600
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "OAK: Whew..."
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000018.png"
+  },
+  {
+   "index": 19,
+   "frame": 8289,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a",
+     "a",
+     "a"
+    ]
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "OAK: A POK"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000019.png"
+  },
+  {
+   "index": 20,
+   "frame": 8889,
+   "action": {
+    "tool": "wait",
+    "frames": 600
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "OAK: A POKéMON can",
+     "appear anytime in"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000020.png"
+  },
+  {
+   "index": 21,
+   "frame": 8985,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a",
+     "a",
+     "a",
+     "a"
+    ]
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "You need your o"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000021.png"
+  },
+  {
+   "index": 22,
+   "frame": 9585,
+   "action": {
+    "tool": "wait",
+    "frames": 600
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "You need your own",
+     "POKéMON for your"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000022.png"
+  },
+  {
+   "index": 23,
+   "frame": 9609,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "POKéMON for your",
+     "prote"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000023.png"
+  },
+  {
+   "index": 24,
+   "frame": 9729,
+   "action": {
+    "tool": "wait",
+    "frames": 120
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "POKéMON for your",
+     "protection."
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000024.png"
+  },
+  {
+   "index": 25,
+   "frame": 9753,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "protection.",
+     "I kno"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000025.png"
+  },
+  {
+   "index": 26,
+   "frame": 9843,
+   "action": {
+    "tool": "wait",
+    "frames": 90
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "protection.",
+     "I know!"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000026.png"
+  },
+  {
+   "index": 27,
+   "frame": 9867,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "He"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000027.png"
+  },
+  {
+   "index": 28,
+   "frame": 10467,
+   "action": {
+    "tool": "wait",
+    "frames": 600
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "Here, come with",
+     "me!"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000028.png"
+  },
+  {
+   "index": 29,
+   "frame": 10491,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "PALLET_TOWN",
+   "x": 10,
+   "y": 0,
+   "facing": "down",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "Here, come with",
+     "me!"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000029.png"
+  },
+  {
+   "index": 30,
+   "frame": 11091,
+   "action": {
+    "tool": "wait",
+    "frames": 600
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 5,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000030.png"
+  },
+  {
+   "index": 31,
+   "frame": 11391,
+   "action": {
+    "tool": "wait",
+    "frames": 300
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "GEMINI: Gramps!",
+     "I'm fed up with"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000031.png"
+  },
+  {
+   "index": 32,
+   "frame": 11415,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "I'm fed up with",
+     "waiti"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000032.png"
+  },
+  {
+   "index": 33,
+   "frame": 11535,
+   "action": {
+    "tool": "wait",
+    "frames": 120
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "I'm fed up with",
+     "waiting!"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000033.png"
+  },
+  {
+   "index": 34,
+   "frame": 11559,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000034.png"
+  },
+  {
+   "index": 35,
+   "frame": 11679,
+   "action": {
+    "tool": "wait",
+    "frames": 120
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "OAK: Hmm? GEMINI?",
+     "Why are you her"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000035.png"
+  },
+  {
+   "index": 36,
+   "frame": 11703,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "OAK: Hmm? GEMINI?",
+     "Why are you here"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000036.png"
+  },
+  {
+   "index": 37,
+   "frame": 11823,
+   "action": {
+    "tool": "wait",
+    "frames": 120
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "OAK: Hmm? GEMINI?",
+     "Why are you here"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000037.png"
+  },
+  {
+   "index": 38,
+   "frame": 11847,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "Why are you here",
+     "alrea"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000038.png"
+  },
+  {
+   "index": 39,
+   "frame": 11967,
+   "action": {
+    "tool": "wait",
+    "frames": 120
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "Why are you here",
+     "already?"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000039.png"
+  },
+  {
+   "index": 40,
+   "frame": 11991,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "I"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000040.png"
+  },
+  {
+   "index": 41,
+   "frame": 12111,
+   "action": {
+    "tool": "wait",
+    "frames": 120
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "I said for you to",
+     "come by later..."
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000041.png"
+  },
+  {
+   "index": 42,
+   "frame": 12135,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "Ah"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000042.png"
+  },
+  {
+   "index": 43,
+   "frame": 12255,
+   "action": {
+    "tool": "wait",
+    "frames": 120
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "Ah, whatever!",
+     "Just wait there."
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000043.png"
+  },
+  {
+   "index": 44,
+   "frame": 12279,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "Lo"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000044.png"
+  },
+  {
+   "index": 45,
+   "frame": 12429,
+   "action": {
+    "tool": "wait",
+    "frames": 150
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "Look, CLAUDE! Do",
+     "you see that ball"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000045.png"
+  },
+  {
+   "index": 46,
+   "frame": 12453,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "you see that ball",
+     "on th"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000046.png"
+  },
+  {
+   "index": 47,
+   "frame": 12603,
+   "action": {
+    "tool": "wait",
+    "frames": 150
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "you see that ball",
+     "on the table?"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000047.png"
+  },
+  {
+   "index": 48,
+   "frame": 12627,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "It"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000048.png"
+  },
+  {
+   "index": 49,
+   "frame": 12777,
+   "action": {
+    "tool": "wait",
+    "frames": 150
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "It's called a POKé",
+     "BALL. It holds a"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000049.png"
+  },
+  {
+   "index": 50,
+   "frame": 12801,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "BALL. It holds a",
+     "POKéM"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000050.png"
+  },
+  {
+   "index": 51,
+   "frame": 12951,
+   "action": {
+    "tool": "wait",
+    "frames": 150
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "BALL. It holds a",
+     "POKéMON inside."
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000051.png"
+  },
+  {
+   "index": 52,
+   "frame": 12975,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "Yo"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000052.png"
+  },
+  {
+   "index": 53,
+   "frame": 13125,
+   "action": {
+    "tool": "wait",
+    "frames": 150
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "You may have it!",
+     "Go on, take it!"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000053.png"
+  },
+  {
+   "index": 54,
+   "frame": 13149,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000054.png"
+  },
+  {
+   "index": 55,
+   "frame": 13299,
+   "action": {
+    "tool": "wait",
+    "frames": 150
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "GEMINI: Hey!",
+     "Gramps! What"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000055.png"
+  },
+  {
+   "index": 56,
+   "frame": 13323,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "Gramps! What",
+     "about"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000056.png"
+  },
+  {
+   "index": 57,
+   "frame": 13473,
+   "action": {
+    "tool": "wait",
+    "frames": 150
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "Gramps! What",
+     "about me?"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000057.png"
+  },
+  {
+   "index": 58,
+   "frame": 13497,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000058.png"
+  },
+  {
+   "index": 59,
+   "frame": 13647,
+   "action": {
+    "tool": "wait",
+    "frames": 150
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "OAK: Be patient,",
+     "GEMINI, I'll give"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000059.png"
+  },
+  {
+   "index": 60,
+   "frame": 13671,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "GEMINI, I'll give",
+     "you o"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000060.png"
+  },
+  {
+   "index": 61,
+   "frame": 13821,
+   "action": {
+    "tool": "wait",
+    "frames": 150
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "GEMINI, I'll give",
+     "you one later."
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000061.png"
+  },
+  {
+   "index": 62,
+   "frame": 13845,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000062.png"
+  },
+  {
+   "index": 63,
+   "frame": 13995,
+   "action": {
+    "tool": "wait",
+    "frames": 150
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000063.png"
+  },
+  {
+   "index": 64,
+   "frame": 14019,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000064.png"
+  },
+  {
+   "index": 65,
+   "frame": 14169,
+   "action": {
+    "tool": "wait",
+    "frames": 150
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "OAK: Go ahead,",
+     "it's yours!"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000065.png"
+  },
+  {
+   "index": 66,
+   "frame": 14193,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000066.png"
+  },
+  {
+   "index": 67,
+   "frame": 14493,
+   "action": {
+    "tool": "wait",
+    "frames": 300
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000067.png"
+  },
+  {
+   "index": 68,
+   "frame": 14506,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "right"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000068.png"
+  },
+  {
+   "index": 69,
+   "frame": 14573,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "down",
+     "right",
+     "right",
+     "up"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 4,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000069.png"
+  },
+  {
+   "index": 70,
+   "frame": 14597,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 4,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000070.png"
+  },
+  {
+   "index": 71,
+   "frame": 14747,
+   "action": {
+    "tool": "wait",
+    "frames": 150
+   },
+   "map_name": "OAKS_LAB",
+   "x": 7,
+   "y": 4,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000071.png"
+  },
+  {
+   "index": 72,
+   "frame": 14947,
+   "action": {
+    "tool": "wait",
+    "frames": 200
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "GEMINI: No way!",
+     "CLAUDE, I want"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000072.png"
+  },
+  {
+   "index": 73,
+   "frame": 14971,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "CLAUDE, I want",
+     "this"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000073.png"
+  },
+  {
+   "index": 74,
+   "frame": 15121,
+   "action": {
+    "tool": "wait",
+    "frames": 150
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "CLAUDE, I want",
+     "this POKéMON!"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000074.png"
+  },
+  {
+   "index": 75,
+   "frame": 15145,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "GEMINI snat"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000075.png"
+  },
+  {
+   "index": 76,
+   "frame": 15445,
+   "action": {
+    "tool": "wait",
+    "frames": 300
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "OAK: GEMINI! What",
+     "are you doing?"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000076.png"
+  },
+  {
+   "index": 77,
+   "frame": 15469,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "GEMINI: Gra"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000077.png"
+  },
+  {
+   "index": 78,
+   "frame": 15769,
+   "action": {
+    "tool": "wait",
+    "frames": 300
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "GEMINI: Gramps, I",
+     "want this one!"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000078.png"
+  },
+  {
+   "index": 79,
+   "frame": 15793,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "OAK: But, I"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000079.png"
+  },
+  {
+   "index": 80,
+   "frame": 15993,
+   "action": {
+    "tool": "wait",
+    "frames": 200
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "OAK: But, I... Oh,",
+     "all right then."
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000080.png"
+  },
+  {
+   "index": 81,
+   "frame": 16017,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "all right then.",
+     "That"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000081.png"
+  },
+  {
+   "index": 82,
+   "frame": 16217,
+   "action": {
+    "tool": "wait",
+    "frames": 200
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "all right then.",
+     "That POKéMON is"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000082.png"
+  },
+  {
+   "index": 83,
+   "frame": 16241,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "That POKéMON is",
+     "yours"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000083.png"
+  },
+  {
+   "index": 84,
+   "frame": 16441,
+   "action": {
+    "tool": "wait",
+    "frames": 200
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "That POKéMON is",
+     "yours."
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000084.png"
+  },
+  {
+   "index": 85,
+   "frame": 16465,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "I"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000085.png"
+  },
+  {
+   "index": 86,
+   "frame": 16665,
+   "action": {
+    "tool": "wait",
+    "frames": 200
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "I was going to",
+     "give you one"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000086.png"
+  },
+  {
+   "index": 87,
+   "frame": 16689,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "give you one",
+     "anywa"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000087.png"
+  },
+  {
+   "index": 88,
+   "frame": 16889,
+   "action": {
+    "tool": "wait",
+    "frames": 200
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "give you one",
+     "anyway..."
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000088.png"
+  },
+  {
+   "index": 89,
+   "frame": 16913,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "CL"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000089.png"
+  },
+  {
+   "index": 90,
+   "frame": 17113,
+   "action": {
+    "tool": "wait",
+    "frames": 200
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "CLAUDE, come over",
+     "here."
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000090.png"
+  },
+  {
+   "index": 91,
+   "frame": 17137,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 9,
+   "y": 4,
+   "facing": "right",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000091.png"
+  },
+  {
+   "index": 92,
+   "frame": 17437,
+   "action": {
+    "tool": "wait",
+    "frames": 300
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "OAK: CLAUDE, this",
+     "is the POKéMON I"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000092.png"
+  },
+  {
+   "index": 93,
+   "frame": 17461,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "is the POKéMON I",
+     "caugh"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000093.png"
+  },
+  {
+   "index": 94,
+   "frame": 17661,
+   "action": {
+    "tool": "wait",
+    "frames": 200
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "is the POKéMON I",
+     "caught earlier."
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000094.png"
+  },
+  {
+   "index": 95,
+   "frame": 17685,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "Yo"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000095.png"
+  },
+  {
+   "index": 96,
+   "frame": 17885,
+   "action": {
+    "tool": "wait",
+    "frames": 200
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "You can have it.",
+     "I caught it in"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000096.png"
+  },
+  {
+   "index": 97,
+   "frame": 17909,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "I caught it in",
+     "the w"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000097.png"
+  },
+  {
+   "index": 98,
+   "frame": 18109,
+   "action": {
+    "tool": "wait",
+    "frames": 200
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "I caught it in",
+     "the wild and it's"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000098.png"
+  },
+  {
+   "index": 99,
+   "frame": 18133,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "the wild and it's",
+     "not t"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000099.png"
+  },
+  {
+   "index": 100,
+   "frame": 18433,
+   "action": {
+    "tool": "wait",
+    "frames": 300
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "the wild and it's",
+     "not tame yet."
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000100.png"
+  },
+  {
+   "index": 101,
+   "frame": 18457,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "CLAUDE rece"
+    ],
+    "cursor": null
+   },
+   "party": [],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000101.png"
+  },
+  {
+   "index": 102,
+   "frame": 18757,
+   "action": {
+    "tool": "wait",
+    "frames": 300
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "Do you want to",
+     "give a nickname"
+    ],
+    "cursor": null
+   },
+   "party": [
+    "SPECIES_0x00 Lv0"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000102.png"
+  },
+  {
+   "index": 103,
+   "frame": 18781,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "give a nickname",
+     "to PI"
+    ],
+    "cursor": null
+   },
+   "party": [
+    "SPECIES_0x00 Lv0"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000103.png"
+  },
+  {
+   "index": 104,
+   "frame": 18901,
+   "action": {
+    "tool": "wait",
+    "frames": 120
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "menu",
+    "lines": [
+     "YES",
+     "NO",
+     "give a nickname",
+     "to PIKACHU?"
+    ],
+    "cursor": "YES"
+   },
+   "party": [
+    "SPECIES_0x00 Lv0"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000104.png"
+  },
+  {
+   "index": 105,
+   "frame": 18938,
+   "action": {
+    "tool": "press_buttons",
+    "buttons": [
+     "down",
+     "a"
+    ]
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "text",
+    "lines": [
+     "give a nickname",
+     "to PIKACHU?"
+    ],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv5"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000105.png"
+  },
+  {
+   "index": 106,
+   "frame": 19138,
+   "action": {
+    "tool": "wait",
+    "frames": 200
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 3,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv5"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-183217/000106.png"
+  }
+ ]
+}

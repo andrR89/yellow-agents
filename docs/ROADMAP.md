@@ -56,7 +56,7 @@ Planned interactive pieces:
 
 ## Phases
 
-### Phase 1 — Emulator + state + MCP *(in progress)*
+### Phase 1 — Emulator + state + MCP *(done, session 3)*
 - [x] PyBoy wrapper: headless, buttons, save/load state, screenshot
 - [x] RAM → JSON state from `pokeyellow.sym` (map, position, party, battle, badges, Pikachu)
 - [x] Data tables extracted from pret/pokeyellow
@@ -64,7 +64,7 @@ Planned interactive pieces:
 - [x] Unit tests with fake memory
 - [x] Validate with a real ROM: new game → Pallet Town → Pikachu, over the MCP stdio client and
       `tests/test_rom.py` (session 1)
-- [ ] Same thing driven by Claude Code itself as the MCP client
+- [x] Same thing driven by Claude Code itself as the MCP client (session 3, run `20261106-183217`)
 - [x] One press = one tile, reliably: closed-loop walking on `wWalkCounter` replaced fixed
       `HOLD_FRAMES` / `SETTLE_FRAMES` ([ADR 0001](adr/0001-closed-loop-walking.md))
 - [x] Detect "text box open" / "menu open": `screen` = overworld / text / menu / cutscene, the
@@ -76,6 +76,8 @@ Planned interactive pieces:
 - [x] Site v1: architecture overview, RAM → state decoder, MCP call flow, scripted baseline
       (`yellow-baseline`), journal timeline, 5 locales; deployed to GitHub Pages on every push
 - [x] New game with typed names (`newgame.py`, MCP `new_game`): the AI plays as itself, rival GEMINI
+- [x] Site: first run replay (screen + MCP call + state per step, jump to milestones) and the
+      run's milestones against the baseline (`yellow-site-data run runs/<id>`)
 
 **Milestone:** Claude Code plays through MCP from a new game to receiving Pikachu.
 

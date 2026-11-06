@@ -21,4 +21,4 @@ dist/
 
 # Local config / secrets
 .env
-runs/
+/runs/

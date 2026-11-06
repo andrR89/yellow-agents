@@ -1,14 +1,15 @@
 {
  "meta": { "title": "yellow-agents — una IA jugando Pokémon Amarillo" },
- "nav": { "how": "Cómo funciona", "phase1": "Fase 1", "baseline": "Línea base", "journal": "Diario", "language": "Idioma" },
+ "nav": { "how": "Cómo funciona", "phase1": "Fase 1", "baseline": "Línea base", "replay": "Replay", "journal": "Diario", "language": "Idioma" },
  "hero": {
-  "eyebrow": "Proyecto de estudio · Fase 1 en curso",
+  "eyebrow": "Proyecto de estudio · Fase 1 completada",
   "title": "Una IA que juega Pokémon Amarillo leyendo la memoria del juego",
   "lead": "El juego corre en un emulador de Game Boy dentro de Python. El código lee la RAM y le entrega a la IA un resumen del juego: dónde está, el equipo, el texto en pantalla. La IA solo decide qué botones pulsar. Esta página muestra cómo funciona cada parte, con datos reales de cada sesión.",
   "caption": "Línea base grabada fotograma a fotograma: de una partida nueva hasta recibir a Pikachu, con el jugador CLAUDE y el rival GEMINI. Aquí juega un script fijo, no la IA: es la vara con la que se medirá cada agente."
  },
  "status": {
   "frames": "fotogramas hasta Pikachu (script)",
+  "runFrames": "frames hasta Pikachu ({name} vía MCP)",
   "steps": "pasos correctos en lazo cerrado",
   "sessions": "sesiones registradas",
   "cost": "gasto en APIs hasta ahora"
@@ -81,12 +82,29 @@
   "table": "Ver como tabla",
   "col": { "milestone": "Hito", "frame": "Fotograma", "where": "Dónde" }
  },
+ "replay": {
+  "eyebrow": "Fase 1 · hito",
+  "title": "Claude jugando por MCP",
+  "lead": "Claude Code usó las herramientas del servidor MCP, sin script, desde una partida nueva hasta recibir a Pikachu. Cada llamada quedó grabada con el estado y la pantalla. Este es el replay de esa partida, comparado con la línea base.",
+  "problem": "Saber si la capa de herramientas basta para que un modelo juegue solo: leer el estado, elegir el botón, manejar textos y escenas.",
+  "how": "Con YELLOW_RUNS activado, el servidor graba cada llamada en runs/<id>/run.jsonl: la acción, el frame del emulador y el estado después, más una captura. El exportador encuentra en ese archivo los mismos hitos de la línea base.",
+  "decision": "La comparación es en frames del emulador, no en segundos: el tiempo que el modelo tarda en pensar no cuenta, solo cuánto avanzó el juego. Así el resultado no depende de la máquina ni de la latencia de la API.",
+  "action": "Llamada MCP",
+  "state": "Estado después",
+  "compare": "Contra la línea base",
+  "result": "Claude llegó a Pikachu en el frame {run}; el script, en el {base} ({pct} más). Hizo {calls} llamadas, {waits} de ellas wait. De los {played} frames después de new_game, {waitFrames} pasaron dentro de wait.",
+  "alt": "Pantalla del juego en {map} ({x},{y})",
+  "caption": "Paso {i}/{n} · frame {frame} · {tool}",
+  "tip": "frame {frame} (≈ {s} s)",
+  "series": {"baseline": "Script (línea base)", "run": "{name} vía MCP"}
+ },
  "journal": {
   "title": "Diario del proyecto",
   "lead": "Cada sesión de trabajo registra el objetivo, los problemas (síntoma → causa → solución → evidencia), las decisiones y los números. Los callejones sin salida también cuentan.",
   "session": "Sesión {n}",
   "phase": "Fase {n}",
   "hours": "{h} h",
+  "costNotMeasured": "costo no medido",
   "notMeasured": "duración no medida",
   "ptOnly": "El diario está escrito en portugués, el idioma de trabajo del proyecto."
  },

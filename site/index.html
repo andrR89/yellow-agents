@@ -17,6 +17,7 @@
     <a href="#how" data-i18n="nav.how"></a>
     <a href="#phase1" data-i18n="nav.phase1"></a>
     <a href="#baseline" data-i18n="nav.baseline"></a>
+    <a href="#replay" data-i18n="nav.replay"></a>
     <a href="#journal" data-i18n="nav.journal"></a>
   </nav>
   <label class="lang"><span class="sr" data-i18n="nav.language"></span>
@@ -132,6 +133,49 @@
       <summary data-i18n="baseline.table"></summary>
       <table id="milestone-table"></table>
     </details>
+  </section>
+
+  <section id="replay">
+    <p class="eyebrow" data-i18n="replay.eyebrow"></p>
+    <h2 data-i18n="replay.title"></h2>
+    <p class="lead" data-i18n="replay.lead"></p>
+    <div class="psdr">
+      <div><h4 data-i18n="label.problem"></h4><p data-i18n="replay.problem"></p></div>
+      <div><h4 data-i18n="label.how"></h4><p data-i18n="replay.how"></p></div>
+      <div><h4 data-i18n="label.decision"></h4><p data-i18n="replay.decision"></p></div>
+    </div>
+
+    <div class="player">
+      <figure class="screen-frame player-screen">
+        <img id="rp-img" alt="" width="160" height="144">
+        <figcaption id="rp-caption"></figcaption>
+      </figure>
+      <div class="player-side">
+        <div class="panel">
+          <h5 data-i18n="replay.action"></h5>
+          <pre id="rp-action" class="json" dir="ltr"></pre>
+          <h5 data-i18n="replay.state"></h5>
+          <dl id="rp-state" class="rp-state" dir="ltr"></dl>
+        </div>
+        <div class="rp-jumps" id="rp-jumps"></div>
+      </div>
+    </div>
+    <div class="controls">
+      <button id="rp-prev" type="button" data-i18n="ctl.prev"></button>
+      <button id="rp-play" type="button" data-i18n="ctl.play"></button>
+      <button id="rp-next" type="button" data-i18n="ctl.next"></button>
+      <input id="rp-scrub" type="range" min="0" value="0" aria-labelledby="rp-caption">
+    </div>
+
+    <h3 data-i18n="replay.compare"></h3>
+    <p class="lead" id="rp-result"></p>
+    <div class="legend" id="cmp-legend"></div>
+    <div class="cmp" id="cmp" dir="ltr"></div>
+    <details class="table-view">
+      <summary data-i18n="baseline.table"></summary>
+      <table id="cmp-table"></table>
+    </details>
+    <p class="source" id="rp-source"></p>
   </section>
 
   <section id="journal">

@@ -4,6 +4,7 @@ CLI::
 
     yellow-site-data sessions          # docs/sessions/*.md -> site/data/sessions.json (no ROM)
     yellow-site-data mcp-flow          # real MCP session over stdio -> site/data/mcp_flow.json
+    yellow-site-data run runs/<id>     # recorded run -> site/data/runs/<id>.json + screens (no ROM)
 """
 
 from __future__ import annotations
@@ -13,6 +14,7 @@ import base64
 import json
 import os
 import re
+import shutil
 import sys
 import time
 from pathlib import Path
@@ -137,9 +139,132 @@ async def record_mcp_flow(env: dict[str, str], media_dir: Path) -> list[McpCall]
     return calls
 
 
+# -- recorded runs -> replay --------------------------------------------------
+
+
+class ReplayStep(BaseModel):
+    index: int
+    frame: int
+    action: dict[str, Any]
+    map_name: str
+    x: int
+    y: int
+    facing: str
+    screen: dict[str, Any]
+    party: list[str]  # "PIKACHU Lv5"
+    battle: str
+    screenshot: str | None  # path relative to site/
+
+
+class Replay(BaseModel):
+    run_id: str
+    source: str
+    player_name: str
+    rival_name: str
+    started_at: str
+    git_commit: str | None
+    start_frame: int  # frame when the first recorded action returned
+    total_frames: int  # frame of the got_pikachu milestone (same clock as the baseline)
+    actions: dict[str, int]  # tool -> count
+    wait_frames: int  # frames spent inside `wait` calls
+    milestones: list[dict[str, Any]]
+    steps: list[ReplayStep]
+
+
+def run_milestones(steps: list[Any]) -> list[dict[str, Any]]:
+    """The baseline's milestones, found in a recorded run.
+
+    Same rules as `baseline.play_to_pikachu`, but a run only has the state after each tool call,
+    so a milestone lands on the first call whose resulting state shows it (coarser than the
+    baseline, which checks after every single press).
+    """
+    rules: list[tuple[str, Any]] = [
+        ("bedroom", lambda s: s.map_name == "REDS_HOUSE_2F"),
+        ("pallet_town", lambda s: s.map_name == "PALLET_TOWN"),
+        ("north_exit", lambda s: s.map_name == "PALLET_TOWN" and s.y <= 1),
+        ("oak_stops_you", lambda s: s.map_name == "PALLET_TOWN" and s.screen.kind == "text"),
+        (
+            "oak_battle_menu",
+            lambda s: s.screen.kind == "menu" and any("FIGHT" in ln for ln in s.screen.lines),
+        ),
+        ("oaks_lab", lambda s: s.map_name == "OAKS_LAB"),
+        (
+            "got_pikachu",
+            lambda s: s.screen.kind == "overworld" and any(p.species == "PIKACHU" for p in s.party),
+        ),
+    ]
+    out = []
+    for name, rule in rules:
+        hit = next((st for st in steps if rule(st.state)), None)
+        if hit is not None:
+            s = hit.state
+            out.append(
+                {"name": name, "frame": hit.frame, "step": hit.index, "map_name": s.map_name}
+                | {"x": s.x, "y": s.y}
+            )
+    return out
+
+
+def export_run(run_dir: Path, site: Path) -> Replay:
+    from .recorder import load_run
+
+    header, steps = load_run(run_dir)
+    if not steps:
+        raise ValueError(f"{run_dir}: no steps")
+    media = site / "media" / "runs" / header.run_id
+    media.mkdir(parents=True, exist_ok=True)
+    out_steps = []
+    actions: dict[str, int] = {}
+    wait_frames = 0
+    for st in steps:
+        tool = str(st.action.get("tool"))
+        actions[tool] = actions.get(tool, 0) + 1
+        if tool == "wait":
+            wait_frames += int(st.action.get("frames", 0))
+        shot = None
+        if st.screenshot:
+            name = Path(st.screenshot).name
+            shutil.copyfile(run_dir / st.screenshot, media / name)
+            shot = f"media/runs/{header.run_id}/{name}"
+        s = st.state
+        out_steps.append(
+            ReplayStep(
+                index=st.index,
+                frame=st.frame,
+                action=st.action,
+                map_name=s.map_name,
+                x=s.x,
+                y=s.y,
+                facing=s.facing,
+                screen=s.screen.model_dump(mode="json"),
+                party=[f"{p.species} Lv{p.level}" for p in s.party],
+                battle=str(s.battle.kind),
+                screenshot=shot,
+            )
+        )
+    milestones = run_milestones(steps)
+    last = next((m for m in milestones if m["name"] == "got_pikachu"), None)
+    first = steps[0].state
+    return Replay(
+        run_id=header.run_id,
+        source=header.source,
+        player_name=first.player_name,
+        rival_name=first.rival_name,
+        started_at=header.started_at.isoformat(),
+        git_commit=header.git_commit,
+        start_frame=steps[0].frame,
+        total_frames=last["frame"] if last else steps[-1].frame,
+        actions=actions,
+        wait_frames=wait_frames,
+        milestones=milestones,
+        steps=out_steps,
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Export the showcase site's data.")
-    parser.add_argument("what", choices=["sessions", "mcp-flow"])
+    parser.add_argument("what", choices=["sessions", "mcp-flow", "run"])
+    parser.add_argument("run_dir", nargs="?", type=Path, help="for `run`: runs/<id>")
     parser.add_argument("--site", type=Path, default=Path("site"))
     parser.add_argument("--sessions-dir", type=Path, default=Path("docs/sessions"))
     args = parser.parse_args()
@@ -150,6 +275,19 @@ def main() -> None:
         sessions = export_sessions(args.sessions_dir)
         payload = [s.model_dump() for s in sessions]
         out = out_dir / "sessions.json"
+    elif args.what == "run":
+        if args.run_dir is None:
+            parser.error("run: give the run directory, e.g. runs/20261106-183217")
+        replay = export_run(args.run_dir, args.site)
+        (out_dir / "runs").mkdir(exist_ok=True)
+        out = out_dir / "runs" / f"{replay.run_id}.json"
+        out.write_text(replay.model_dump_json(indent=1) + "\n", encoding="utf-8")
+        index = sorted(p.stem for p in (out_dir / "runs").glob("*.json") if p.stem != "index")
+        (out_dir / "runs" / "index.json").write_text(json.dumps(index) + "\n", encoding="utf-8")
+        for m in replay.milestones:
+            print(f"{m['frame']:6d}  {m['name']:16} step {m['step']}")
+        print(f"wrote {out} ({len(replay.steps)} steps)")
+        return
     else:
         import anyio
 

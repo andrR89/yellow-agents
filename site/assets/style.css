@@ -204,3 +204,38 @@ footer { max-width: 1120px; margin: 0 auto; padding: 2rem clamp(1rem, 4vw, 2rem)
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
+
+/* ---------------------------------------------------------------- run replay */
+/* series colors validated with the dataviz validator (dark, surface #1b1d27):
+   L 0.48–0.67, CVD ΔE 26.4, normal ΔE 27.6, contrast >= 3:1 */
+:root { --s-baseline: #5a84dc; --s-run: #b08e0a; }
+.player { display: grid; grid-template-columns: minmax(240px, 480px) 1fr; gap: 1.25rem; margin-block: 1.5rem 0.75rem; align-items: start; }
+@media (max-width: 760px) { .player { grid-template-columns: 1fr; } }
+.player-screen img { display: block; width: 100%; height: auto; image-rendering: pixelated; background: #000; border-radius: 6px; }
+.player-screen figcaption { font-variant-numeric: tabular-nums; }
+.player-side { display: grid; gap: 0.75rem; }
+.player-side .json { max-height: 7.5rem; }
+.rp-state { display: grid; grid-template-columns: max-content 1fr; gap: 0.2rem 0.9rem; margin: 0; font: 0.82rem/1.5 var(--mono); }
+.rp-state dt { color: var(--ink-3); }
+.rp-state dd { margin: 0; color: var(--ink); overflow-wrap: anywhere; }
+.rp-jumps { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.rp-jumps button { font-size: 0.78rem; padding: 0.25rem 0.6rem; }
+.rp-jumps button.on { background: var(--hl); border-color: var(--accent); color: var(--ink); }
+#rp-scrub { flex: 1; min-width: 10rem; accent-color: var(--accent); }
+
+.legend { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: 0.85rem; color: var(--ink-2); margin-block: 0.5rem; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-inline-end: 0.4rem; vertical-align: -1px; }
+.cmp { margin-block: 0.5rem 1rem; }
+.cmp-plot { position: relative; padding-block: 0 1.6rem; margin-inline-start: 9.5rem; margin-inline-end: 4.5rem; }
+.cmp-grid { position: absolute; inset-block: 0; width: 1px; background: var(--line); opacity: 0.6; }
+.cmp-grid span { position: absolute; inset-block-end: 0; transform: translateX(-50%); font-size: 0.7rem; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.cmp-row { position: relative; height: 2.1rem; }
+.cmp-lbl { position: absolute; inset-inline-end: calc(100% + 0.75rem); top: 50%; transform: translateY(-50%); font-size: 0.82rem; color: var(--ink-2); white-space: nowrap; }
+.cmp-track { position: absolute; inset: 0; }
+.cmp-gap { position: absolute; top: calc(50% - 1px); height: 2px; background: var(--ink-3); opacity: 0.55; }
+.cmp-dot { position: absolute; top: 50%; width: 12px; height: 12px; padding: 0; border: 2px solid var(--bg); border-radius: 50%; transform: translate(-50%, -50%); cursor: pointer; }
+.cmp-dot::after { content: ""; position: absolute; inset: -8px; } /* bigger hit target */
+.cmp-dot:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.cmp-delta { position: absolute; inset-inline-start: calc(100% + 0.75rem); top: 50%; transform: translateY(-50%); font: 0.78rem var(--mono); color: var(--ink-2); font-variant-numeric: tabular-nums; }
+@media (max-width: 560px) { .cmp-plot { margin-inline-start: 6.5rem; margin-inline-end: 3.5rem; } .cmp-lbl { font-size: 0.72rem; white-space: normal; width: 6rem; text-align: end; } }
+#replay > .controls { margin-block-end: 2.5rem; }

@@ -57,6 +57,7 @@ function renderStatus() {
   const w = data.walking.closed_loop;
   const items = [
     [num(b.total_frames), t("status.frames")],
+    [num(data.replay.total_frames), t("status.runFrames", { name: data.replay.player_name })],
     [`${w.correct}/${w.total}`, t("status.steps")],
     [num(data.sessions.length), t("status.sessions")],
     [num(cost, { style: "currency", currency: "USD" }), t("status.cost")],
@@ -278,6 +279,104 @@ function renderMilestones() {
     b.milestones.map((m) => `<tr><td>${esc(t(`ms.${m.name}`))}</td><td class="num">${num(m.frame)}</td><td><code>${esc(m.map_name)} (${m.x},${m.y})</code></td></tr>`).join("");
 }
 
+// ---------------------------------------------------------------- run replay + comparison
+const rp = { i: 0 };
+const SERIES = { baseline: "var(--s-baseline)", run: "var(--s-run)" };
+
+function showStep() {
+  const r = data.replay;
+  const s = r.steps[rp.i];
+  const img = $("#rp-img");
+  if (s.screenshot) { img.src = s.screenshot; img.alt = t("replay.alt", { map: s.map_name, x: s.x, y: s.y }); }
+  $("#rp-caption").textContent = t("replay.caption", { i: rp.i + 1, n: r.steps.length, frame: num(s.frame), tool: s.action.tool });
+  $("#rp-action").textContent = JSON.stringify(s.action, null, 1);
+  const lines = s.screen.lines.length ? s.screen.lines.join(" / ") : "—";
+  const rows = [
+    ["map", `${s.map_name} (${s.x},${s.y}) ${s.facing}`],
+    ["screen", s.screen.cursor ? `${s.screen.kind} ▶ ${s.screen.cursor}` : s.screen.kind],
+    ["text", lines],
+    ["party", s.party.length ? s.party.join(", ") : "—"],
+    ["battle", s.battle],
+  ];
+  $("#rp-state").innerHTML = rows.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("");
+  $("#rp-scrub").value = rp.i;
+  document.querySelectorAll("#rp-jumps button").forEach((b) => b.classList.toggle("on", +b.dataset.step <= rp.i && rp.i < +b.dataset.until));
+}
+
+function stepReplay(d) {
+  const n = data.replay.steps.length;
+  rp.i = (rp.i + d + n) % n;
+  showStep();
+}
+
+function playReplay(on) {
+  if (on) { loop("rp", () => stepReplay(1), 450); } else { stop("rp"); }
+  $("#rp-play").textContent = timers.rp ? t("ctl.pause") : t("ctl.play");
+}
+
+function renderReplay() {
+  const r = data.replay;
+  $("#rp-scrub").max = r.steps.length - 1;
+  const ms = r.milestones;
+  $("#rp-jumps").innerHTML = ms.map((m, k) => {
+    const until = k + 1 < ms.length ? ms[k + 1].step : r.steps.length;
+    return `<button type="button" data-step="${m.step}" data-until="${until}">${esc(t(`ms.${m.name}`))}</button>`;
+  }).join("");
+  document.querySelectorAll("#rp-jumps button").forEach((b) => b.addEventListener("click", () => {
+    playReplay(false); rp.i = +b.dataset.step; showStep();
+  }));
+  showStep();
+  renderCompare();
+}
+
+function renderCompare() {
+  const r = data.replay, b = data.baseline;
+  const base = Object.fromEntries(b.milestones.map((m) => [m.name, m]));
+  const rows = r.milestones.filter((m) => base[m.name]).map((m) => ({ name: m.name, run: m.frame, base: base[m.name].frame }));
+  const max = Math.ceil(Math.max(...rows.flatMap((x) => [x.run, x.base])) / 5000) * 5000;
+  const pct = (f) => (f / max) * 100;
+  const names = { baseline: t("replay.series.baseline"), run: t("replay.series.run", { name: r.player_name }) };
+  $("#cmp-legend").innerHTML = Object.keys(SERIES).map((k) => `<span><i style="background:${SERIES[k]}"></i>${esc(names[k])}</span>`).join("");
+  let grid = "";
+  for (let f = 0; f <= max; f += 5000) grid += `<div class="cmp-grid" style="left:${pct(f)}%"><span>${num(f)}</span></div>`;
+  $("#cmp").innerHTML = `<div class="cmp-plot">${grid}${rows.map((x, i) => {
+    const lo = Math.min(x.run, x.base), hi = Math.max(x.run, x.base);
+    const d = x.run - x.base;
+    return `<div class="cmp-row"><span class="cmp-lbl">${esc(t(`ms.${x.name}`))}</span><div class="cmp-track">
+      <div class="cmp-gap" style="left:${pct(lo)}%;width:${pct(hi) - pct(lo)}%"></div>
+      <button type="button" class="cmp-dot" style="left:${pct(x.base)}%;background:${SERIES.baseline}" data-i="${i}" data-s="baseline"></button>
+      <button type="button" class="cmp-dot" style="left:${pct(x.run)}%;background:${SERIES.run}" data-i="${i}" data-s="run"></button>
+      </div><span class="cmp-delta ${d > 0 ? "worse" : "better"}">${d > 0 ? "+" : ""}${num(d)}</span></div>`;
+  }).join("")}</div>`;
+  const tip = $("#tooltip");
+  document.querySelectorAll(".cmp-dot").forEach((el) => {
+    const x = rows[+el.dataset.i];
+    const f = el.dataset.s === "run" ? x.run : x.base;
+    el.setAttribute("aria-label", `${names[el.dataset.s]} · ${t(`ms.${x.name}`)} · ${num(f)}`);
+    const show = () => {
+      const rc = el.getBoundingClientRect();
+      tip.innerHTML = `<b>${esc(t(`ms.${x.name}`))}</b><br>${esc(names[el.dataset.s])}: ${esc(t("replay.tip", { frame: num(f), s: num(f / 60, { maximumFractionDigits: 1 }) }))}`;
+      tip.hidden = false;
+      tip.style.left = `${Math.min(rc.left, innerWidth - 270)}px`;
+      tip.style.top = `${rc.top - tip.offsetHeight - 10}px`;
+    };
+    el.addEventListener("mouseenter", show);
+    el.addEventListener("focus", show);
+    el.addEventListener("mouseleave", () => { tip.hidden = true; });
+    el.addEventListener("blur", () => { tip.hidden = true; });
+  });
+  $("#cmp-table").innerHTML = `<tr><th>${esc(t("baseline.col.milestone"))}</th><th>${esc(names.baseline)}</th><th>${esc(names.run)}</th><th>Δ</th></tr>` +
+    rows.map((x) => `<tr><td>${esc(t(`ms.${x.name}`))}</td><td class="num">${num(x.base)}</td><td class="num">${num(x.run)}</td><td class="num">${x.run > x.base ? "+" : ""}${num(x.run - x.base)}</td></tr>`).join("");
+  const last = rows[rows.length - 1];
+  const calls = Object.values(r.actions).reduce((a, c) => a + c, 0);
+  $("#rp-result").textContent = t("replay.result", {
+    run: num(last.run), base: num(last.base), pct: num(last.run / last.base - 1, { style: "percent" }),
+    calls: num(calls), waits: num(r.actions.wait || 0),
+    waitFrames: num(r.wait_frames), played: num(last.run - r.start_frame),
+  });
+  $("#rp-source").innerHTML = `${esc(t("label.source"))}: <code>runs/${esc(r.run_id)}/run.jsonl</code> → <code>yellow-site-data run</code> · commit <code>${esc(r.git_commit || "?")}</code>`;
+}
+
 // ---------------------------------------------------------------- journal
 function inline(s) {
   return esc(s)
@@ -322,7 +421,7 @@ function renderJournal() {
     const m = s.meta;
     const metaLine = [t("journal.session", { n: m.sessao }), m.data, t("journal.phase", { n: m.fase }),
       m.duracao_h == null ? t("journal.notMeasured") : t("journal.hours", { h: num(m.duracao_h) }),
-      num(m.custo_usd || 0, { style: "currency", currency: "USD" })].join(" · ");
+      m.custo_usd == null ? t("journal.costNotMeasured") : num(m.custo_usd, { style: "currency", currency: "USD" })].join(" · ");
     return `<li><details ${i === 0 ? "open" : ""}><summary><span class="meta">${esc(metaLine)}</span><span class="ttl" lang="pt-BR">${esc(m.titulo)}</span>${m.marco ? `<span class="marco" lang="pt-BR">★ ${esc(m.marco)}</span>` : ""}</summary>${note}<div class="md" lang="pt-BR" dir="ltr">${markdown(s.body)}</div></details></li>`;
   }).join("");
 }
@@ -337,6 +436,8 @@ function renderAll() {
   showFlow();
   playFlow(!reduceMotion);
   renderMilestones();
+  renderReplay();
+  playReplay(false);
   renderJournal();
 }
 
@@ -345,7 +446,9 @@ async function main() {
     getJSON("data/baseline.json"), getJSON("data/walking.json"), getJSON("data/sessions.json"),
     getJSON("data/mcp_flow.json"), ...SNAPSHOTS.map((n) => getJSON(`data/snapshots/${n}.json`)),
   ]);
-  data = { baseline, walking, sessions, mcp, snapshots: snaps };
+  const runs = await getJSON("data/runs/index.json");
+  const replay = await getJSON(`data/runs/${runs[runs.length - 1]}.json`);
+  data = { baseline, walking, sessions, mcp, snapshots: snaps, replay };
   $("#lang").addEventListener("change", (e) => setLocale(e.target.value));
   $("#dec-prev").addEventListener("click", () => { playDecoder(false); stepDecoder(-1); });
   $("#dec-next").addEventListener("click", () => { playDecoder(false); stepDecoder(1); });
@@ -353,6 +456,10 @@ async function main() {
   $("#flow-prev").addEventListener("click", () => { playFlow(false); stepFlow(-1); });
   $("#flow-next").addEventListener("click", () => { playFlow(false); stepFlow(1); });
   $("#flow-play").addEventListener("click", () => playFlow(!timers.flow));
+  $("#rp-prev").addEventListener("click", () => { playReplay(false); stepReplay(-1); });
+  $("#rp-next").addEventListener("click", () => { playReplay(false); stepReplay(1); });
+  $("#rp-play").addEventListener("click", () => playReplay(!timers.rp));
+  $("#rp-scrub").addEventListener("input", (e) => { playReplay(false); rp.i = +e.target.value; showStep(); });
   await setLocale(pickLocale());
 }
 

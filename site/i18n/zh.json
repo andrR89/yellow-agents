@@ -1,14 +1,15 @@
 {
  "meta": { "title": "yellow-agents — 玩《宝可梦 黄》的 AI" },
- "nav": { "how": "工作原理", "phase1": "第一阶段", "baseline": "基准", "journal": "日志", "language": "语言" },
+ "nav": { "how": "工作原理", "phase1": "第一阶段", "baseline": "基准", "replay": "回放", "journal": "日志", "language": "语言" },
  "hero": {
-  "eyebrow": "学习项目 · 第一阶段进行中",
+  "eyebrow": "学习项目 · 第一阶段已完成",
   "title": "一个通过读取游戏内存来玩《宝可梦 黄》的 AI",
   "lead": "游戏运行在 Python 里的 Game Boy 模拟器中。代码读取 RAM，把游戏概况交给 AI：所在位置、队伍、屏幕上的文字。AI 只负责决定按哪些键。本页用每次工作的真实数据展示各部分如何运作。",
   "caption": "逐帧录制的基准：从新游戏到收到皮卡丘，玩家名 CLAUDE，劲敌名 GEMINI。这里操作的是固定脚本而不是 AI：它是衡量每个智能体的标尺。"
  },
  "status": {
   "frames": "到皮卡丘的帧数（脚本）",
+  "runFrames": "到皮卡丘的帧数（{name} 通过 MCP）",
   "steps": "闭环行走的正确步数",
   "sessions": "已记录的工作会话",
   "cost": "迄今的 API 花费"
@@ -81,12 +82,29 @@
   "table": "以表格查看",
   "col": { "milestone": "里程碑", "frame": "帧", "where": "位置" }
  },
+ "replay": {
+  "eyebrow": "第 1 阶段 · 里程碑",
+  "title": "Claude 通过 MCP 玩游戏",
+  "lead": "Claude Code 不借助脚本，只用 MCP 服务器的工具，从新游戏一直玩到拿到皮卡丘。每次调用都连同状态和画面一起记录下来。这是那局游戏的回放，并与基线对比。",
+  "problem": "验证工具层是否足以让模型独立游戏：读取状态、选择按键、处理文本和过场。",
+  "how": "设置 YELLOW_RUNS 后，服务器把每次调用写入 runs/<id>/run.jsonl：动作、模拟器帧号、调用后的状态，以及一张截图。导出器在该文件中找出与基线相同的里程碑。",
+  "decision": "对比以模拟器帧为单位，而不是秒：模型的思考时间不计入，只看它让游戏前进了多少。这样结果与机器和 API 延迟无关。",
+  "action": "MCP 调用",
+  "state": "调用后的状态",
+  "compare": "与基线对比",
+  "result": "Claude 在第 {run} 帧拿到皮卡丘；脚本在第 {base} 帧（多 {pct}）。共 {calls} 次调用，其中 {waits} 次是 wait。new_game 之后的 {played} 帧中，有 {waitFrames} 帧花在 wait 里。",
+  "alt": "游戏画面：{map} ({x},{y})",
+  "caption": "第 {i}/{n} 步 · 第 {frame} 帧 · {tool}",
+  "tip": "第 {frame} 帧（≈ {s} 秒）",
+  "series": {"baseline": "脚本（基线）", "run": "{name} 通过 MCP"}
+ },
  "journal": {
   "title": "项目日志",
   "lead": "每次工作会话都记录目标、问题（现象 → 原因 → 解决 → 证据）、决策和数字。走过的弯路也算在内。",
   "session": "第 {n} 次",
   "phase": "第 {n} 阶段",
   "hours": "{h} 小时",
+  "costNotMeasured": "费用未统计",
   "notMeasured": "时长未测量",
   "ptOnly": "日志以葡萄牙语撰写，这是项目的工作语言。"
  },
