@@ -20,6 +20,7 @@ dev = ["pytest>=8", "ruff>=0.6"]
 [project.scripts]
 yellow-mcp = "yellow_agent.mcp_server:main"
 yellow-fetch-data = "yellow_agent.tools.fetch_pret_data:main"
+yellow-snapshot = "yellow_agent.snapshot:main"
 
 [build-system]
 requires = ["hatchling"]

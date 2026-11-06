@@ -1,0 +1,249 @@
+{
+ "label": "oak_battle_item_menu",
+ "frame": 1,
+ "state": {
+  "player_name": "PROF.OAK",
+  "rival_name": "BLUE",
+  "map_id": 0,
+  "map_name": "PALLET_TOWN",
+  "x": 10,
+  "y": 0,
+  "facing": "down",
+  "money": 3000,
+  "badges": [],
+  "pikachu_happiness": 90,
+  "pikachu_mood": 128,
+  "party": [],
+  "battle": {
+   "kind": "wild",
+   "player_mon": null,
+   "enemy_mon": {
+    "species": "PIKACHU",
+    "nickname": null,
+    "level": 5,
+    "hp": 19,
+    "max_hp": 19,
+    "status": "ok",
+    "types": [
+     "ELECTRIC"
+    ],
+    "moves": [
+     {
+      "name": "THUNDERSHOCK",
+      "pp": 30
+     },
+     {
+      "name": "GROWL",
+      "pp": 40
+     }
+    ]
+   }
+  },
+  "screen": {
+   "kind": "menu",
+   "lines": [
+    "PIKACHU",
+    "Lv5",
+    "FIGHT PKMN",
+    "ITEM RUN"
+   ],
+   "cursor": "ITEM"
+  }
+ },
+ "regions": [
+  {
+   "symbol": "wPlayerName",
+   "address": 53591,
+   "hex": "8f918e85e88e808a50fa2d",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 11,
+     "path": "player_name",
+     "note": "Gen 1 charset, 0x50 terminates"
+    }
+   ]
+  },
+  {
+   "symbol": "wRivalName",
+   "address": 54089,
+   "hex": "818b948450868091985089",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 11,
+     "path": "rival_name",
+     "note": "Gen 1 charset, 0x50 terminates"
+    }
+   ]
+  },
+  {
+   "symbol": "wCurMap",
+   "address": 54109,
+   "hex": "00",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "map_name",
+     "note": "map id -> name"
+    }
+   ]
+  },
+  {
+   "symbol": "wYCoord",
+   "address": 54112,
+   "hex": "00",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "y",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "symbol": "wXCoord",
+   "address": 54113,
+   "hex": "0a",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "x",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "symbol": "wSpritePlayerStateData1FacingDirection",
+   "address": 49417,
+   "hex": "00",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "facing",
+     "note": "0 down, 4 up, 8 left, 0xC right"
+    }
+   ]
+  },
+  {
+   "symbol": "wPlayerMoney",
+   "address": 54086,
+   "hex": "003000",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 3,
+     "path": "money",
+     "note": "BCD, 6 digits"
+    }
+   ]
+  },
+  {
+   "symbol": "wObtainedBadges",
+   "address": 54101,
+   "hex": "00",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "badges",
+     "note": "bit 0 = BOULDER"
+    }
+   ]
+  },
+  {
+   "symbol": "wPikachuHappiness",
+   "address": 54383,
+   "hex": "5a",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "pikachu_happiness",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "symbol": "wPikachuMood",
+   "address": 54384,
+   "hex": "80",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "pikachu_mood",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "symbol": "wIsInBattle",
+   "address": 53334,
+   "hex": "01",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "battle.kind",
+     "note": "0 none, 1 wild, 2 trainer, 0xFF lost"
+    }
+   ]
+  },
+  {
+   "symbol": "wFontLoaded",
+   "address": 53187,
+   "hex": "00",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "screen.kind",
+     "note": "bit 0: font tiles loaded = text box or menu"
+    }
+   ]
+  },
+  {
+   "symbol": "wTileMap",
+   "address": 50080,
+   "hex": "7f8f888a808287947f7f7f7f00070e151c232a7f7f7f7f7f6efb7f7f7f7f7f7f01080f161d242b7f7f7371626b6b6b6b6b6b6c7f020910171e252c7f7f747676767676767676787f030a11181f262d7f7f7f7f7f7f7f7f7f7f7f7f7f040b121920272e7f7f31383f464d545b7f7f7f7f050c131a21282f7f7f323940474e555c7f7f7f7f060d141b2229307f7f333a41484f565d7f7f7f7f7f7f7f7f7f7f7f7f7f343b424950575e7f7f7f7f7f7f7f7f7f7f7f7f7f353c434a51585f7f7f7f7f7f7f7f7f7f7f7f7f7f363d444b5259607f7f7f7f7f7f7f7f7f7f7f7f7f373e454c535a617f7f7f7f7f7f7f7f7f7f7f7f797a7a7a7a7a7a7a797a7a7a7a7a7a7a7a7a7a7b7c7f7f7f7f7f7f7f7c7f7f7f7f7f7f7f7f7f7f7c7c7f7f7f7f7f7f7f7c7f85888687937fe1e27f7c7c7f7f7f7f7f7f7f7c7f7f7f7f7f7f7f7f7f7f7c7c7f7f7f7f7f7f7f7ced8893848c7f7f91948d7c7d7a7a7a7a7a7a7a7d7a7a7a7a7a7a7a7a7a7a7e",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 360,
+     "path": "screen.lines",
+     "note": "20x18 tile ids; font tiles decode to text"
+    }
+   ]
+  },
+  {
+   "symbol": "wPartyCount",
+   "address": 53602,
+   "hex": "00",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "party",
+     "note": "party size"
+    }
+   ]
+  },
+  {
+   "symbol": "wPartyMons",
+   "address": 53610,
+   "hex": "",
+   "fields": []
+  },
+  {
+   "symbol": "wPartyMonNicks",
+   "address": 53940,
+   "hex": "",
+   "fields": []
+  }
+ ]
+}

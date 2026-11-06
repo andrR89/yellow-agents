@@ -1,0 +1,227 @@
+{
+ "label": "bedroom_snes_text",
+ "frame": 1,
+ "state": {
+  "player_name": "YELLOW",
+  "rival_name": "BLUE",
+  "map_id": 38,
+  "map_name": "REDS_HOUSE_2F",
+  "x": 3,
+  "y": 6,
+  "facing": "up",
+  "money": 3000,
+  "badges": [],
+  "pikachu_happiness": 90,
+  "pikachu_mood": 128,
+  "party": [],
+  "battle": {
+   "kind": "none",
+   "player_mon": null,
+   "enemy_mon": null
+  },
+  "screen": {
+   "kind": "text",
+   "lines": [
+    "YELLOW is",
+    "playing the SNES!"
+   ],
+   "cursor": null
+  }
+ },
+ "regions": [
+  {
+   "symbol": "wPlayerName",
+   "address": 53591,
+   "hex": "98848b8b8e965080928750",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 11,
+     "path": "player_name",
+     "note": "Gen 1 charset, 0x50 terminates"
+    }
+   ]
+  },
+  {
+   "symbol": "wRivalName",
+   "address": 54089,
+   "hex": "818b948450868091985089",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 11,
+     "path": "rival_name",
+     "note": "Gen 1 charset, 0x50 terminates"
+    }
+   ]
+  },
+  {
+   "symbol": "wCurMap",
+   "address": 54109,
+   "hex": "26",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "map_name",
+     "note": "map id -> name"
+    }
+   ]
+  },
+  {
+   "symbol": "wYCoord",
+   "address": 54112,
+   "hex": "06",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "y",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "symbol": "wXCoord",
+   "address": 54113,
+   "hex": "03",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "x",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "symbol": "wSpritePlayerStateData1FacingDirection",
+   "address": 49417,
+   "hex": "04",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "facing",
+     "note": "0 down, 4 up, 8 left, 0xC right"
+    }
+   ]
+  },
+  {
+   "symbol": "wPlayerMoney",
+   "address": 54086,
+   "hex": "003000",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 3,
+     "path": "money",
+     "note": "BCD, 6 digits"
+    }
+   ]
+  },
+  {
+   "symbol": "wObtainedBadges",
+   "address": 54101,
+   "hex": "00",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "badges",
+     "note": "bit 0 = BOULDER"
+    }
+   ]
+  },
+  {
+   "symbol": "wPikachuHappiness",
+   "address": 54383,
+   "hex": "5a",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "pikachu_happiness",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "symbol": "wPikachuMood",
+   "address": 54384,
+   "hex": "80",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "pikachu_mood",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "symbol": "wIsInBattle",
+   "address": 53334,
+   "hex": "00",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "battle.kind",
+     "note": "0 none, 1 wild, 2 trainer, 0xFF lost"
+    }
+   ]
+  },
+  {
+   "symbol": "wFontLoaded",
+   "address": 53187,
+   "hex": "01",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "screen.kind",
+     "note": "bit 0: font tiles loaded = text box or menu"
+    }
+   ]
+  },
+  {
+   "symbol": "wTileMap",
+   "address": 50080,
+   "hex": "10100101010101010101010101010101010110101010010101010101010101010101010101011010101001010101010101010101010101010101101010100101010101010101010101010101010110101010010101010101060701010101010101011010101001010101010116170101010101010101101010100101010101010e0f0101010101010101101010100101010101011e1f0101010101010101101010102d2e0101010101010101010144450101101010103d3e0101010101010101010108090101101010103d3e0101010101010101010146470101101010103f2f01010101010101010101181901011010797a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7b7c7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7c7c98848b8b8e967fa8b27f7f7f7f7f7f7f7f7f7c7c7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7f7c7cafaba0b8a8ada67fb3a7a47f928d8492e7ee7c7d7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7a7e",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 360,
+     "path": "screen.lines",
+     "note": "20x18 tile ids; font tiles decode to text"
+    }
+   ]
+  },
+  {
+   "symbol": "wPartyCount",
+   "address": 53602,
+   "hex": "00",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "party",
+     "note": "party size"
+    }
+   ]
+  },
+  {
+   "symbol": "wPartyMons",
+   "address": 53610,
+   "hex": "",
+   "fields": []
+  },
+  {
+   "symbol": "wPartyMonNicks",
+   "address": 53940,
+   "hex": "",
+   "fields": []
+  }
+ ]
+}

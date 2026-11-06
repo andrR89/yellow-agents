@@ -1,0 +1,308 @@
+{
+ "label": "got_pikachu",
+ "frame": 1,
+ "state": {
+  "player_name": "YELLOW",
+  "rival_name": "BLUE",
+  "map_id": 40,
+  "map_name": "OAKS_LAB",
+  "x": 5,
+  "y": 3,
+  "facing": "up",
+  "money": 3000,
+  "badges": [],
+  "pikachu_happiness": 90,
+  "pikachu_mood": 128,
+  "party": [
+   {
+    "species": "PIKACHU",
+    "nickname": "PIKACHU",
+    "level": 5,
+    "hp": 19,
+    "max_hp": 19,
+    "status": "ok",
+    "types": [
+     "ELECTRIC"
+    ],
+    "moves": [
+     {
+      "name": "THUNDERSHOCK",
+      "pp": 30
+     },
+     {
+      "name": "GROWL",
+      "pp": 40
+     }
+    ]
+   }
+  ],
+  "battle": {
+   "kind": "none",
+   "player_mon": null,
+   "enemy_mon": null
+  },
+  "screen": {
+   "kind": "overworld",
+   "lines": [],
+   "cursor": null
+  }
+ },
+ "regions": [
+  {
+   "symbol": "wPlayerName",
+   "address": 53591,
+   "hex": "98848b8b8e965080928750",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 11,
+     "path": "player_name",
+     "note": "Gen 1 charset, 0x50 terminates"
+    }
+   ]
+  },
+  {
+   "symbol": "wRivalName",
+   "address": 54089,
+   "hex": "818b948450868091985089",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 11,
+     "path": "rival_name",
+     "note": "Gen 1 charset, 0x50 terminates"
+    }
+   ]
+  },
+  {
+   "symbol": "wCurMap",
+   "address": 54109,
+   "hex": "28",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "map_name",
+     "note": "map id -> name"
+    }
+   ]
+  },
+  {
+   "symbol": "wYCoord",
+   "address": 54112,
+   "hex": "03",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "y",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "symbol": "wXCoord",
+   "address": 54113,
+   "hex": "05",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "x",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "symbol": "wSpritePlayerStateData1FacingDirection",
+   "address": 49417,
+   "hex": "04",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "facing",
+     "note": "0 down, 4 up, 8 left, 0xC right"
+    }
+   ]
+  },
+  {
+   "symbol": "wPlayerMoney",
+   "address": 54086,
+   "hex": "003000",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 3,
+     "path": "money",
+     "note": "BCD, 6 digits"
+    }
+   ]
+  },
+  {
+   "symbol": "wObtainedBadges",
+   "address": 54101,
+   "hex": "00",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "badges",
+     "note": "bit 0 = BOULDER"
+    }
+   ]
+  },
+  {
+   "symbol": "wPikachuHappiness",
+   "address": 54383,
+   "hex": "5a",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "pikachu_happiness",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "symbol": "wPikachuMood",
+   "address": 54384,
+   "hex": "80",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "pikachu_mood",
+     "note": ""
+    }
+   ]
+  },
+  {
+   "symbol": "wIsInBattle",
+   "address": 53334,
+   "hex": "00",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "battle.kind",
+     "note": "0 none, 1 wild, 2 trainer, 0xFF lost"
+    }
+   ]
+  },
+  {
+   "symbol": "wFontLoaded",
+   "address": 53187,
+   "hex": "00",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "screen.kind",
+     "note": "bit 0: font tiles loaded = text box or menu"
+    }
+   ]
+  },
+  {
+   "symbol": "wTileMap",
+   "address": 50080,
+   "hex": "0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f05050505050534433443292a292a292a292a0f0f101010101010525352530d0e0d0e0d0e0d0e0f0f5d5e293b3b2a111111110d0e0d0e0d0e0d0e0f0f555f4e39394f111111111d1e1d1e1d1e1d1e0f0f595a5859595a1111111111111111111111110f0f1111111111111111111111111111111111110f0f11111111111111111111293b3b3b3b2a0b0c0f0f111111111111111111114e393939394f1b1c0f0f1111111111111111111158595959595a11110f0f1111111111111111111111111111111111110f0f1111111111111111111111111111111111110f0f1111111111111111111111111111111111110f0f292a292a292a11111111292a292a292a292a0f0f0d0e0d0e0d0e111111110d0e0d0e0d0e0d0e0f0f0d0e0d0e0d0e111111110d0e0d0e0d0e0d0e0f0f1d1e1d1e1d1e111111111d1e1d1e1d1e1d1e0f0f",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 360,
+     "path": "screen.lines",
+     "note": "20x18 tile ids; font tiles decode to text"
+    }
+   ]
+  },
+  {
+   "symbol": "wPartyCount",
+   "address": 53602,
+   "hex": "01",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "party",
+     "note": "party size"
+    }
+   ]
+  },
+  {
+   "symbol": "wPartyMons",
+   "address": 53610,
+   "hex": "54001300001717a3542d0000d7fd00007d00000000000000000000d8e51e280000050013000b0008000f000a",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 1,
+     "path": "party[0].species",
+     "note": "internal index, not Pokédex number"
+    },
+    {
+     "offset": 1,
+     "length": 2,
+     "path": "party[0].hp",
+     "note": "big-endian"
+    },
+    {
+     "offset": 4,
+     "length": 1,
+     "path": "party[0].status",
+     "note": "bits 0-2 sleep, 3 psn, 4 brn, 5 frz, 6 par"
+    },
+    {
+     "offset": 5,
+     "length": 1,
+     "path": "party[0].types",
+     "note": "type 1"
+    },
+    {
+     "offset": 6,
+     "length": 1,
+     "path": "party[0].types",
+     "note": "type 2 (same as type 1 = single type)"
+    },
+    {
+     "offset": 8,
+     "length": 4,
+     "path": "party[0].moves",
+     "note": "move ids"
+    },
+    {
+     "offset": 29,
+     "length": 4,
+     "path": "party[0].moves",
+     "note": "PP; top 2 bits are PP Ups"
+    },
+    {
+     "offset": 33,
+     "length": 1,
+     "path": "party[0].level",
+     "note": ""
+    },
+    {
+     "offset": 34,
+     "length": 2,
+     "path": "party[0].max_hp",
+     "note": "big-endian"
+    }
+   ]
+  },
+  {
+   "symbol": "wPartyMonNicks",
+   "address": 53940,
+   "hex": "8f888a8082879450505050",
+   "fields": [
+    {
+     "offset": 0,
+     "length": 11,
+     "path": "party[0].nickname",
+     "note": ""
+    }
+   ]
+  }
+ ]
+}
