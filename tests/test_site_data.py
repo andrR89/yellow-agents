@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from yellow_agent.site_data import export_sessions, parse_frontmatter
+from yellow_agent.site_data import export_finetune, export_sessions, parse_frontmatter
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -134,3 +134,18 @@ def test_old_replays_of_the_same_model_and_stage_are_pruned(tmp_path):
     _prune_replays(tmp_path)
     assert sorted(p.stem for p in runs.glob("*.json")) == ["20260101-c", "20260102-b"]
     assert sorted(p.name for p in media.iterdir()) == ["20260101-c", "20260102-b"]
+
+
+def test_export_finetune_keeps_the_loss_curve_and_held_out(tmp_path):
+    (tmp_path / "train_summary.json").write_text(json.dumps({
+        "base": "b", "train": 9, "eval": 1, "epochs": 2.0, "rank": 16, "lr": 2e-4,
+        "train_loss": 0.5, "eval_loss": 0.1, "train_runtime_s": 60.0,
+        "log": [{"loss": 1.0, "step": 5}, {"loss": 0.2, "step": 10},
+                {"eval_loss": 0.1, "step": 10}],
+    }))  # fmt: skip
+    (tmp_path / "stats.json").write_text(json.dumps({
+        "lessons": 10, "per_scenario": {"a": 10}, "tools": {"go_to": 10}, "held_out": ["route1"],
+    }))  # fmt: skip
+    out = export_finetune(tmp_path, tmp_path, "ollama:x", "ollama:y")
+    assert out["loss"] == [{"step": 5, "loss": 1.0}, {"step": 10, "loss": 0.2}]
+    assert (out["held_out"], out["eval_loss"], out["base_model"]) == (["route1"], 0.1, "ollama:y")

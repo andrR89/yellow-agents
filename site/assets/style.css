@@ -263,3 +263,24 @@ table.bench td.na { color: var(--ink-3); text-align: center; }
 .bench-cell.ok { border-inline-start: 4px solid var(--good); }
 .bench-cell.fail { border-inline-start: 4px solid var(--bad); }
 .bench-cell:hover, .bench-cell:focus-visible { border-color: var(--accent); outline: none; }
+
+/* ---------------------------------------------------------------- fine-tuning */
+.ft-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; margin-block: 1.5rem 1rem; align-items: start; }
+@media (max-width: 900px) { .ft-grid { grid-template-columns: 1fr; } }
+.ft-chart { margin: 0; }
+.ft-plot { position: relative; }
+#ft-svg { width: 100%; height: auto; display: block; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+#ft-svg .grid { stroke: var(--line); stroke-width: 1; }
+#ft-svg .axis { fill: var(--ink-3); font-size: 11px; font-family: var(--mono); }
+#ft-svg .line { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+#ft-svg .cross { stroke: var(--ink-3); stroke-width: 1; }
+#ft-svg .dot { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+#ft-svg .hit { fill: transparent; }
+.ft-tip { position: absolute; top: 0.5rem; pointer-events: none; background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px; padding: 0.3rem 0.55rem; font-size: 0.8rem; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ft-note { font-size: 0.85rem; color: var(--ink-2); margin: 0.2rem 0 0.6rem; }
+table.ft-loss { font-size: 0.8rem; font-variant-numeric: tabular-nums; border-collapse: collapse; }
+table.ft-loss td, table.ft-loss th { padding: 0.15rem 0.8rem; text-align: end; color: var(--ink-2); }
+table.ft-cmp { min-width: 0; width: 100%; table-layout: fixed; }
+table.ft-cmp th[scope="row"] { white-space: normal; }
+table.ft-cmp tr > th:first-child { width: auto; }
+.ft-held { display: inline-block; margin-inline-start: 0.4rem; font-size: 0.7rem; padding: 0.05rem 0.4rem; border-radius: 6px; border: 1px solid var(--accent); color: var(--ink); font-weight: 600; }

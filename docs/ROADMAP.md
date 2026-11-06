@@ -95,8 +95,9 @@ Planned interactive pieces:
 **Milestone:** beat the rival's Eevee in Oak's lab, unattended. *(Reached in session 5 by Claude Haiku 5.5 and GPT-5.6 Luna.)*
 
 ### Phase 3 — Navigation + evals in CI
-- [ ] Collision grid per map (pokeyellow map data / `game_area_collision`)
-- [ ] A* pathfinding → `go_to(map, x, y)` tool
+- [x] Collision grid per map from RAM + ROM blocksets (`navigation.py`, `Emulator.map_grid`;
+      warps, map connections and people included; MCP `get_map`, MAP in the agent prompt)
+- [x] A* pathfinding → `go_to(x, y)` tool on the current map, replanning when blocked
 - [ ] Scenario suite + GitHub Actions (small Claude set, or a self-hosted runner with the GPU)
 
 ### Phase 4 — Battle agent + RAG
@@ -110,7 +111,9 @@ Planned interactive pieces:
 
 ### Phase 6 — Fine-tuning + security
 - [ ] Battle dataset generator (save states × random teams)
-- [ ] LoRA (Unsloth) on a 7–8B model on the local 16 GB GPU; compare vs prompting
+- [x] LoRA (Unsloth) on a 7–8B model on the local 16 GB GPU; compare vs prompting (session 9:
+      qwen3-8b-yellow from `yellow-teach` lessons; pikachu ✗→✓, rival 17→14 turns, held-out
+      route1 still ✗: it memorized the teacher; next: varied lessons)
 - [ ] Prompt injection tests through in-game names; spend cap; audit log; model card
 
 ### Phase 7 — The rest of the game, badge by badge

@@ -7,7 +7,7 @@ nothing from the package: lessons come in as JSONL. Run it under the GPU guard::
         .venv-train/bin/python src/yellow_agent/tools/train_lora.py \\
         --lessons data/generated/teach --out data/generated/lora-qwen3-8b
 
-Then `ollama create qwen3-8b-yellow -f <out>/Modelfile`.
+Then `ollama create qwen3-8b-yellow -f <out>/gguf_gguf/Modelfile`.
 
 Choices: 4-bit base (fits the 16 GB card with room), LoRA r=16 on all projections, loss only on
 the assistant's tool call (the prompt is the game state: nothing to learn there), thinking off
@@ -141,10 +141,24 @@ def main() -> None:
     model.save_pretrained(str(args.out / "adapter"))
     tokenizer.save_pretrained(str(args.out / "adapter"))
     model.save_pretrained_gguf(str(args.out / "gguf"), tokenizer, quantization_method=args.quant)
-    gguf = sorted((args.out / "gguf").glob("*.gguf"))
-    if not gguf:
-        gguf = sorted(args.out.glob("*.gguf"))
+    # Unsloth writes the GGUF and its Modelfile next to the merged weights, in "<dir>_gguf".
+    gguf = sorted(args.out.glob("gguf*/*.gguf"))
     print("gguf:", [str(g) for g in gguf])
+    for modelfile in args.out.glob("gguf*/Modelfile"):
+        modelfile.write_text(empty_think(modelfile.read_text()))
+        print("modelfile:", modelfile)
+
+
+# Trained with enable_thinking=False, whose template opens every answer with an empty think
+# block; Unsloth's Modelfile does not, so the model would answer off its training distribution.
+GEN_PROMPT = '{{- if and (ne .Role "assistant") $last }}<|im_start|>assistant\n'
+EMPTY_THINK = "<think>\n\n</think>\n\n"
+
+
+def empty_think(modelfile: str) -> str:
+    if GEN_PROMPT + EMPTY_THINK in modelfile or GEN_PROMPT not in modelfile:
+        return modelfile
+    return modelfile.replace(GEN_PROMPT, GEN_PROMPT + EMPTY_THINK)
 
 
 if __name__ == "__main__":

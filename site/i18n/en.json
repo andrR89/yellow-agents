@@ -1,6 +1,17 @@
 {
- "meta": { "title": "yellow-agents — an AI playing Pokémon Yellow" },
- "nav": { "how": "How it works", "phase1": "Phase 1", "baseline": "Baseline", "replay": "Replay", "bench": "Benchmark", "journal": "Journal", "language": "Language" },
+ "meta": {
+  "title": "yellow-agents — an AI playing Pokémon Yellow"
+ },
+ "nav": {
+  "how": "How it works",
+  "phase1": "Phase 1",
+  "baseline": "Baseline",
+  "replay": "Replay",
+  "bench": "Benchmark",
+  "journal": "Journal",
+  "language": "Language",
+  "finetune": "Teaching"
+ },
  "hero": {
   "eyebrow": "Study project · Phase 1 done",
   "title": "An AI that plays Pokémon Yellow by reading the game's memory",
@@ -18,17 +29,51 @@
   "title": "How it works",
   "lead": "Each layer does one thing. Whatever is mechanical stays in code; the model only comes in where there is a decision.",
   "layers": [
-   { "name": "Emulator", "code": "emulator.py", "text": "Headless PyBoy at full speed. Presses buttons, saves and loads the game. One direction press walks exactly one tile." },
-   { "name": "State", "code": "state.py", "text": "Reads RAM through the pret/pokeyellow symbols and builds a JSON: map, position, party, battle and what is written on screen." },
-   { "name": "MCP tools", "code": "mcp_server.py", "text": "The actions any MCP client (Claude Code, Codex…) can call. Every input is validated before it touches the game." },
-   { "name": "Recording", "code": "recorder.py · snapshot.py", "text": "Every run becomes a JSONL with state, action and screenshot. That is where this page's data comes from." },
-   { "name": "Models", "code": "models/", "text": "One interface for Claude, OpenAI and local models (Ollama)." },
-   { "name": "Agent", "code": "Phase 2+", "text": "Planner, navigation and battle, with memory and routing between a local model and Claude.", "soon": true }
+   {
+    "name": "Emulator",
+    "code": "emulator.py",
+    "text": "Headless PyBoy at full speed. Presses buttons, saves and loads the game. One direction press walks exactly one tile."
+   },
+   {
+    "name": "State",
+    "code": "state.py",
+    "text": "Reads RAM through the pret/pokeyellow symbols and builds a JSON: map, position, party, battle and what is written on screen."
+   },
+   {
+    "name": "MCP tools",
+    "code": "mcp_server.py",
+    "text": "The actions any MCP client (Claude Code, Codex…) can call. Every input is validated before it touches the game."
+   },
+   {
+    "name": "Recording",
+    "code": "recorder.py · snapshot.py",
+    "text": "Every run becomes a JSONL with state, action and screenshot. That is where this page's data comes from."
+   },
+   {
+    "name": "Models",
+    "code": "models/",
+    "text": "One interface for Claude, OpenAI and local models (Ollama)."
+   },
+   {
+    "name": "Agent",
+    "code": "Phase 2+",
+    "text": "Planner, navigation and battle, with memory and routing between a local model and Claude.",
+    "soon": true
+   }
   ],
   "principle": "Project rule: walking, reading memory and timing buttons are deterministic code, never a prompt. The model decides strategy, goals and battles."
  },
- "phase1": { "eyebrow": "Phase 1 · Emulator + state + MCP", "title": "Giving the AI eyes and hands" },
- "label": { "problem": "Problem", "how": "How it works", "decision": "Decision", "result": "Result", "source": "Source" },
+ "phase1": {
+  "eyebrow": "Phase 1 · Emulator + state + MCP",
+  "title": "Giving the AI eyes and hands"
+ },
+ "label": {
+  "problem": "Problem",
+  "how": "How it works",
+  "decision": "Decision",
+  "result": "Result",
+  "source": "Source"
+ },
  "walk": {
   "title": "One press, one tile",
   "problem": "The tool promises that one direction press walks one tile. Holding the button for a fixed time, the player sometimes didn't move. No timing combination got all 8 moves right.",
@@ -53,7 +98,11 @@
   "problem": "Any AI client must be able to play, and a model makes mistakes: it may send a button that doesn't exist or a dangerous file name.",
   "how": "A real session recorded over stdio: the client calls the tool, the server validates the input, the emulator runs the frames and the state comes back. An invalid input stops at the server and the error message reaches the model.",
   "decision": "Expected errors use ToolError, so the model sees the reason. Before, it only got \"Error executing tool\".",
-  "lane": { "client": "Client (model)", "server": "MCP server", "emulator": "Emulator" },
+  "lane": {
+   "client": "Client (model)",
+   "server": "MCP server",
+   "emulator": "Emulator"
+  },
   "request": "Request",
   "response": "Response",
   "latency": "{ms} ms",
@@ -64,7 +113,12 @@
    "error": "invalid button: the server rejects it before touching the emulator and explains why."
   }
  },
- "ctl": { "prev": "◀ Previous", "next": "Next ▶", "play": "▶ Play", "pause": "❚❚ Pause" },
+ "ctl": {
+  "prev": "◀ Previous",
+  "next": "Next ▶",
+  "play": "▶ Play",
+  "pause": "❚❚ Pause"
+ },
  "ms": {
   "bedroom": "In the bedroom",
   "pallet_town": "Pallet Town",
@@ -80,7 +134,11 @@
   "frames": "{n} frames ≈ {s} s of play",
   "tip": "frame {frame} (≈ {s} s) · {map} ({x},{y})",
   "table": "View as table",
-  "col": { "milestone": "Milestone", "frame": "Frame", "where": "Where" }
+  "col": {
+   "milestone": "Milestone",
+   "frame": "Frame",
+   "where": "Where"
+  }
  },
  "replay": {
   "eyebrow": "Phase 1 · milestone",
@@ -97,28 +155,73 @@
   "actions": "With the high-level actions (advance_text, walk, talk, choose), the same route takes {calls} calls and ends at frame {frames}, against {mcp} calls.",
   "pickModel": "Model:",
   "pickScenario": "Stage:",
-  "who": {"mcp": "Claude Code (over MCP)"},
+  "who": {
+   "mcp": "Claude Code (over MCP)"
+  },
   "local": "local",
   "said": "The model said",
   "modelMeta": "{model} · {inTok} input tokens, {outTok} output · spent so far: {cost}",
-  "run": {"mcp": "New game → Pikachu (session 3)"},
+  "run": {
+   "mcp": "New game → Pikachu (session 3)"
+  },
   "alt": "Game screen at {map} ({x},{y})",
   "caption": "Step {i}/{n} · frame {frame} · {tool}",
   "tip": "frame {frame} (≈ {s} s)",
-  "series": {"baseline": "Script (baseline)", "run": "{name} over MCP"}
+  "series": {
+   "baseline": "Script (baseline)",
+   "run": "{name} over MCP"
+  }
  },
  "bench": {
   "eyebrow": "Phase 2 · agent loop",
-  "title": "Six models, the same scenarios",
+  "title": "Seven models, the same scenarios",
   "lead": "Our own loop: every turn the code reads the state from RAM, builds the prompt with the goal and the last actions, and the model picks one tool. Each model plays under its own name, from the same emulator state.",
   "problem": "Compare models fairly: same start, same tools, same turn limit, and the real cost of every call.",
   "how": "Each scenario's start is scripted with the high-level actions, no save files. A judge reads RAM and decides: battle won (wBattleResult), Pikachu in the party, on ROUTE_1. Every turn is recorded with prompt, response, tokens and the cost reported by OpenRouter.",
   "decision": "The prompt is rebuilt every turn from the state and the last 8 actions instead of a growing conversation: cost per turn stays flat and every model sees the same thing. The local models (Ollama) run on the GPU under a watchdog that unloads the model if the card's mapped memory (BAR1, only 256 MiB on this machine) goes past 200 MiB: without it, the GPU froze the desktop three times.",
-  "col": {"scenario": "Scenario"},
-  "scenario": {"rival_battle": "Beat GEMINI", "pikachu": "New game → Pikachu", "route1": "Lab → Route 1"},
-  "stop": {"success": "done", "failure": "lost", "max_turns": "out of turns", "budget": "out of budget", "model_error": "model error"},
+  "col": {
+   "scenario": "Scenario"
+  },
+  "scenario": {
+   "rival_battle": "Beat GEMINI",
+   "pikachu": "New game → Pikachu",
+   "route1": "Lab → Route 1"
+  },
+  "stop": {
+   "success": "done",
+   "failure": "lost",
+   "max_turns": "out of turns",
+   "budget": "out of budget",
+   "model_error": "model error"
+  },
   "cell": "{turns} turns · {frames} frames · {cost} · {invalid} invalid actions",
   "result": "{wins} of {runs} runs reached the goal, {cost} spent in total. Click a cell to watch the replay with what the model said each turn."
+ },
+ "ft": {
+  "eyebrow": "Phase 6 · fine-tuning",
+  "title": "Teaching qwen3:8b to play",
+  "lead": "A scripted teacher plays the scenarios with go_to and records every turn as a lesson: the prompt the agent would see and the right tool. A LoRA trained on those lessons, on the same GPU, becomes a new Ollama model, which runs the same benchmark.",
+  "problem": "The local models failed at the same spots: they repeated the blocked step and took the wrong door. The open question was whether lessons fix that in an 8B, or whether it just memorizes.",
+  "how": "yellow-teach runs the teacher with random detours, which are not lessons, so the model learns to get back on track. QLoRA training with Unsloth, 4-bit base, loss on the answer only. Then a q4_k_m GGUF export becomes qwen3-8b-yellow. route1 stays out of the lessons: it is the generalization test.",
+  "decision": "Training a quantized 8B fits the 16 GB card and runs under the same guard (peak BAR1 22 MiB). The Ollama template opens each answer with an empty thinking block, as in training: without it, the model would answer outside the format it learned.",
+  "chart": {
+   "title": "Training loss per step (log scale)",
+   "x": "step",
+   "y": "loss",
+   "tip": "step {step} · loss {loss}",
+   "table": "Show the values",
+   "note": "Mean training loss {train}; on validation ({n} held-back lessons) {eval}.",
+   "aria": "Training loss on a log scale: from {from} to {to} over {steps} steps."
+  },
+  "cmp": {
+   "title": "Before and after, on the benchmark",
+   "before": "{m} (before)",
+   "after": "{m} (tuned)",
+   "held": "not in lessons",
+   "cell": "{turns} turns · {invalid} invalid"
+  },
+  "lessons": "{lessons} lessons ({train} training, {eval} validation), {epochs} epochs, LoRA rank {rank}, {min} min of training.",
+  "result": "The lessons worked where there were lessons: the tuned 8B is the first local model to get Pikachu, and it beat the rival in fewer turns. On route1, left out of the lessons, it still failed. It repeated a go_to into a wall until it ran out of turns, with reasons copied from the lessons. The near-zero loss fits that diagnosis: it memorized the teacher and did not learn to read the map. Next step: more varied lessons, with other maps and other goals."
  },
  "journal": {
   "title": "Project journal",
@@ -130,5 +233,7 @@
   "notMeasured": "duration not measured",
   "ptOnly": "The journal is written in Portuguese, the project's working language."
  },
- "footer": { "rom": "No ROM is distributed: the project runs on the user's own dump. Pokémon is a trademark of Nintendo, Creatures and GAME FREAK; this is a non-commercial study project." }
+ "footer": {
+  "rom": "No ROM is distributed: the project runs on the user's own dump. Pokémon is a trademark of Nintendo, Creatures and GAME FREAK; this is a non-commercial study project."
+ }
 }

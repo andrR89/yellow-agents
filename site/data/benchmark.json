@@ -25,6 +25,33 @@
   "started_at": "2026-11-06T22:02:28.752739Z"
  },
  {
+  "model": "ollama:qwen3-8b-yellow",
+  "scenario": "pikachu",
+  "player_name": "QWEN",
+  "run_id": "20261106-235401-pikachu-ollama-qwen3-8b-yellow",
+  "stop": "success",
+  "success": true,
+  "turns": 13,
+  "frames": 7613,
+  "cost_usd": 0.0,
+  "input_tokens": 23266,
+  "output_tokens": 451,
+  "model_latency_s": 9.54,
+  "invalid_actions": 0,
+  "no_tool_calls": 0,
+  "model_errors": 0,
+  "last_error": null,
+  "tools": {
+   "go_to": 4,
+   "walk": 2,
+   "advance_text": 2,
+   "choose": 4,
+   "talk": 1
+  },
+  "git_commit": "35be53b",
+  "started_at": "2026-11-06T23:54:01.462298Z"
+ },
+ {
   "model": "ollama:qwen3:14b",
   "scenario": "pikachu",
   "player_name": "QWEN",
@@ -181,6 +208,32 @@
   "started_at": "2026-11-06T22:02:55.892122Z"
  },
  {
+  "model": "ollama:qwen3-8b-yellow",
+  "scenario": "rival_battle",
+  "player_name": "QWEN",
+  "run_id": "20261106-235416-rival_battle-ollama-qwen3-8b-yellow",
+  "stop": "success",
+  "success": true,
+  "turns": 14,
+  "frames": 6386,
+  "cost_usd": 0.0,
+  "input_tokens": 25091,
+  "output_tokens": 526,
+  "model_latency_s": 9.26,
+  "invalid_actions": 0,
+  "no_tool_calls": 0,
+  "model_errors": 0,
+  "last_error": null,
+  "tools": {
+   "go_to": 6,
+   "advance_text": 2,
+   "choose": 1,
+   "use_move": 5
+  },
+  "git_commit": "35be53b",
+  "started_at": "2026-11-06T23:54:16.527775Z"
+ },
+ {
   "model": "ollama:qwen3:14b",
   "scenario": "rival_battle",
   "player_name": "QWEN",
@@ -332,6 +385,29 @@
   },
   "git_commit": "558b7a4",
   "started_at": "2026-11-06T22:03:18.624448Z"
+ },
+ {
+  "model": "ollama:qwen3-8b-yellow",
+  "scenario": "route1",
+  "player_name": "QWEN",
+  "run_id": "20261106-235434-route1-ollama-qwen3-8b-yellow",
+  "stop": "max_turns",
+  "success": false,
+  "turns": 40,
+  "frames": 1238,
+  "cost_usd": 0.0,
+  "input_tokens": 76717,
+  "output_tokens": 1735,
+  "model_latency_s": 31.07,
+  "invalid_actions": 0,
+  "no_tool_calls": 0,
+  "model_errors": 0,
+  "last_error": null,
+  "tools": {
+   "go_to": 40
+  },
+  "git_commit": "35be53b",
+  "started_at": "2026-11-06T23:54:34.575051Z"
  },
  {
   "model": "ollama:qwen3:14b",

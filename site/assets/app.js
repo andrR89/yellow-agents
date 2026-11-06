@@ -482,6 +482,67 @@ function renderBench() {
   $("#bench-source").innerHTML = `${esc(t("label.source"))}: <code>yellow-bench</code> → <code>site/data/benchmark.json</code> · commit <code>${esc(commits)}</code>`;
 }
 
+// ---------------------------------------------------------------- fine-tuning
+function renderFinetune() {
+  const ft = data.finetune;
+  const W = 640, H = 260, L = 56, R = 16, T = 14, B = 34;
+  const pts = ft.loss;
+  const maxStep = Math.max(...pts.map((p) => p.step));
+  const lo = Math.floor(Math.log10(Math.min(...pts.map((p) => p.loss))));
+  const hi = Math.ceil(Math.log10(Math.max(...pts.map((p) => p.loss))));
+  const x = (s) => L + (s / maxStep) * (W - L - R);
+  const y = (v) => T + ((hi - Math.log10(v)) / (hi - lo)) * (H - T - B);
+  const exp = (v) => num(v, { notation: "scientific", maximumFractionDigits: 1 });
+  let svg = "";
+  for (let e = lo; e <= hi; e++) {
+    svg += `<line class="grid" x1="${L}" x2="${W - R}" y1="${y(10 ** e)}" y2="${y(10 ** e)}"/>` +
+      `<text class="axis" x="${L - 6}" y="${y(10 ** e) + 4}" text-anchor="end" direction="ltr">10<tspan dy="-5" font-size="9">${e < 0 ? "−" : ""}${num(Math.abs(e))}</tspan></text>`;
+  }
+  const ticks = [0, Math.round(maxStep / 2), maxStep];
+  svg += ticks.map((s) => `<text class="axis" x="${x(s)}" y="${H - B + 16}" text-anchor="middle">${esc(num(s))}</text>`).join("");
+  svg += `<text class="axis" x="${(L + W - R) / 2}" y="${H - 4}" text-anchor="middle">${esc(t("ft.chart.x"))}</text>`;
+  svg += `<path class="line" d="${pts.map((p, i) => `${i ? "L" : "M"}${x(p.step).toFixed(1)},${y(p.loss).toFixed(1)}`).join("")}"/>`;
+  svg += `<line class="cross" id="ft-cross" y1="${T}" y2="${H - B}" visibility="hidden"/><circle class="dot" id="ft-dot" r="5" visibility="hidden"/>`;
+  svg += `<rect class="hit" x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}"/>`;
+  const el = $("#ft-svg");
+  el.innerHTML = svg;
+  el.setAttribute("aria-label", t("ft.chart.aria", { from: exp(pts[0].loss), to: exp(pts[pts.length - 1].loss), steps: num(maxStep) }));
+  const tip = $("#ft-tip"), cross = $("#ft-cross"), dot = $("#ft-dot");
+  const show = (evt) => {
+    const box = el.getBoundingClientRect();
+    const sx = ((evt.clientX - box.left) / box.width) * W;
+    const p = pts.reduce((a, b) => (Math.abs(x(b.step) - sx) < Math.abs(x(a.step) - sx) ? b : a));
+    cross.setAttribute("x1", x(p.step)); cross.setAttribute("x2", x(p.step)); cross.setAttribute("visibility", "visible");
+    dot.setAttribute("cx", x(p.step)); dot.setAttribute("cy", y(p.loss)); dot.setAttribute("visibility", "visible");
+    tip.textContent = t("ft.chart.tip", { step: num(p.step), loss: exp(p.loss) });
+    tip.hidden = false;
+    const px = (x(p.step) / W) * box.width;
+    tip.style.insetInlineStart = "auto";
+    tip.style.left = `${Math.min(px + 10, box.width - tip.offsetWidth - 4)}px`;
+  };
+  el.onpointermove = show;
+  el.onpointerleave = () => { tip.hidden = true; cross.setAttribute("visibility", "hidden"); dot.setAttribute("visibility", "hidden"); };
+  const sig = (v) => num(v, { maximumSignificantDigits: 2 });
+  $("#ft-chart-note").textContent = t("ft.chart.note", { train: sig(ft.train_loss), eval: sig(ft.eval_loss), n: num(ft.eval) });
+  $("#ft-loss-table").innerHTML = `<tr><th>${esc(t("ft.chart.x"))}</th><th>${esc(t("ft.chart.y"))}</th></tr>` +
+    pts.map((p) => `<tr><td>${esc(num(p.step))}</td><td>${esc(exp(p.loss))}</td></tr>`).join("");
+
+  const scenarios = [...new Set(data.bench.map((r) => r.scenario))].sort((a, b) => SCENARIO_ORDER.indexOf(a) - SCENARIO_ORDER.indexOf(b));
+  const cell = (m, s) => {
+    const r = data.bench.find((b) => b.model === m && b.scenario === s);
+    if (!r) return `<td class="na">—</td>`;
+    return `<td><button type="button" class="bench-cell ${r.success ? "ok" : "fail"}" data-run="${esc(r.run_id)}">
+      <b>${r.success ? "✓" : "✗"} ${esc(t(`bench.stop.${r.stop}`))}</b>
+      <span>${esc(t("ft.cmp.cell", { turns: num(r.turns), invalid: num(r.invalid_actions) }))}</span></button></td>`;
+  };
+  $("#ft-cmp").innerHTML = `<tr><th>${esc(t("bench.col.scenario"))}</th><th>${esc(t("ft.cmp.before", { m: shortModel(ft.base_model) }))}</th><th>${esc(t("ft.cmp.after", { m: shortModel(ft.model) }))}</th></tr>` +
+    scenarios.map((s) => `<tr><th scope="row">${esc(scenarioLabel(s))}${ft.held_out.includes(s) ? `<span class="ft-held">${esc(t("ft.cmp.held"))}</span>` : ""}</th>${cell(ft.base_model, s)}${cell(ft.model, s)}</tr>`).join("");
+  document.querySelectorAll("#ft-cmp .bench-cell").forEach((b) => b.addEventListener("click", () => selectRun(b.dataset.run, true)));
+  $("#ft-lessons").textContent = t("ft.lessons", { lessons: num(ft.lessons), train: num(ft.train), eval: num(ft.eval),
+    epochs: num(ft.epochs), rank: num(ft.rank), min: num(Math.round(ft.train_runtime_s / 60)) });
+  $("#ft-source").innerHTML = `${esc(t("label.source"))}: <code>yellow-teach</code> → <code>train_lora.py</code> → <code>yellow-site-data finetune</code> → <code>site/data/finetune.json</code> · ${esc(ft.base_weights)}`;
+}
+
 // ---------------------------------------------------------------- journal
 function inline(s) {
   return esc(s)
@@ -544,6 +605,7 @@ function renderAll() {
   renderReplay();
   playReplay(false);
   renderBench();
+  renderFinetune();
   renderJournal();
 }
 
@@ -555,10 +617,11 @@ async function main() {
   const [runs, actionRoute, bench] = await Promise.all([
     getJSON("data/runs/index.json"), getJSON("data/action_route.json"), getJSON("data/benchmark.json"),
   ]);
+  const finetune = await getJSON("data/finetune.json");
   const mcpEntry = runs.find((e) => e.source === "mcp");
   const mcpRun = await getJSON(`data/runs/${mcpEntry.run_id}.json`);
   data = { baseline, walking, sessions, mcp, snapshots: snaps, runs, runCache: { [mcpRun.run_id]: mcpRun },
-    replay: mcpRun, mcpRun, actionRoute, bench };
+    replay: mcpRun, mcpRun, actionRoute, bench, finetune };
   $("#lang").addEventListener("change", (e) => setLocale(e.target.value));
   $("#dec-prev").addEventListener("click", () => { playDecoder(false); stepDecoder(-1); });
   $("#dec-next").addEventListener("click", () => { playDecoder(false); stepDecoder(1); });

@@ -1,6 +1,17 @@
 {
- "meta": { "title": "yellow-agents — uma IA jogando Pokémon Yellow" },
- "nav": { "how": "Como funciona", "phase1": "Fase 1", "baseline": "Linha de base", "replay": "Replay", "bench": "Benchmark", "journal": "Diário", "language": "Idioma" },
+ "meta": {
+  "title": "yellow-agents — uma IA jogando Pokémon Yellow"
+ },
+ "nav": {
+  "how": "Como funciona",
+  "phase1": "Fase 1",
+  "baseline": "Linha de base",
+  "replay": "Replay",
+  "bench": "Benchmark",
+  "journal": "Diário",
+  "language": "Idioma",
+  "finetune": "Ensinar"
+ },
  "hero": {
   "eyebrow": "Projeto de estudo · Fase 1 concluída",
   "title": "Uma IA que joga Pokémon Yellow lendo a memória do jogo",
@@ -18,17 +29,51 @@
   "title": "Como funciona",
   "lead": "Cada camada faz uma coisa. O que é mecânico fica no código, e o modelo só entra onde há decisão.",
   "layers": [
-   { "name": "Emulador", "code": "emulator.py", "text": "PyBoy sem janela, em velocidade máxima. Aperta botões, salva e carrega o jogo. Um aperto de direção anda exatamente um quadrado." },
-   { "name": "Estado", "code": "state.py", "text": "Lê a RAM pelos símbolos do pret/pokeyellow e monta um JSON: mapa, posição, time, batalha e o que está escrito na tela." },
-   { "name": "Ferramentas MCP", "code": "mcp_server.py", "text": "As ações que qualquer cliente MCP (Claude Code, Codex…) pode chamar. Toda entrada é validada antes de tocar no jogo." },
-   { "name": "Gravação", "code": "recorder.py · snapshot.py", "text": "Cada partida vira um JSONL com estado, ação e screenshot. É de onde saem os dados desta página." },
-   { "name": "Modelos", "code": "models/", "text": "Uma interface para Claude, OpenAI e modelos locais (Ollama)." },
-   { "name": "Agente", "code": "Fase 2+", "text": "Planejador, navegação e batalha, com memória e roteamento entre modelo local e Claude.", "soon": true }
+   {
+    "name": "Emulador",
+    "code": "emulator.py",
+    "text": "PyBoy sem janela, em velocidade máxima. Aperta botões, salva e carrega o jogo. Um aperto de direção anda exatamente um quadrado."
+   },
+   {
+    "name": "Estado",
+    "code": "state.py",
+    "text": "Lê a RAM pelos símbolos do pret/pokeyellow e monta um JSON: mapa, posição, time, batalha e o que está escrito na tela."
+   },
+   {
+    "name": "Ferramentas MCP",
+    "code": "mcp_server.py",
+    "text": "As ações que qualquer cliente MCP (Claude Code, Codex…) pode chamar. Toda entrada é validada antes de tocar no jogo."
+   },
+   {
+    "name": "Gravação",
+    "code": "recorder.py · snapshot.py",
+    "text": "Cada partida vira um JSONL com estado, ação e screenshot. É de onde saem os dados desta página."
+   },
+   {
+    "name": "Modelos",
+    "code": "models/",
+    "text": "Uma interface para Claude, OpenAI e modelos locais (Ollama)."
+   },
+   {
+    "name": "Agente",
+    "code": "Fase 2+",
+    "text": "Planejador, navegação e batalha, com memória e roteamento entre modelo local e Claude.",
+    "soon": true
+   }
   ],
   "principle": "Regra do projeto: andar, ler a memória e cronometrar botões é código determinístico, nunca prompt. O modelo decide estratégia, objetivos e batalhas."
  },
- "phase1": { "eyebrow": "Fase 1 · Emulador + estado + MCP", "title": "Dar olhos e mãos à IA" },
- "label": { "problem": "Problema", "how": "Como funciona", "decision": "Decisão", "result": "Resultado", "source": "Fonte" },
+ "phase1": {
+  "eyebrow": "Fase 1 · Emulador + estado + MCP",
+  "title": "Dar olhos e mãos à IA"
+ },
+ "label": {
+  "problem": "Problema",
+  "how": "Como funciona",
+  "decision": "Decisão",
+  "result": "Resultado",
+  "source": "Fonte"
+ },
  "walk": {
   "title": "Um aperto, um quadrado",
   "problem": "A ferramenta promete que um aperto de direção anda um quadrado. Com o botão segurado por um tempo fixo, o personagem às vezes não andava. Nenhuma combinação de tempo acertou os 8 movimentos.",
@@ -53,7 +98,11 @@
   "problem": "Qualquer cliente de IA precisa conseguir jogar, e um modelo erra: pode mandar um botão que não existe ou um nome de arquivo perigoso.",
   "how": "Sessão real gravada por stdio: o cliente chama a ferramenta, o servidor valida a entrada, o emulador roda os frames e o estado volta. Uma entrada inválida para no servidor e a mensagem de erro chega ao modelo.",
   "decision": "Erros esperados usam ToolError, para o modelo ver o motivo. Antes ele recebia só \"Error executing tool\".",
-  "lane": { "client": "Cliente (modelo)", "server": "Servidor MCP", "emulator": "Emulador" },
+  "lane": {
+   "client": "Cliente (modelo)",
+   "server": "Servidor MCP",
+   "emulator": "Emulador"
+  },
   "request": "Pedido",
   "response": "Resposta",
   "latency": "{ms} ms",
@@ -64,7 +113,12 @@
    "error": "botão inválido: o servidor recusa antes de tocar no emulador e explica por quê."
   }
  },
- "ctl": { "prev": "◀ Anterior", "next": "Próximo ▶", "play": "▶ Tocar", "pause": "❚❚ Pausar" },
+ "ctl": {
+  "prev": "◀ Anterior",
+  "next": "Próximo ▶",
+  "play": "▶ Tocar",
+  "pause": "❚❚ Pausar"
+ },
  "ms": {
   "bedroom": "No quarto",
   "pallet_town": "Pallet Town",
@@ -80,7 +134,11 @@
   "frames": "{n} frames ≈ {s} s de jogo",
   "tip": "frame {frame} (≈ {s} s) · {map} ({x},{y})",
   "table": "Ver como tabela",
-  "col": { "milestone": "Marco", "frame": "Frame", "where": "Onde" }
+  "col": {
+   "milestone": "Marco",
+   "frame": "Frame",
+   "where": "Onde"
+  }
  },
  "replay": {
   "eyebrow": "Fase 1 · marco",
@@ -97,28 +155,73 @@
   "actions": "Com as ações de alto nível (advance_text, walk, talk, choose), a mesma rota leva {calls} chamadas e termina no frame {frames}, contra {mcp} chamadas.",
   "pickModel": "Modelo:",
   "pickScenario": "Etapa:",
-  "who": {"mcp": "Claude Code (pelo MCP)"},
+  "who": {
+   "mcp": "Claude Code (pelo MCP)"
+  },
   "local": "local",
   "said": "O modelo disse",
   "modelMeta": "{model} · {inTok} tokens de entrada, {outTok} de saída · gasto até aqui: {cost}",
-  "run": {"mcp": "Jogo novo → Pikachu (sessão 3)"},
+  "run": {
+   "mcp": "Jogo novo → Pikachu (sessão 3)"
+  },
   "alt": "Tela do jogo em {map} ({x},{y})",
   "caption": "Passo {i}/{n} · frame {frame} · {tool}",
   "tip": "frame {frame} (≈ {s} s)",
-  "series": {"baseline": "Script (linha de base)", "run": "{name} via MCP"}
+  "series": {
+   "baseline": "Script (linha de base)",
+   "run": "{name} via MCP"
+  }
  },
  "bench": {
   "eyebrow": "Fase 2 · loop do agente",
-  "title": "Seis modelos, os mesmos cenários",
+  "title": "Sete modelos, os mesmos cenários",
   "lead": "Nosso próprio loop: a cada turno o código lê o estado da RAM, monta o prompt com o objetivo e as últimas ações, e o modelo escolhe uma ferramenta. Cada modelo joga com o próprio nome, a partir do mesmo estado do emulador.",
   "problem": "Comparar modelos de forma justa: mesmo início, mesmas ferramentas, mesmo limite de turnos, e o custo real de cada chamada.",
   "how": "O início de cada cenário é montado por script com as ações de alto nível, sem save. Um juiz lê a RAM e decide: venceu a batalha (wBattleResult), tem o Pikachu, chegou à ROUTE_1. Cada turno fica gravado com prompt, resposta, tokens e custo informado pelo OpenRouter.",
   "decision": "O prompt é refeito a cada turno, com o estado e as 8 últimas ações, em vez de uma conversa que cresce: o custo por turno fica estável e qualquer modelo vê a mesma coisa. Os modelos locais (Ollama) rodam na GPU sob um vigia que descarrega o modelo se a memória mapeada da placa (BAR1, só 256 MiB nesta máquina) passar de 200 MiB: sem ele, a GPU travou o desktop três vezes.",
-  "col": {"scenario": "Cenário"},
-  "scenario": {"rival_battle": "Vencer o GEMINI", "pikachu": "Jogo novo → Pikachu", "route1": "Laboratório → Route 1"},
-  "stop": {"success": "conseguiu", "failure": "perdeu", "max_turns": "sem turnos", "budget": "sem verba", "model_error": "erro do modelo"},
+  "col": {
+   "scenario": "Cenário"
+  },
+  "scenario": {
+   "rival_battle": "Vencer o GEMINI",
+   "pikachu": "Jogo novo → Pikachu",
+   "route1": "Laboratório → Route 1"
+  },
+  "stop": {
+   "success": "conseguiu",
+   "failure": "perdeu",
+   "max_turns": "sem turnos",
+   "budget": "sem verba",
+   "model_error": "erro do modelo"
+  },
   "cell": "{turns} turnos · {frames} frames · {cost} · {invalid} ações inválidas",
   "result": "{wins} de {runs} runs atingiram o objetivo, com {cost} gastos no total. Clique numa célula para ver o replay com o que o modelo disse em cada turno."
+ },
+ "ft": {
+  "eyebrow": "Fase 6 · fine-tuning",
+  "title": "Ensinar o qwen3:8b a jogar",
+  "lead": "Um professor roteirizado joga os cenários com o go_to e grava cada turno como aula: o prompt que o agente veria e a ferramenta certa. Um LoRA treinado nessas aulas, na própria GPU, vira um modelo novo no Ollama, e ele roda o mesmo benchmark.",
+  "problem": "Os modelos locais falhavam nos mesmos pontos: repetiam o passo bloqueado, saíam pela porta errada. Faltava saber se aulas resolvem isso num 8B, ou se ele só decora.",
+  "how": "O yellow-teach roda o professor com desvios aleatórios, que não viram aula, para o modelo aprender a voltar ao caminho. Treino QLoRA com Unsloth, base em 4 bits, perda só na resposta. Depois exporta GGUF q4_k_m e cria o qwen3-8b-yellow. O route1 fica fora das aulas: é a prova de generalização.",
+  "decision": "Treinar num 8B quantizado cabe na placa de 16 GB e roda sob o mesmo vigia (pico de 22 MiB de BAR1). O template do Ollama abre a resposta com um bloco de pensamento vazio, igual ao do treino: sem isso, o modelo responderia fora do formato que aprendeu.",
+  "chart": {
+   "title": "Perda de treino por passo (escala log)",
+   "x": "passo",
+   "y": "perda",
+   "tip": "passo {step} · perda {loss}",
+   "table": "Ver os valores",
+   "note": "Perda média do treino {train}; na validação ({n} aulas separadas) {eval}.",
+   "aria": "Perda de treino em escala log: de {from} a {to} em {steps} passos."
+  },
+  "cmp": {
+   "title": "Antes e depois, no benchmark",
+   "before": "{m} (antes)",
+   "after": "{m} (treinado)",
+   "held": "fora das aulas",
+   "cell": "{turns} turnos · {invalid} inválidas"
+  },
+  "lessons": "{lessons} aulas ({train} de treino, {eval} de validação), {epochs} épocas, LoRA rank {rank}, {min} min de treino.",
+  "result": "As aulas funcionaram onde houve aula: o 8B treinado foi o primeiro modelo local a pegar o Pikachu e venceu o rival com menos turnos. No route1, que ficou fora das aulas, continuou falhando. Repetiu um go_to para uma parede até acabar os turnos, com justificativas copiadas das aulas. A perda quase zero confirma o diagnóstico: ele decorou o professor e não aprendeu a ler o mapa. Próximo passo: aulas mais variadas, com outros mapas e outros objetivos."
  },
  "journal": {
   "title": "Diário do projeto",
@@ -130,5 +233,7 @@
   "notMeasured": "duração não medida",
   "ptOnly": ""
  },
- "footer": { "rom": "Nenhuma ROM é distribuída: o projeto roda com o dump do próprio usuário. Pokémon é marca da Nintendo, Creatures e GAME FREAK; este é um projeto de estudo sem fins comerciais." }
+ "footer": {
+  "rom": "Nenhuma ROM é distribuída: o projeto roda com o dump do próprio usuário. Pokémon é marca da Nintendo, Creatures e GAME FREAK; este é um projeto de estudo sem fins comerciais."
+ }
 }

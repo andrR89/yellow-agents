@@ -5,6 +5,7 @@ CLI::
     yellow-site-data sessions          # docs/sessions/*.md -> site/data/sessions.json (no ROM)
     yellow-site-data mcp-flow          # real MCP session over stdio -> site/data/mcp_flow.json
     yellow-site-data run runs/<id>     # recorded run -> site/data/runs/<id>.json + screens (no ROM)
+    yellow-site-data finetune          # LoRA summary + lessons stats -> site/data/finetune.json
 """
 
 from __future__ import annotations
@@ -343,12 +344,40 @@ def export_run(run_dir: Path, site: Path) -> Replay:
     )
 
 
+def export_finetune(train_dir: Path, lessons_dir: Path, model: str, base_model: str) -> dict:
+    """The fine-tune as the site shows it: the lessons, the run's settings and its loss curve."""
+    summary = json.loads((train_dir / "train_summary.json").read_text())
+    stats = json.loads((lessons_dir / "stats.json").read_text())
+    return {
+        "model": model,  # the benchmark's spec for the tuned model
+        "base_model": base_model,  # ... and for the model it started from
+        "base_weights": summary["base"],
+        "lessons": stats["lessons"],
+        "per_scenario": stats["per_scenario"],
+        "tools": stats["tools"],
+        "held_out": stats["held_out"],
+        "train": summary["train"],
+        "eval": summary["eval"],
+        "epochs": summary["epochs"],
+        "rank": summary["rank"],
+        "lr": summary["lr"],
+        "train_loss": summary["train_loss"],
+        "eval_loss": summary["eval_loss"],
+        "train_runtime_s": summary["train_runtime_s"],
+        "loss": [{"step": e["step"], "loss": e["loss"]} for e in summary["log"] if "loss" in e],
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Export the showcase site's data.")
-    parser.add_argument("what", choices=["sessions", "mcp-flow", "run"])
+    parser.add_argument("what", choices=["sessions", "mcp-flow", "run", "finetune"])
     parser.add_argument("run_dir", nargs="?", type=Path, help="for `run`: runs/<id>")
     parser.add_argument("--site", type=Path, default=Path("site"))
     parser.add_argument("--sessions-dir", type=Path, default=Path("docs/sessions"))
+    parser.add_argument("--train-dir", type=Path, default=Path("data/generated/lora-qwen3-8b"))
+    parser.add_argument("--lessons-dir", type=Path, default=Path("data/generated/teach"))
+    parser.add_argument("--model", default="ollama:qwen3-8b-yellow")
+    parser.add_argument("--base-model", default="ollama:qwen3:8b")
     args = parser.parse_args()
     out_dir = args.site / "data"
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -357,6 +386,9 @@ def main() -> None:
         sessions = export_sessions(args.sessions_dir)
         payload = [s.model_dump() for s in sessions]
         out = out_dir / "sessions.json"
+    elif args.what == "finetune":
+        payload = export_finetune(args.train_dir, args.lessons_dir, args.model, args.base_model)
+        out = out_dir / "finetune.json"
     elif args.what == "run":
         if args.run_dir is None:
             parser.error("run: give the run directory, e.g. runs/20261106-183217")

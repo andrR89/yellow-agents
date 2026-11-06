@@ -19,6 +19,7 @@
     <a href="#baseline" data-i18n="nav.baseline"></a>
     <a href="#replay" data-i18n="nav.replay"></a>
     <a href="#bench" data-i18n="nav.bench"></a>
+    <a href="#finetune" data-i18n="nav.finetune"></a>
     <a href="#journal" data-i18n="nav.journal"></a>
   </nav>
   <label class="lang"><span class="sr" data-i18n="nav.language"></span>
@@ -200,6 +201,31 @@
     <div class="bench-wrap"><table class="bench" id="bench-table"></table></div>
     <p class="lead" id="bench-result"></p>
     <p class="source" id="bench-source"></p>
+  </section>
+
+  <section id="finetune">
+    <p class="eyebrow" data-i18n="ft.eyebrow"></p>
+    <h2 data-i18n="ft.title"></h2>
+    <p class="lead" data-i18n="ft.lead"></p>
+    <div class="psdr">
+      <div><h4 data-i18n="label.problem"></h4><p data-i18n="ft.problem"></p></div>
+      <div><h4 data-i18n="label.how"></h4><p data-i18n="ft.how"></p></div>
+      <div><h4 data-i18n="label.decision"></h4><p data-i18n="ft.decision"></p></div>
+    </div>
+    <div class="ft-grid">
+      <figure class="ft-chart">
+        <figcaption><h5 data-i18n="ft.chart.title"></h5><p class="ft-note" id="ft-chart-note"></p></figcaption>
+        <div class="ft-plot"><svg id="ft-svg" viewBox="0 0 640 260" role="img"></svg><div class="ft-tip" id="ft-tip" hidden></div></div>
+        <details><summary data-i18n="ft.chart.table"></summary><table class="ft-loss" id="ft-loss-table"></table></details>
+      </figure>
+      <div>
+        <h5 data-i18n="ft.cmp.title"></h5>
+        <table class="bench ft-cmp" id="ft-cmp"></table>
+        <p class="ft-note" id="ft-lessons"></p>
+      </div>
+    </div>
+    <p class="lead" data-i18n="ft.result"></p>
+    <p class="source" id="ft-source"></p>
   </section>
 
   <section id="journal">

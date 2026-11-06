@@ -1,6 +1,17 @@
 {
- "meta": { "title": "yellow-agents — 玩《宝可梦 黄》的 AI" },
- "nav": { "how": "工作原理", "phase1": "第一阶段", "baseline": "基准", "replay": "回放", "bench": "基准测试", "journal": "日志", "language": "语言" },
+ "meta": {
+  "title": "yellow-agents — 玩《宝可梦 黄》的 AI"
+ },
+ "nav": {
+  "how": "工作原理",
+  "phase1": "第一阶段",
+  "baseline": "基准",
+  "replay": "回放",
+  "bench": "基准测试",
+  "journal": "日志",
+  "language": "语言",
+  "finetune": "教学"
+ },
  "hero": {
   "eyebrow": "学习项目 · 第一阶段已完成",
   "title": "一个通过读取游戏内存来玩《宝可梦 黄》的 AI",
@@ -18,17 +29,51 @@
   "title": "工作原理",
   "lead": "每一层只做一件事。机械性的工作留在代码里，模型只在需要决策的地方介入。",
   "layers": [
-   { "name": "模拟器", "code": "emulator.py", "text": "无窗口的 PyBoy，全速运行。负责按键、存档和读档。按一次方向键正好走一格。" },
-   { "name": "状态", "code": "state.py", "text": "通过 pret/pokeyellow 的符号读取 RAM，生成 JSON：地图、位置、队伍、战斗以及屏幕上的文字。" },
-   { "name": "MCP 工具", "code": "mcp_server.py", "text": "任何 MCP 客户端（Claude Code、Codex……）都能调用的操作。每个输入在接触游戏前都会被校验。" },
-   { "name": "录制", "code": "recorder.py · snapshot.py", "text": "每局游戏都记录为 JSONL，包含状态、操作和截图。本页的数据就来自这里。" },
-   { "name": "模型", "code": "models/", "text": "Claude、OpenAI 和本地模型（Ollama）共用一个接口。" },
-   { "name": "智能体", "code": "第二阶段起", "text": "规划、导航和战斗，带记忆，并在本地模型和 Claude 之间分配任务。", "soon": true }
+   {
+    "name": "模拟器",
+    "code": "emulator.py",
+    "text": "无窗口的 PyBoy，全速运行。负责按键、存档和读档。按一次方向键正好走一格。"
+   },
+   {
+    "name": "状态",
+    "code": "state.py",
+    "text": "通过 pret/pokeyellow 的符号读取 RAM，生成 JSON：地图、位置、队伍、战斗以及屏幕上的文字。"
+   },
+   {
+    "name": "MCP 工具",
+    "code": "mcp_server.py",
+    "text": "任何 MCP 客户端（Claude Code、Codex……）都能调用的操作。每个输入在接触游戏前都会被校验。"
+   },
+   {
+    "name": "录制",
+    "code": "recorder.py · snapshot.py",
+    "text": "每局游戏都记录为 JSONL，包含状态、操作和截图。本页的数据就来自这里。"
+   },
+   {
+    "name": "模型",
+    "code": "models/",
+    "text": "Claude、OpenAI 和本地模型（Ollama）共用一个接口。"
+   },
+   {
+    "name": "智能体",
+    "code": "第二阶段起",
+    "text": "规划、导航和战斗，带记忆，并在本地模型和 Claude 之间分配任务。",
+    "soon": true
+   }
   ],
   "principle": "项目规则：行走、读取内存和按键计时都是确定性的代码，绝不交给提示词。模型负责策略、目标和战斗。"
  },
- "phase1": { "eyebrow": "第一阶段 · 模拟器 + 状态 + MCP", "title": "给 AI 眼睛和双手" },
- "label": { "problem": "问题", "how": "工作原理", "decision": "决策", "result": "结果", "source": "来源" },
+ "phase1": {
+  "eyebrow": "第一阶段 · 模拟器 + 状态 + MCP",
+  "title": "给 AI 眼睛和双手"
+ },
+ "label": {
+  "problem": "问题",
+  "how": "工作原理",
+  "decision": "决策",
+  "result": "结果",
+  "source": "来源"
+ },
  "walk": {
   "title": "按一次，走一格",
   "problem": "工具承诺按一次方向键走一格。用固定时长按住按键时，角色有时不动。没有任何一组时长能让 8 次移动全部正确。",
@@ -53,7 +98,11 @@
   "problem": "任何 AI 客户端都应该能玩，而模型会犯错：可能发送不存在的按键，或者危险的文件名。",
   "how": "通过 stdio 录制的真实会话：客户端调用工具，服务器校验输入，模拟器运行帧，然后返回状态。无效输入会停在服务器，错误信息会传回模型。",
   "decision": "预期内的错误使用 ToolError，让模型看到原因。之前它只会收到 \"Error executing tool\"。",
-  "lane": { "client": "客户端（模型）", "server": "MCP 服务器", "emulator": "模拟器" },
+  "lane": {
+   "client": "客户端（模型）",
+   "server": "MCP 服务器",
+   "emulator": "模拟器"
+  },
   "request": "请求",
   "response": "响应",
   "latency": "{ms} 毫秒",
@@ -64,7 +113,12 @@
    "error": "无效按键：服务器在接触模拟器之前拒绝，并说明原因。"
   }
  },
- "ctl": { "prev": "◀ 上一步", "next": "下一步 ▶", "play": "▶ 播放", "pause": "❚❚ 暂停" },
+ "ctl": {
+  "prev": "◀ 上一步",
+  "next": "下一步 ▶",
+  "play": "▶ 播放",
+  "pause": "❚❚ 暂停"
+ },
  "ms": {
   "bedroom": "在卧室",
   "pallet_town": "真新镇",
@@ -80,7 +134,11 @@
   "frames": "{n} 帧 ≈ 游戏时间 {s} 秒",
   "tip": "第 {frame} 帧（≈ {s} 秒）· {map} ({x},{y})",
   "table": "以表格查看",
-  "col": { "milestone": "里程碑", "frame": "帧", "where": "位置" }
+  "col": {
+   "milestone": "里程碑",
+   "frame": "帧",
+   "where": "位置"
+  }
  },
  "replay": {
   "eyebrow": "第 1 阶段 · 里程碑",
@@ -97,28 +155,73 @@
   "actions": "使用高层动作（advance_text、walk、talk、choose），同一路线只需 {calls} 次调用，在第 {frames} 帧结束，而之前是 {mcp} 次调用。",
   "pickModel": "模型：",
   "pickScenario": "阶段：",
-  "who": {"mcp": "Claude Code（通过 MCP）"},
+  "who": {
+   "mcp": "Claude Code（通过 MCP）"
+  },
   "local": "本地",
   "said": "模型说",
   "modelMeta": "{model} · 输入 {inTok} 个 token，输出 {outTok} 个 · 累计花费：{cost}",
-  "run": {"mcp": "新游戏 → 皮卡丘（第 3 次会话）"},
+  "run": {
+   "mcp": "新游戏 → 皮卡丘（第 3 次会话）"
+  },
   "alt": "游戏画面：{map} ({x},{y})",
   "caption": "第 {i}/{n} 步 · 第 {frame} 帧 · {tool}",
   "tip": "第 {frame} 帧（≈ {s} 秒）",
-  "series": {"baseline": "脚本（基线）", "run": "{name} 通过 MCP"}
+  "series": {
+   "baseline": "脚本（基线）",
+   "run": "{name} 通过 MCP"
+  }
  },
  "bench": {
   "eyebrow": "第 2 阶段 · 智能体循环",
-  "title": "六个模型，相同的场景",
+  "title": "七个模型，相同的场景",
   "lead": "我们自己的循环：每一回合，代码从 RAM 读取状态，用目标和最近的动作构建提示，模型选择一个工具。每个模型用自己的名字，从同一个模拟器状态开始。",
   "problem": "公平地比较模型：相同的起点、相同的工具、相同的回合上限，以及每次调用的真实费用。",
   "how": "每个场景的起点都由脚本用高层动作搭建，不用存档。裁判读取 RAM 来判定：赢下对战（wBattleResult）、队伍里有皮卡丘、到达 ROUTE_1。每一回合都记录提示、回复、token 和 OpenRouter 报告的费用。",
   "decision": "每回合根据状态和最近 8 个动作重新构建提示，而不是让对话越来越长：每回合费用保持稳定，所有模型看到的内容相同。本地模型（Ollama）在 GPU 上运行，并由一个看门程序监控：一旦显卡的映射内存（BAR1，这台机器上只有 256 MiB）超过 200 MiB 就卸载模型。没有它时，GPU 曾三次让桌面死机。",
-  "col": {"scenario": "场景"},
-  "scenario": {"rival_battle": "击败 GEMINI", "pikachu": "新游戏 → 皮卡丘", "route1": "研究所 → 1 号道路"},
-  "stop": {"success": "完成", "failure": "失败", "max_turns": "回合用完", "budget": "预算用完", "model_error": "模型错误"},
+  "col": {
+   "scenario": "场景"
+  },
+  "scenario": {
+   "rival_battle": "击败 GEMINI",
+   "pikachu": "新游戏 → 皮卡丘",
+   "route1": "研究所 → 1 号道路"
+  },
+  "stop": {
+   "success": "完成",
+   "failure": "失败",
+   "max_turns": "回合用完",
+   "budget": "预算用完",
+   "model_error": "模型错误"
+  },
   "cell": "{turns} 回合 · {frames} 帧 · {cost} · {invalid} 次无效动作",
   "result": "{runs} 次运行中有 {wins} 次达成目标，总花费 {cost}。点击单元格可查看回放，以及模型每回合说的话。"
+ },
+ "ft": {
+  "eyebrow": "第六阶段 · 微调",
+  "title": "教 qwen3:8b 玩游戏",
+  "lead": "一个脚本化的老师用 go_to 玩这些场景，把每个回合记录为一节课：智能体会看到的提示词和正确的工具。在同一块 GPU 上用这些课训练 LoRA，得到一个新的 Ollama 模型，再跑同样的基准测试。",
+  "problem": "本地模型总在同样的地方失败：重复被挡住的那一步，走错门。问题是：课程能否在 8B 模型上解决这些问题，还是它只会死记。",
+  "how": "yellow-teach 运行老师时加入随机偏离（偏离不算课），让模型学会回到正路。用 Unsloth 做 QLoRA 训练，4 位基座，只在回答上计算损失。然后导出 q4_k_m GGUF，创建 qwen3-8b-yellow。route1 不在课程中：它是泛化测试。",
+  "decision": "量化的 8B 训练能装进 16 GB 显卡，并在同一个守护进程下运行（BAR1 峰值 22 MiB）。Ollama 模板在每个回答开头加一个空的思考块，与训练时一致：否则模型会以没学过的格式作答。",
+  "chart": {
+   "title": "每步训练损失（对数刻度）",
+   "x": "步",
+   "y": "损失",
+   "tip": "第 {step} 步 · 损失 {loss}",
+   "table": "查看数值",
+   "note": "平均训练损失 {train}；验证集（{n} 节预留的课）{eval}。",
+   "aria": "对数刻度的训练损失：{steps} 步内从 {from} 降到 {to}。"
+  },
+  "cmp": {
+   "title": "基准测试：训练前后",
+   "before": "{m}（训练前）",
+   "after": "{m}（训练后）",
+   "held": "不在课程中",
+   "cell": "{turns} 回合 · {invalid} 次无效"
+  },
+  "lessons": "{lessons} 节课（训练 {train}，验证 {eval}），{epochs} 轮，LoRA rank {rank}，训练 {min} 分钟。",
+  "result": "有课的地方，课程起了作用：训练后的 8B 是第一个拿到皮卡丘的本地模型，并以更少的回合击败了对手。在不在课程中的 route1 上，它仍然失败。它对着一面墙反复 go_to，直到回合用完，理由照搬课程。接近零的损失印证了这个诊断：它记住了老师，却没学会读地图。下一步：更多样的课程，涵盖其他地图和其他目标。"
  },
  "journal": {
   "title": "项目日志",
@@ -130,5 +233,7 @@
   "notMeasured": "时长未测量",
   "ptOnly": "日志以葡萄牙语撰写，这是项目的工作语言。"
  },
- "footer": { "rom": "本项目不分发任何 ROM：需使用用户自己的游戏卡带转储。宝可梦是任天堂、Creatures 和 GAME FREAK 的商标；这是一个非商业的学习项目。" }
+ "footer": {
+  "rom": "本项目不分发任何 ROM：需使用用户自己的游戏卡带转储。宝可梦是任天堂、Creatures 和 GAME FREAK 的商标；这是一个非商业的学习项目。"
+ }
 }
