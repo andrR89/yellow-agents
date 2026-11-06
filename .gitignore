@@ -1,0 +1,24 @@
+# ROMs and saves are never committed — dump your own cartridge.
+*.gb
+*.gbc
+*.sav
+*.ram
+*.state
+roms/
+saves/
+
+# Generated from pret/pokeyellow by `yellow-fetch-data`
+data/generated/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+dist/
+*.egg-info/
+
+# Local config / secrets
+.env
+runs/
