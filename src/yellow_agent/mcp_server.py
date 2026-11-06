@@ -19,6 +19,8 @@ from pathlib import Path
 from mcp.server.mcpserver import Image, MCPServer
 from mcp.server.mcpserver.exceptions import ToolError
 
+from . import actions
+from .actions import ActionError, ActionResult
 from .emulator import BUTTONS, Emulator
 from .newgame import new_game as _start_new_game
 from .newgame import validate_name
@@ -34,10 +36,13 @@ server = MCPServer(
         "Controls a Pokémon Yellow emulator. Call get_state first: it returns the player's "
         "map, coordinates, party, badges and battle info read from RAM, plus `screen`: "
         "kind ('overworld', 'text' or 'menu'), the visible text lines and the menu item under "
-        "the cursor. On 'text' press a to advance; on 'menu' move with up/down and choose with a. "
-        "Use screenshot only when that is not enough (e.g. where things are on the map). "
-        "Save a state before anything risky. To start over, call new_game with your own name "
-        "as player_name (e.g. CLAUDE)."
+        "the cursor. Prefer the high-level tools: advance_text on 'text' (it reads the whole "
+        "dialogue and stops at the next choice), choose(item) on 'menu', walk(direction, "
+        "tiles) and talk() on 'overworld', use_move(slot) in battle. Each returns `stop`, "
+        "which says why it stopped. press_buttons and wait are there for anything else. "
+        "Use screenshot only when the state is not enough (e.g. where things are on the "
+        "map). Save a state before anything risky. To start over, call new_game with your "
+        "own name as player_name (e.g. CLAUDE)."
     ),
 )
 
@@ -63,19 +68,39 @@ def emu(*, fresh: bool = False) -> Emulator:
     return _emu
 
 
-def _after_action(action: dict) -> dict:
-    """State after an action, recorded when YELLOW_RUNS is set. Returned to the client."""
+def _record(state, action: dict, extra: dict | None = None) -> None:
+    """Record one step when YELLOW_RUNS is set."""
     global _recorder
-    e = emu()
-    state = e.state()
     runs = os.environ.get("YELLOW_RUNS")
-    if runs:
-        if _recorder is None:
-            _recorder = RunRecorder.start(runs, source="mcp", start_state=_last_loaded)
-        _recorder.record(
-            frame=e.frame, state=state, action=action, screenshot_png=e.screenshot_png()
-        )
+    if not runs:
+        return
+    e = emu()
+    if _recorder is None:
+        _recorder = RunRecorder.start(runs, source="mcp", start_state=_last_loaded)
+    _recorder.record(
+        frame=e.frame,
+        state=state,
+        action=action,
+        screenshot_png=e.screenshot_png(),
+        extra=extra or {},
+    )
+
+
+def _after_action(action: dict) -> dict:
+    """State after a raw action (buttons, wait, load), recorded. Returned to the client."""
+    state = emu().state()
+    _record(state, action)
     return state.model_dump(mode="json")
+
+
+def _run_action(fn, *args) -> dict:
+    """Run a high-level action; its ActionResult is recorded and returned."""
+    try:
+        result: ActionResult = fn(emu(), *args)
+    except ActionError as err:
+        raise ToolError(str(err)) from None
+    _record(result.state, result.action, result.extra())
+    return result.model_dump(mode="json")
 
 
 def _saves_dir() -> Path:
@@ -112,6 +137,49 @@ def press_buttons(buttons: list[str]) -> dict:
         raise ToolError(f"invalid buttons: {bad}; valid: {list(BUTTONS)}")
     emu().press_sequence(buttons)  # type: ignore[arg-type]
     return _after_action({"tool": "press_buttons", "buttons": buttons})
+
+
+@server.tool()
+def advance_text() -> dict:
+    """Advance dialogue: presses A each time a text box is ready, through scripted scenes,
+    until a choice (menu), the battle menu or free control. Returns `stop` (why it stopped),
+    `transcript` (everything said) and the state."""
+    return _run_action(actions.advance_text)
+
+
+@server.tool()
+def walk(direction: str, tiles: int = 1) -> dict:
+    """Walk up to `tiles` (1-20) tiles. Stops early when blocked, at a door/warp, when a text box
+    opens, when the game takes control (`script`: call advance_text) or a battle starts."""
+    try:
+        actions.validate_walk(direction, tiles)
+    except ActionError as err:
+        raise ToolError(str(err)) from None
+    return _run_action(actions.walk, direction, tiles)
+
+
+@server.tool()
+def talk() -> dict:
+    """Interact with what the player faces (person, sign, item) and read what it says."""
+    return _run_action(actions.talk)
+
+
+@server.tool()
+def choose(item: str) -> dict:
+    """Pick a menu item by its name as shown on screen (e.g. YES, NO, FIGHT, a move)."""
+    if not item.strip():
+        raise ToolError("item must be the name of a menu item on screen")
+    return _run_action(actions.choose, item)
+
+
+@server.tool()
+def use_move(slot: int) -> dict:
+    """In battle, at FIGHT/PKMN/ITEM/RUN: use the move in `slot` (1-4) and play out the turn."""
+    try:
+        actions.validate_slot(slot)
+    except ActionError as err:
+        raise ToolError(str(err)) from None
+    return _run_action(actions.use_move, slot)
 
 
 @server.tool()
