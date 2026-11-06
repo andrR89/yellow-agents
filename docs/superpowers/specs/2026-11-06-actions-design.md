@@ -42,6 +42,8 @@ class StopReason(StrEnum):
     BLOCKED = "blocked"        # walk: something in the way
     WARPED = "warped"          # walk: the map changed
     TEXT = "text"              # walk: a text box opened (NPC, sign, trainer)
+    SCRIPT = "script"          # walk: the game took control (wJoyIgnore != 0), e.g. Oak
+                               # stopping you; its text comes a few frames later
     BATTLE = "battle"          # walk: a battle started
     DONE = "done"              # walk: all tiles walked
     LIMIT = "limit"            # frame or press cap reached; the state says where we are
@@ -79,8 +81,8 @@ breaks on long text) and the text engine's `hDownArrowBlinkCount1/2` (undocument
   Stops on `menu`, `battle_menu`, `overworld` (input enabled and no text for `STABLE_FRAMES`)
   or `limit`. If called on an overworld with input enabled, returns at once with `frames=0`.
 - **`walk(direction, tiles)`**: `tiles` 1–20. Repeats `Emulator.step`. Stops early on `blocked`,
-  `warped`, `text` (screen became text) or `battle` (`wIsInBattle` became non-zero); otherwise
-  `done`. Only valid when the screen is `overworld`.
+  `warped`, `battle` (`wIsInBattle` became non-zero), `text` (screen became text) or `script`
+  (input locked by a script); otherwise `done`. Only valid when the screen is `overworld`.
 - **`talk()`**: only valid on `overworld`. Presses A, then `advance_text`. If no text opens within
   `STABLE_FRAMES`, stops with `overworld` and an empty transcript (nobody there).
 - **`choose(item)`**: only valid on `menu` / `battle_menu`. `item` must match a menu item visible
