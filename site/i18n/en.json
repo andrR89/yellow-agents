@@ -105,7 +105,7 @@
  },
  "bench": {
   "eyebrow": "Phase 2 · agent loop",
-  "title": "Three models, the same scenarios",
+  "title": "Six models, the same scenarios",
   "lead": "Our own loop: every turn the code reads the state from RAM, builds the prompt with the goal and the last actions, and the model picks one tool. Each model plays under its own name, from the same emulator state.",
   "problem": "Compare models fairly: same start, same tools, same turn limit, and the real cost of every call.",
   "how": "Each scenario's start is scripted with the high-level actions, no save files. A judge reads RAM and decides: battle won (wBattleResult), Pikachu in the party, on ROUTE_1. Every turn is recorded with prompt, response, tokens and the cost reported by OpenRouter.",

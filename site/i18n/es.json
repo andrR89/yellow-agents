@@ -105,7 +105,7 @@
  },
  "bench": {
   "eyebrow": "Fase 2 · bucle del agente",
-  "title": "Tres modelos, los mismos escenarios",
+  "title": "Seis modelos, los mismos escenarios",
   "lead": "Nuestro propio bucle: en cada turno el código lee el estado de la RAM, arma el prompt con el objetivo y las últimas acciones, y el modelo elige una herramienta. Cada modelo juega con su propio nombre, desde el mismo estado del emulador.",
   "problem": "Comparar modelos de forma justa: mismo inicio, mismas herramientas, mismo límite de turnos y el costo real de cada llamada.",
   "how": "El inicio de cada escenario se arma por script con las acciones de alto nivel, sin saves. Un juez lee la RAM y decide: batalla ganada (wBattleResult), Pikachu en el equipo, en ROUTE_1. Cada turno queda grabado con prompt, respuesta, tokens y el costo que informa OpenRouter.",

@@ -1,0 +1,1241 @@
+{
+ "run_id": "20261106-211523-route1-ollama-qwen3-8b",
+ "source": "eval",
+ "player_name": "QWEN",
+ "rival_name": "GEMINI",
+ "started_at": "2026-11-06T21:15:32.514227+00:00",
+ "git_commit": "224eb1a",
+ "start_frame": 18356,
+ "total_frames": 18356,
+ "actions": {
+  "walk": 40
+ },
+ "wait_frames": 0,
+ "start_state": "route1",
+ "notes": {
+  "model": "ollama:qwen3:8b",
+  "scenario": "route1",
+  "goal": "You are in Professor Oak's lab after your first battle with GEMINI. Leave the lab: the exit is at the bottom of the room (x=4, y=11). Outside, the lab blocks the way north: walk left to x=9, north to y=2, right to x=10, then north onto ROUTE_1. Done when you are on ROUTE_1."
+ },
+ "cost_usd": 0.0,
+ "milestones": [
+  {
+   "name": "oaks_lab",
+   "frame": 18356,
+   "step": 0,
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6
+  },
+  {
+   "name": "got_pikachu",
+   "frame": 18356,
+   "step": 0,
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6
+  }
+ ],
+ "steps": [
+  {
+   "index": 0,
+   "frame": 18356,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 5
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000000.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1054,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 1,
+   "frame": 18446,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 5
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 11,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000001.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1096,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 2,
+   "frame": 18463,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 5
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000002.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1139,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 3,
+   "frame": 18553,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 5
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000003.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1181,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 4,
+   "frame": 18570,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 5
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000004.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1221,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 5,
+   "frame": 18661,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 5
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 11,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000005.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1262,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 6,
+   "frame": 18678,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 5
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000006.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1305,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 7,
+   "frame": 18768,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 5
+   },
+   "map_name": "OAKS_LAB",
+   "x": 5,
+   "y": 6,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000007.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1347,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 8,
+   "frame": 18804,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 6,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000008.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1387,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 9,
+   "frame": 18897,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 5
+   },
+   "map_name": "OAKS_LAB",
+   "x": 4,
+   "y": 11,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000009.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1388,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 10,
+   "frame": 18950,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 2,
+   "y": 11,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000010.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1390,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 11,
+   "frame": 18967,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 5
+   },
+   "map_name": "OAKS_LAB",
+   "x": 2,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000011.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1391,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 12,
+   "frame": 18984,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 5
+   },
+   "map_name": "OAKS_LAB",
+   "x": 2,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000012.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1393,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 13,
+   "frame": 19001,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 5
+   },
+   "map_name": "OAKS_LAB",
+   "x": 2,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000013.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1395,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 14,
+   "frame": 19018,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 5
+   },
+   "map_name": "OAKS_LAB",
+   "x": 2,
+   "y": 11,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000014.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1396,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 15,
+   "frame": 19035,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 2,
+   "y": 11,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000015.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1397,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 16,
+   "frame": 19052,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 2,
+   "y": 11,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000016.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1399,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 17,
+   "frame": 19104,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 11,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000017.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1401,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 18,
+   "frame": 19175,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 5
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 8,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000018.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1401,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 19,
+   "frame": 19192,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 5
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 8,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000019.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1399,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 20,
+   "frame": 19209,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 8,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000020.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1398,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 21,
+   "frame": 19226,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 8,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000021.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1397,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 22,
+   "frame": 19243,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 5
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 8,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000022.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1396,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 23,
+   "frame": 19260,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 5
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 8,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000023.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1395,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 24,
+   "frame": 19277,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 8,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000024.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1394,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 25,
+   "frame": 19294,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 8,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000025.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1393,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 26,
+   "frame": 19311,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 8,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000026.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1392,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 27,
+   "frame": 19328,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 8,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000027.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1392,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 28,
+   "frame": 19345,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 8,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000028.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1392,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 29,
+   "frame": 19362,
+   "action": {
+    "tool": "walk",
+    "direction": "up",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 8,
+   "facing": "up",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000029.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1392,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 30,
+   "frame": 19379,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 8,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000030.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1392,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 31,
+   "frame": 19396,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 2
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 8,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000031.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1392,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 32,
+   "frame": 19434,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 2
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 10,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000032.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1392,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 33,
+   "frame": 19455,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 11,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000033.png",
+   "stop": "done",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1394,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 34,
+   "frame": 19472,
+   "action": {
+    "tool": "walk",
+    "direction": "down",
+    "tiles": 1
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 11,
+   "facing": "down",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000034.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1395,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 35,
+   "frame": 19489,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 11,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000035.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1396,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 36,
+   "frame": 19506,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 11,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000036.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1397,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 37,
+   "frame": 19523,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 11,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000037.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1398,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 38,
+   "frame": 19540,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 11,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000038.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1399,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  },
+  {
+   "index": 39,
+   "frame": 19557,
+   "action": {
+    "tool": "walk",
+    "direction": "left",
+    "tiles": 3
+   },
+   "map_name": "OAKS_LAB",
+   "x": 0,
+   "y": 11,
+   "facing": "left",
+   "screen": {
+    "kind": "overworld",
+    "lines": [],
+    "cursor": null
+   },
+   "party": [
+    "PIKACHU Lv6"
+   ],
+   "battle": "none",
+   "screenshot": "media/runs/20261106-211523-route1-ollama-qwen3-8b/000039.png",
+   "stop": "blocked",
+   "error": null,
+   "model": "ollama:qwen3:8b",
+   "said": null,
+   "input_tokens": 1400,
+   "output_tokens": 25,
+   "cost_usd": 0.0
+  }
+ ]
+}
