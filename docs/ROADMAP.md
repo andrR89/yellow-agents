@@ -88,9 +88,9 @@ Planned interactive pieces:
       real cost per call from OpenRouter, spend cap per run and per bench)
 - [x] Scenario runner: scripted start (no save files), N turns, a RAM judge (`scenarios.py`:
       `rival_battle`, `pikachu`, `route1`)
-- [x] Benchmark on 3 scenarios (`yellow-bench`, site section): Claude Haiku 5.5 vs GPT-5.6 Luna.
-      Ollama left out (the local model froze the machine: GPU shared with the desktop); Sonnet 5.5
-      not run (OpenRouter credits ran out)
+- [x] Benchmark on 3 scenarios (`yellow-bench`, site section): Claude Haiku 5.5 vs GPT-5.6 Luna
+      vs local qwen3:4b-instruct (Ollama, under `yellow-gpu-guard`, session 6); Sonnet 5.5 not run
+      (OpenRouter credits ran out)
 
 **Milestone:** beat the rival's Eevee in Oak's lab, unattended. *(Reached in session 5 by Claude Haiku 5.5 and GPT-5.6 Luna.)*
 

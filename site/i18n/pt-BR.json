@@ -105,11 +105,11 @@
  },
  "bench": {
   "eyebrow": "Fase 2 · loop do agente",
-  "title": "Dois modelos, os mesmos cenários",
+  "title": "Três modelos, os mesmos cenários",
   "lead": "Nosso próprio loop: a cada turno o código lê o estado da RAM, monta o prompt com o objetivo e as últimas ações, e o modelo escolhe uma ferramenta. Cada modelo joga com o próprio nome, a partir do mesmo estado do emulador.",
   "problem": "Comparar modelos de forma justa: mesmo início, mesmas ferramentas, mesmo limite de turnos, e o custo real de cada chamada.",
   "how": "O início de cada cenário é montado por script com as ações de alto nível, sem save. Um juiz lê a RAM e decide: venceu a batalha (wBattleResult), tem o Pikachu, chegou à ROUTE_1. Cada turno fica gravado com prompt, resposta, tokens e custo informado pelo OpenRouter.",
-  "decision": "O prompt é refeito a cada turno, com o estado e as 8 últimas ações, em vez de uma conversa que cresce: o custo por turno fica estável e qualquer modelo vê a mesma coisa. O modelo local ficou de fora: a GPU dele é a mesma do desktop e travou a máquina.",
+  "decision": "O prompt é refeito a cada turno, com o estado e as 8 últimas ações, em vez de uma conversa que cresce: o custo por turno fica estável e qualquer modelo vê a mesma coisa. O modelo local (qwen3:4b-instruct) roda na GPU sob um vigia que descarrega o modelo se a memória mapeada da placa (BAR1, só 256 MiB nesta máquina) passar de 200 MiB: sem ele, a GPU travou o desktop três vezes.",
   "col": {"scenario": "Cenário"},
   "scenario": {"rival_battle": "Vencer o GEMINI", "pikachu": "Jogo novo → Pikachu", "route1": "Laboratório → Route 1"},
   "stop": {"success": "conseguiu", "failure": "perdeu", "max_turns": "sem turnos", "budget": "sem verba", "model_error": "erro do modelo"},

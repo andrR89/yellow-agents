@@ -105,11 +105,11 @@
  },
  "bench": {
   "eyebrow": "Phase 2 · agent loop",
-  "title": "Two models, the same scenarios",
+  "title": "Three models, the same scenarios",
   "lead": "Our own loop: every turn the code reads the state from RAM, builds the prompt with the goal and the last actions, and the model picks one tool. Each model plays under its own name, from the same emulator state.",
   "problem": "Compare models fairly: same start, same tools, same turn limit, and the real cost of every call.",
   "how": "Each scenario's start is scripted with the high-level actions, no save files. A judge reads RAM and decides: battle won (wBattleResult), Pikachu in the party, on ROUTE_1. Every turn is recorded with prompt, response, tokens and the cost reported by OpenRouter.",
-  "decision": "The prompt is rebuilt every turn from the state and the last 8 actions instead of a growing conversation: cost per turn stays flat and every model sees the same thing. The local model was left out: its GPU is the desktop's, and it froze the machine.",
+  "decision": "The prompt is rebuilt every turn from the state and the last 8 actions instead of a growing conversation: cost per turn stays flat and every model sees the same thing. The local model (qwen3:4b-instruct) runs on the GPU under a watchdog that unloads it if the card's mapped memory (BAR1, only 256 MiB on this machine) goes past 200 MiB: without it, the GPU froze the desktop three times.",
   "col": {"scenario": "Scenario"},
   "scenario": {"rival_battle": "Beat GEMINI", "pikachu": "New game → Pikachu", "route1": "Lab → Route 1"},
   "stop": {"success": "done", "failure": "lost", "max_turns": "out of turns", "budget": "out of budget", "model_error": "model error"},
