@@ -28,7 +28,7 @@ def test_overworld_state(memory, symbols, gamedata):
     memory.poke(s.addr("wCurMap"), [0x28])
     memory.poke(s.addr("wXCoord"), [5])
     memory.poke(s.addr("wYCoord"), [3])
-    memory.poke(s.addr("wPlayerDirection"), [8])
+    memory.poke(s.addr("wSpritePlayerStateData1FacingDirection"), [0x04])  # up
     memory.poke(s.addr("wPlayerMoney"), [0x00, 0x30, 0x00])  # BCD 3000
     memory.poke(s.addr("wObtainedBadges"), [0b0000_0001])
     memory.poke(s.addr("wPikachuHappiness"), [90])
@@ -83,3 +83,12 @@ def test_helpers():
     assert decode_status(0) == "ok"
     assert decode_status(0b011) == "asleep"
     assert decode_status(1 << 6) == "paralyzed"
+
+
+def test_empty_battle_slot_is_none(memory, symbols, gamedata):
+    # Oak's scripted Pikachu catch: a wild battle where the player has no Pokémon out.
+    memory.poke(symbols.addr("wIsInBattle"), [1])
+    memory.poke(symbols.addr("wEnemyMon"), [0x54])
+    battle = StateReader(memory.read, symbols, gamedata).battle()
+    assert battle.player_mon is None
+    assert battle.enemy_mon is not None and battle.enemy_mon.species == "PIKACHU"

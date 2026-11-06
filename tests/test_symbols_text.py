@@ -7,7 +7,7 @@ from yellow_agent.text import decode, encode
 def test_parse_symbols(symbols):
     assert symbols.addr("wCurMap") == 0xD35D
     assert "wPartyMons" in symbols
-    assert len(symbols) == 16
+    assert len(symbols) == 20
 
 
 def test_missing_symbol_has_helpful_error(symbols):

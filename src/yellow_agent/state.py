@@ -15,7 +15,7 @@ from pydantic import BaseModel
 
 from .gamedata import GameData
 from .symbols import SymbolTable
-from .text import decode
+from .text import BOX_TILES, CURSOR, CURSOR_IDLE, MORE_TEXT, decode, glyph
 
 ReadFn = Callable[[int, int], list[int]]
 
@@ -32,7 +32,21 @@ BM_SPECIES, BM_HP, BM_STATUS, BM_TYPE1, BM_TYPE2 = 0x00, 0x01, 0x04, 0x05, 0x06
 BM_MOVES, BM_LEVEL, BM_MAXHP, BM_PP = 0x08, 0x0E, 0x0F, 0x19
 
 BADGES = ["BOULDER", "CASCADE", "THUNDER", "RAINBOW", "SOUL", "MARSH", "VOLCANO", "EARTH"]
-DIRECTIONS = {1: "right", 2: "left", 4: "down", 8: "up"}
+# SPRITE_FACING_* (constants/sprite_data_constants.asm). Read from the player's sprite
+# (wSpritePlayerStateData1FacingDirection) because wPlayerDirection stays 0 until the first step
+# after loading a save.
+FACING = {0x00: "down", 0x04: "up", 0x08: "left", 0x0C: "right"}
+
+# wTileMap: 20x18 background tile buffer (SCREEN_WIDTH x SCREEN_HEIGHT, constants/gfx_constants.asm)
+SCREEN_COLS, SCREEN_ROWS = 20, 18
+BOX_TOP_LEFT, BOX_BOTTOM_RIGHT = 0x79, 0x7E
+
+
+class ScreenKind(StrEnum):
+    OVERWORLD = "overworld"  # free to walk
+    TEXT = "text"  # dialogue / message box: press A to advance
+    MENU = "menu"  # a ▶ cursor is on screen: move it, A to choose, B to back out
+    CUTSCENE = "cutscene"  # title, intro, transitions: no player sprite yet; A/Start or wait
 
 
 class BattleKind(StrEnum):
@@ -72,6 +86,12 @@ class Battle(BaseModel):
     enemy_mon: Mon | None = None
 
 
+class Screen(BaseModel):
+    kind: ScreenKind
+    lines: list[str]  # visible text, top to bottom; side-by-side boxes joined with " | "
+    cursor: str | None = None  # menu item under ▶
+
+
 class GameState(BaseModel):
     player_name: str
     rival_name: str
@@ -86,6 +106,7 @@ class GameState(BaseModel):
     pikachu_mood: int
     party: list[Mon]
     battle: Battle
+    screen: Screen
 
 
 def decode_status(byte: int) -> str:
@@ -102,6 +123,50 @@ def decode_bcd(data: list[int]) -> int:
     for byte in data:
         value = value * 100 + (byte >> 4) * 10 + (byte & 0x0F)
     return value
+
+
+def _row_segments(row: list[int]) -> list[str]:
+    """Runs of text in one tile row, split at box borders and non-font tiles."""
+    out: list[str] = []
+    buf = ""
+    for tile in [*row, BOX_TOP_LEFT]:  # sentinel flushes the last run
+        ch = " " if tile in (CURSOR, CURSOR_IDLE, MORE_TEXT) else glyph(tile)
+        if ch is None or tile in BOX_TILES:
+            if text := " ".join(buf.split()):
+                out.append(text)
+            buf = ""
+        else:
+            buf += ch
+    return out
+
+
+def _item_after_cursor(row: list[int]) -> str:
+    """Text right after ▶, up to a border, a non-font tile or a double space."""
+    item = ""
+    for tile in row[row.index(CURSOR) + 1 :]:
+        ch = glyph(tile)
+        if ch is None or tile in BOX_TILES or (ch == " " and item.endswith(" ")):
+            break
+        item += ch
+    return item.strip()
+
+
+def read_screen(tiles: list[int], *, font_loaded: bool, player_loaded: bool) -> Screen:
+    """What is on screen, from wTileMap. Pure function: no emulator needed."""
+    has_box = BOX_TOP_LEFT in tiles and BOX_BOTTOM_RIGHT in tiles
+    if not (font_loaded or has_box):
+        kind = ScreenKind.OVERWORLD if player_loaded else ScreenKind.CUTSCENE
+        return Screen(kind=kind, lines=[])
+    lines: list[str] = []
+    cursor: str | None = None
+    for r in range(SCREEN_ROWS):
+        row = tiles[r * SCREEN_COLS : (r + 1) * SCREEN_COLS]
+        if segments := _row_segments(row):
+            lines.append(" | ".join(segments))
+        if cursor is None and CURSOR in row:
+            cursor = _item_after_cursor(row)
+    kind = ScreenKind.MENU if cursor is not None else ScreenKind.TEXT
+    return Screen(kind=kind, lines=lines, cursor=cursor)
 
 
 class StateReader:
@@ -169,9 +234,15 @@ class StateReader:
             return Battle(kind=battle_kind)
         return Battle(
             kind=battle_kind,
-            player_mon=self._mon(self._sym.addr("wBattleMon"), battle=True),
-            enemy_mon=self._mon(self._sym.addr("wEnemyMon"), battle=True),
+            player_mon=self._battle_mon("wBattleMon"),
+            enemy_mon=self._battle_mon("wEnemyMon"),
         )
+
+    def _battle_mon(self, symbol: str) -> Mon | None:
+        base = self._sym.addr(symbol)
+        if self._u8(base + BM_SPECIES) == 0:  # empty slot (e.g. Oak's scripted catch)
+            return None
+        return self._mon(base, battle=True)
 
     def read(self) -> GameState:
         s = self._sym
@@ -184,11 +255,21 @@ class StateReader:
             map_name=self._data.map_name(map_id),
             x=self._u8(s.addr("wXCoord")),
             y=self._u8(s.addr("wYCoord")),
-            facing=DIRECTIONS.get(self._u8(s.addr("wPlayerDirection")), "unknown"),
+            facing=FACING.get(
+                self._u8(s.addr("wSpritePlayerStateData1FacingDirection")), "unknown"
+            ),
             money=decode_bcd(self._read(s.addr("wPlayerMoney"), 3)),
             badges=[b for i, b in enumerate(BADGES) if badge_bits & (1 << i)],
             pikachu_happiness=self._u8(s.addr("wPikachuHappiness")),
             pikachu_mood=self._u8(s.addr("wPikachuMood")),
             party=self.party(),
             battle=self.battle(),
+            screen=self.screen(),
         )
+
+    def screen(self) -> Screen:
+        tiles = self._read(self._sym.addr("wTileMap"), SCREEN_COLS * SCREEN_ROWS)
+        font_loaded = bool(self._u8(self._sym.addr("wFontLoaded")) & 1)  # bit 0, ram/wram.asm
+        # Player sprite picture is 0 on the title screen and during Oak's intro.
+        player_loaded = self._u8(self._sym.addr("wSpritePlayerStateData1PictureID")) != 0
+        return read_screen(tiles, font_loaded=font_loaded, player_loaded=player_loaded)
