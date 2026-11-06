@@ -2,6 +2,9 @@
 
 An AI agent that plays **Pokémon Yellow** through the [PyBoy](https://github.com/Baekalfen/PyBoy) emulator.
 
+**Final goal: beat the game** (Elite Four + Champion) with no human input.
+**Bonus:** once it can finish, make it fast (speedrun, measured in emulator frames).
+
 It's a study and portfolio project: every module of an applied AI engineering curriculum (LLMs,
 prompting, RAG, MCP, agents, system architecture, fine-tuning, AI for DevOps, security) gets a
 concrete, measurable deliverable here. See [docs/ROADMAP.md](docs/ROADMAP.md).

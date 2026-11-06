@@ -57,6 +57,33 @@ the curriculum modules, so by the end every module has a concrete deliverable.
 - [ ] LoRA (Unsloth) on a 7–8B model on the local 16 GB GPU; compare vs prompting
 - [ ] Prompt injection tests through in-game names; spend cap; audit log; model card
 
-### Phase 7 — Capstone
+### Phase 7 — The rest of the game, badge by badge
+- [ ] One eval scenario per hard section: HMs, Rock Tunnel, Pokémon Tower, Safari Zone,
+      Victory Road, Elite Four
+- [ ] Dashboard: badges, in-game hours, cost, human interventions
+- [ ] **Final goal: Elite Four + Champion with no human input**
+
+### Phase 8 — Capstone
 - [ ] Live/timelapse with dashboard
 - [ ] Write-up: what worked, what didn't, cost per badge per model
+
+## Future ideas (not commitments)
+
+### Speedrun (after beating the game)
+Metric: emulator frames from New Game to the target flag (deterministic, independent of model
+latency). Levels, cheapest first:
+1. Deterministic optimization: extract the route from a winning run, shortest paths with A*,
+   fast text speed, battle animations off. This is the baseline to beat.
+2. Learning between runs (reflection): the planner reads the last run's log and rewrites the plan;
+   plot frames × attempts.
+3. Route search with save states: the LLM proposes variants (e.g. Mankey vs Nidoran for Brock),
+   parallel headless runs score them, keep/mutate the best ("LLM as optimizer").
+4. Frame-level search / RL for RNG manipulation in battles and encounters (TAS-style).
+Extras: behavior cloning of the best runs into the local model; with vs without human route
+knowledge via RAG; auto-updated leaderboard in the README.
+
+### Laya (small local decision model)
+https://brainfunctioncollapse.com/laya — Apache-2.0, ~322M params, returns probabilities for
+typed yes/no questions. Bad with numbers, so not for game decisions. Candidate experiments:
+easy-vs-hard routing (local model vs Claude) and prompt-injection guard, compared against rules
+and an LLM check. Read its SKILL.md fully before installing it.

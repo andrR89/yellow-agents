@@ -67,6 +67,22 @@ Escolhido: **agente jogando Pokémon Yellow no PyBoy**.
 
 ## Metas
 
+**Meta final: zerar o Pokémon Yellow** (Elite Four + Campeão) sem intervenção humana.
+**Bônus ("plus plus"):** depois de zerar, speedrun (ver `ROADMAP.md`, ideias futuras).
+
+Lições de quem já fez (Gemini 2.5 Pro no Blue, GPT-5 e Claude Opus 4.7 no Red):
+- Levam centenas de horas de jogo. O primeiro run do Gemini passou de 800 h, com "pânico do
+  agente" e alucinação de itens. **Custo é o maior risco** → modelo local na maior parte das
+  decisões, Claude só no planejamento e nos casos difíceis, limite de gasto por sessão.
+- Travam em: refazer o Victory Road em vez de voar, não comprar cura, quebra-cabeças de HM.
+- Ler a RAM e usar A* torna o agente bem mais eficiente que um só de visão. Ser transparente no
+  portfólio sobre o que é código e o que é decisão do modelo; dá pra comparar as duas versões.
+- Pontos difíceis do Yellow viram cenários de eval: HMs (Cut/Surf/Strength), Rock Tunnel
+  escura, Pokémon Tower (Silph Scope), Safari Zone, pedras do Victory Road, time pra Elite Four.
+- Progresso medido por badge: badges, horas de jogo, custo e número de intervenções.
+
+Marcos intermediários:
+
 - Fase 1: o Claude Code joga via MCP de um jogo novo até receber o Pikachu.
 - Fase 2: vencer o Eevee do rival no laboratório do Oak, sem intervenção.
 - Fase 5: **Boulder Badge sem intervenção humana**.
