@@ -51,6 +51,12 @@ class SymbolTable:
         except KeyError as exc:
             raise KeyError(f"symbol not found: {name!r} (wrong .sym file?)") from exc
 
+    def bank(self, name: str) -> int:
+        try:
+            return self._symbols[name].bank
+        except KeyError as exc:
+            raise KeyError(f"symbol not found: {name!r} (wrong .sym file?)") from exc
+
     def __contains__(self, name: str) -> bool:
         return name in self._symbols
 

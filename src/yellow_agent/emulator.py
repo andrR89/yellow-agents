@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING, Literal
 from pyboy import PyBoy
 
 from .gamedata import GameData
+from .navigation import MapGrid
 from .state import SCREEN_COLS, SCREEN_ROWS, GameState, Screen, StateReader
 from .symbols import SymbolTable
 
@@ -89,6 +90,73 @@ class Emulator:
 
     def in_battle(self) -> bool:
         return self._u8("wIsInBattle") != 0
+
+    def _u16le(self, symbol: str) -> int:
+        a = self.symbols.addr(symbol)
+        return self.pyboy.memory[a] | (self.pyboy.memory[a + 1] << 8)
+
+    def _rom(self, bank: int, address: int) -> int:
+        """A byte of ROM: bank 0 below 0x4000, the given bank in 0x4000-0x7FFF."""
+        return self.pyboy.memory[address] if address < 0x4000 else self.pyboy.memory[bank, address]
+
+    def map_grid(self) -> MapGrid:
+        """The current map's walkable cells, exits and the people on it (navigation.py)."""
+        from . import navigation as nav
+
+        w, h = self._u8("wCurMapWidth"), self._u8("wCurMapHeight")
+        bank = self._u8("wTilesetBank")
+        blocks_ptr = self._u16le("wTilesetBlocksPtr")
+        # Every tileset's collision list lives in the bank of Overworld_Coll (pret: data/tilesets/
+        # collision_tile_ids.asm), not in wTilesetBank.
+        coll_bank = self.symbols.bank(nav.COLLISION_LABEL)
+        passable = nav.read_collision_list(
+            lambda a: self._rom(coll_bank, a), self._u16le("wTilesetCollisionPtr")
+        )
+        grass = self._u8("wGrassTile")
+        if grass != 0xFF:
+            passable.add(grass)
+        base = self.symbols.addr("wOverworldMap")
+        stride = w + 2 * nav.BORDER_BLOCKS
+        memory = self.pyboy.memory
+
+        def block(bx: int, by: int) -> int:
+            return memory[base + (by + nav.BORDER_BLOCKS) * stride + bx + nav.BORDER_BLOCKS]
+
+        def block_tile(block_id: int, i: int) -> int:
+            return self._rom(bank, blocks_ptr + block_id * nav.BLOCK_TILES**2 + i)
+
+        walkable = nav.walkable_cells(block, w, h, block_tile, passable)
+        exits: list[nav.Exit] = []
+        warps = self.symbols.addr("wWarpEntries")
+        for i in range(self._u8("wNumberOfWarps")):
+            y, x, _, dest = memory[warps + i * nav.WARP_STRUCT : warps + (i + 1) * nav.WARP_STRUCT]
+            to = "outside" if dest == nav.LAST_MAP else self.data.map_name(dest)
+            exits.append(nav.Exit(kind="warp", to=to, x=x, y=y))
+            if 0 <= y < h * 2 and 0 <= x < w * 2:
+                walkable[y][x] = True
+        connections = self._u8("wCurMapConnections")
+        for side, bit, symbol in nav.CONNECTIONS:
+            if connections & (1 << bit):
+                exits.append(
+                    nav.Exit(kind="edge", side=side, to=self.data.map_name(self._u8(symbol)))
+                )
+        people = []
+        data1 = self.symbols.addr("wSpriteStateData1")
+        data2 = self.symbols.addr("wSpriteStateData2")
+        for slot in range(1, nav.SPRITE_SLOTS):
+            s1 = data1 + slot * nav.SPRITE_STRUCT
+            if memory[s1] == 0:  # no picture: empty slot
+                continue
+            pikachu = slot == nav.SPRITE_SLOTS - 1  # drawn its own way: always $FF here
+            if not pikachu and memory[s1 + nav.SPRITE_IMAGE_INDEX] == nav.SPRITE_HIDDEN:
+                continue
+            s2 = data2 + slot * nav.SPRITE_STRUCT
+            px = memory[s2 + nav.SPRITE_MAP_X] - nav.SPRITE_COORD_OFFSET
+            py = memory[s2 + nav.SPRITE_MAP_Y] - nav.SPRITE_COORD_OFFSET
+            if not (0 <= px < w * 2 and 0 <= py < h * 2):  # e.g. Pikachu not on this map yet
+                continue
+            people.append(nav.Person(x=px, y=py, who="pikachu" if pikachu else "person"))
+        return nav.MapGrid(width=w * 2, height=h * 2, walkable=walkable, exits=exits, people=people)
 
     def battle_result(self) -> int:
         """wBattleResult after a battle: 0 won, 1 lost (measured on the rival's battle), 2 draw."""

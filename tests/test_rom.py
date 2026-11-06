@@ -116,3 +116,22 @@ def test_walk_into_a_wall_is_blocked():
     finally:
         e.close()
     assert (r.stop, r.tiles) == (StopReason.BLOCKED, 2)
+
+
+def test_go_to_from_the_bedroom_to_pallet_towns_north_exit():
+    from yellow_agent.actions import StopReason, go_to
+
+    e = Emulator(os.environ["YELLOW_ROM"], sym=SYM, data_dir=DATA)
+    try:
+        new_game(e)
+        stairs = go_to(e, 7, 1)
+        assert stairs.stop is StopReason.WARPED and e.state().map_name == "REDS_HOUSE_1F"
+        door = go_to(e, 3, 7)  # the mat; go_to takes the step out
+        assert door.stop is StopReason.WARPED and e.state().map_name == "PALLET_TOWN"
+        north = go_to(e, 10, 1)
+        s = e.state()
+        assert north.stop is StopReason.DONE and (s.map_name, s.x, s.y) == ("PALLET_TOWN", 10, 1)
+        exits = {x.to for x in e.map_grid().exits}
+        assert "ROUTE_1" in exits and "OAKS_LAB" in exits
+    finally:
+        e.close()

@@ -41,7 +41,8 @@ class StopReason(StrEnum):
     TEXT = "text"  # walk: a text box opened
     SCRIPT = "script"  # walk: the game took control; its text comes a few frames later
     BATTLE = "battle"  # walk: a battle started
-    DONE = "done"  # walk: all tiles walked
+    DONE = "done"  # walk: all tiles walked; go_to: arrived
+    NO_PATH = "no_path"  # go_to: no walkable way there (wall, out of the map, people)
     LIMIT = "limit"  # frame cap reached; the state says where we are
 
 
@@ -79,6 +80,7 @@ class Game(Protocol):
     def wait(self, frames: int) -> None: ...
     def input_enabled(self) -> bool: ...
     def in_battle(self) -> bool: ...
+    def map_grid(self) -> Any: ...  # navigation.MapGrid
 
 
 # -- pure helpers ---------------------------------------------------------------
@@ -394,3 +396,102 @@ def wait(game: Game, frames: int = 60) -> ActionResult:
     start = game.frame
     game.wait(frames)
     return _result(game, {"tool": "wait", "frames": frames}, start, _screen_stop(game), 0, [])
+
+
+# -- go_to: A* on the map's collision grid (navigation.py) --------------------------------
+
+MAX_REPLANS = 3  # someone stepped into the path: plan again
+MAX_COORD = 255
+
+
+def validate_go_to(x: Any, y: Any) -> tuple[int, int]:
+    try:
+        xi, yi = int(x), int(y)
+    except (TypeError, ValueError):
+        raise ActionError("x and y must be integers") from None
+    if not (0 <= xi <= MAX_COORD and 0 <= yi <= MAX_COORD):
+        raise ActionError(f"x and y must be 0-{MAX_COORD}")
+    return xi, yi
+
+
+def _exit_step(grid: Any, goal: tuple[int, int]) -> str | None:
+    """A door on the map's border (house mats, the lab's exit) needs one more step outward."""
+    x, y = goal
+    on_warp = any(e.kind == "warp" and (e.x, e.y) == goal for e in grid.exits)
+    if not on_warp:
+        return None
+    if y == grid.height - 1:
+        return "down"
+    if y == 0:
+        return "up"
+    if x == 0:
+        return "left"
+    if x == grid.width - 1:
+        return "right"
+    return None
+
+
+def go_to(game: Game, x: Any, y: Any) -> ActionResult:
+    """Walk to (x, y) on the current map along the shortest walkable path.
+
+    Stops like walk (warped, text, script, battle). A door on the map's border is walked
+    through. `no_path`: the cell is a wall, outside the map or unreachable."""
+    from .navigation import find_path
+
+    goal = validate_go_to(x, y)
+    _require(game, ScreenKind.OVERWORLD, "go_to")
+    action = {"tool": "go_to", "x": goal[0], "y": goal[1]}
+    start = game.frame
+    moved = presses = 0
+    stop = StopReason.DONE
+    for _ in range(MAX_REPLANS + 1):
+        s = game.state()
+        here = (s.x, s.y)
+        grid = game.map_grid()
+        path = find_path(grid, here, goal)
+        if path is None:
+            stop = StopReason.NO_PATH
+            break
+        if not path:
+            break
+        replan = False
+        for direction in path:
+            result = game.step(direction)
+            presses += 1
+            if result is StepResult.BLOCKED:
+                if not game.input_enabled():
+                    stop = StopReason.SCRIPT
+                    return _result(game, action, start, stop, presses, [], tiles=moved)
+                replan = True  # someone moved into the way
+                break
+            moved += 1
+            if result is StepResult.WARPED:
+                return _result(game, action, start, StopReason.WARPED, presses, [], tiles=moved)
+            if game.in_battle():
+                return _result(game, action, start, StopReason.BATTLE, presses, [], tiles=moved)
+            if game.screen().kind is not ScreenKind.OVERWORLD:
+                return _result(game, action, start, StopReason.TEXT, presses, [], tiles=moved)
+            if not game.input_enabled():
+                return _result(game, action, start, StopReason.SCRIPT, presses, [], tiles=moved)
+        if not replan:
+            break
+    else:
+        stop = StopReason.BLOCKED
+    if stop is StopReason.DONE:
+        s = game.state()
+        if (s.x, s.y) != goal:
+            stop = StopReason.BLOCKED
+        elif (out := _exit_step(game.map_grid(), goal)) is not None:
+            result = game.step(out)
+            presses += 1
+            if result is StepResult.WARPED:
+                stop = StopReason.WARPED
+    if stop in (StopReason.DONE, StopReason.BLOCKED):
+        game.wait(SCRIPT_CHECK_FRAMES)  # a script that starts right after the last step
+        if game.in_battle():
+            stop = StopReason.BATTLE
+        elif game.screen().kind is not ScreenKind.OVERWORLD:
+            stop = StopReason.TEXT
+        elif not game.input_enabled():
+            stop = StopReason.SCRIPT
+    return _result(game, action, start, stop, presses, [], tiles=moved)
