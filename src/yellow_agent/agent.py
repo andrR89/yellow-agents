@@ -209,6 +209,7 @@ class AgentRun:
     invalid_actions: int = 0  # tool calls rejected (bad tool, args, wrong screen)
     no_tool_calls: int = 0  # answers without a tool call
     model_errors: int = 0
+    last_error: str | None = None  # the last failed model call, for the report
     tools: dict[str, int] = field(default_factory=dict)
 
     @property
@@ -242,6 +243,7 @@ def run_agent(
             resp = model.complete(SYSTEM, [Message("user", prompt)], TOOLS, MAX_OUTPUT_TOKENS)
         except Exception as err:  # network, rate limit, provider error: count and retry
             run.model_errors += 1
+            run.last_error = f"{type(err).__name__}: {err}"[:300]
             errors_in_a_row += 1
             history.append(HistoryItem(turn, {"tool": "none"}, f"model call failed: {err}"))
             if errors_in_a_row >= MAX_MODEL_ERRORS:

@@ -55,3 +55,9 @@ def test_openrouter_needs_its_key(monkeypatch):
     monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
     with pytest.raises(ValueError, match="OPENROUTER_API_KEY"):
         load_model("openrouter:anthropic/claude-haiku-5.5")
+
+
+def test_request_without_forcing_a_tool():
+    tools = [ToolSpec(name="talk", description="Talk.", parameters={"type": "object"})]
+    req = build_request("m", "sys", [], tools, 256, provider="openrouter", force_tool=False)
+    assert "tool_choice" not in req and req["tools"]

@@ -25,6 +25,7 @@ def build_request(
     max_tokens: int,
     *,
     provider: str,
+    force_tool: bool = True,
 ) -> dict[str, Any]:
     req: dict[str, Any] = {
         "model": model,
@@ -45,7 +46,7 @@ def build_request(
             }
             for t in tools
         ]
-        if provider != "ollama":  # Ollama's compatible endpoint ignores it
+        if force_tool and provider != "ollama":  # Ollama's compatible endpoint ignores it
             req["tool_choice"] = "required"
     if provider == "openrouter":
         req["extra_body"] = {"usage": {"include": True}}  # real cost per call, in USD
@@ -89,6 +90,7 @@ class OpenAICompatModel:
         self.name = f"{provider}:{model}"
         self._model = model
         self._provider = provider
+        self._force_tool = True
         if provider == "ollama":
             api_key: str | None = "ollama"  # Ollama ignores the key
         elif provider == "openrouter":
@@ -106,9 +108,20 @@ class OpenAICompatModel:
         tools: list[ToolSpec] | None = None,
         max_tokens: int = 1024,
     ) -> ModelResponse:
-        req = build_request(
-            self._model, system, messages, tools, max_tokens, provider=self._provider
-        )
+        import openai
+
+        req = build_request(self._model, system, messages, tools, max_tokens,
+                            provider=self._provider, force_tool=self._force_tool)  # fmt: skip
         start = time.perf_counter()
-        resp = self._client.chat.completions.create(**req)
+        try:
+            resp = self._client.chat.completions.create(**req)
+        except openai.BadRequestError as err:
+            # Some models refuse a forced tool call (claude-sonnet-5.5 via OpenRouter: 'tool_choice:
+            # type "any" is not supported'). Ask once more without it, and remember.
+            if "tool_choice" not in req or "tool_choice" not in str(err.body or err):
+                raise
+            self._force_tool = False
+            req.pop("tool_choice")
+            start = time.perf_counter()
+            resp = self._client.chat.completions.create(**req)
         return parse_response(resp, self.name, time.perf_counter() - start)

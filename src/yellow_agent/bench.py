@@ -43,6 +43,7 @@ class BenchResult(BaseModel):
     invalid_actions: int
     no_tool_calls: int
     model_errors: int
+    last_error: str | None = None
     tools: dict[str, int]
     git_commit: str | None
     started_at: datetime
@@ -109,6 +110,7 @@ def run_one(model_spec: str, scenario_name: str, runs_dir: Path, budget_usd: flo
         invalid_actions=run.invalid_actions,
         no_tool_calls=run.no_tool_calls,
         model_errors=run.model_errors,
+        last_error=run.last_error,
         tools=run.tools,
         git_commit=_git_commit(),
         started_at=started,
@@ -129,7 +131,8 @@ def merge_into_site(results: list[BenchResult], site: Path, runs_dir: Path) -> P
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(merged, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     for r in results:
-        write_replay(runs_dir / r.run_id, site)
+        if r.turns:  # a run with no answered turn has no steps to replay
+            write_replay(runs_dir / r.run_id, site)
     return out
 
 

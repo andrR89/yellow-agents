@@ -109,7 +109,8 @@ SCENARIOS: dict[str, Scenario] = {
             goal=(
                 "A new game: you are in your bedroom, on the 2nd floor of your house in Pallet "
                 "Town. The stairs are at the top right of the bedroom (x=7, y=1). Downstairs, "
-                "the front door is at the bottom of the room (x=3, y=7). In Pallet Town, walk "
+                "the front door is the mat at the bottom of the room (x=3, y=7): stand on it and "
+                "walk down to go outside. In Pallet Town, walk "
                 "north to the top edge of town (x=10-11, y=0) and into the tall grass: "
                 "Professor Oak stops you and takes you to his lab; let the scene play. When you "
                 "can move in the lab, take the Poké Ball on the table to your right: stand right "
