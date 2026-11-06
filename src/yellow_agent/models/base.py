@@ -48,6 +48,7 @@ class ModelResponse:
     usage: Usage = field(default_factory=Usage)
     model: str = ""
     latency_s: float = 0.0
+    cost_usd: float = 0.0  # as billed by the provider (OpenRouter reports it); 0 for local
 
 
 class ChatModel(Protocol):

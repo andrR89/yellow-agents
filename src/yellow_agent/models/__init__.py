@@ -1,4 +1,5 @@
-"""Model factory: "claude:<model>", "openai:<model>" or "ollama:<model>"."""
+"""Model factory: "claude:<model>", "openai:<model>", "openrouter:<vendor/model>" or
+"ollama:<model>"."""
 
 from __future__ import annotations
 
@@ -22,9 +23,13 @@ def load_model(spec: str) -> ChatModel:
         from .openai_compat import OpenAICompatModel
 
         return OpenAICompatModel(model, provider="openai")
+    if provider == "openrouter":
+        from .openai_compat import OPENROUTER_BASE_URL, OpenAICompatModel
+
+        return OpenAICompatModel(model, base_url=OPENROUTER_BASE_URL, provider="openrouter")
     if provider == "ollama":
         from .openai_compat import OLLAMA_BASE_URL, OpenAICompatModel
 
         base = os.environ.get("OLLAMA_BASE_URL", OLLAMA_BASE_URL)
         return OpenAICompatModel(model, base_url=base, provider="ollama")
-    raise ValueError(f"unknown provider {provider!r} (use claude, openai or ollama)")
+    raise ValueError(f"unknown provider {provider!r} (use claude, openai, openrouter or ollama)")
