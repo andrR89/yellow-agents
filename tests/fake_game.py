@@ -30,6 +30,7 @@ class Phase:
     tiles: list[int] = field(default_factory=lambda: list(BLANK))
     input_enabled: bool = True
     frames: int | None = None  # None: ends when A is pressed
+    ignore_a: int = 0  # A presses dropped first (pressed while the menu was still drawing)
 
 
 def text(*lines: str, arrow: bool = True) -> Phase:
@@ -98,7 +99,9 @@ class FakeGame:
         self.pressed.append(button)
         p = self.phase
         waiting = p.frames is None and p.screen.kind in (ScreenKind.TEXT, ScreenKind.MENU)
-        if button == "a" and waiting:  # A answers a text box or picks the menu item
+        if button == "a" and waiting and p.ignore_a:
+            p.ignore_a -= 1
+        elif button == "a" and waiting:  # A answers a text box or picks the menu item
             self._next()
         self._advance(PRESS_FRAMES)
 

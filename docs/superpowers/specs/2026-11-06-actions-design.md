@@ -79,8 +79,10 @@ breaks on long text) and the text engine's `hDownArrowBlinkCount1/2` (undocument
   append new lines to the transcript. Between text boxes, scripted scenes (Oak walking, the
   rival grabbing the ball) show the overworld while the game ignores input: as long as
   `wJoyIgnore != 0` (the signal `baseline.py` already uses), keep waiting instead of stopping.
-  Stops on `menu`, `battle_menu`, `overworld` (input enabled and no text for `STABLE_FRAMES`)
-  or `limit`. If called on an overworld with input enabled, returns at once with `frames=0`.
+  Stops on `menu`, `battle_menu`, `overworld` (input enabled, no battle, nothing changing for `QUIET_FRAMES`)
+  or `limit`. Called on a quiet overworld, it waits `QUIET_FRAMES` (90) for a scene to go on
+  before stopping with `overworld`: the rival walks up to battle for ~300 frames with input
+  looking free (session 4).
 - **`walk(direction, tiles)`**: `tiles` 1–20. Repeats `Emulator.step`. Stops early on `blocked`,
   `warped`, `battle` (`wIsInBattle` became non-zero), `text` (screen became text) or `script`
   (input locked by a script); otherwise `done`. Only valid when the screen is `overworld`.

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from tests.fake_game import FakeGame, menu, overworld, text
+from tests.fake_game import FakeGame, Phase, menu, overworld, text
 from yellow_agent.actions import (
     QUIET_FRAMES,
     STABLE_FRAMES,
@@ -132,9 +132,23 @@ def test_text_without_arrow_is_pressed_once_it_stays_still():
     assert r.frames >= STABLE_FRAMES + QUIET_FRAMES
 
 
-def test_advance_text_on_free_overworld_returns_at_once():
+def test_advance_text_on_free_overworld_waits_for_a_scene_then_stops():
     r = advance_text(FakeGame([overworld()]))
-    assert (r.stop, r.frames, r.presses) == (StopReason.OVERWORLD, 0, 0)
+    assert (r.stop, r.presses) == (StopReason.OVERWORLD, 0)
+    assert QUIET_FRAMES <= r.frames <= QUIET_FRAMES + 2
+
+
+def test_advance_text_catches_a_battle_that_starts_after_a_long_pause():
+    # Rival in Oak's lab: ~213 quiet frames, then wIsInBattle, then the battle text.
+    game = FakeGame(
+        [
+            overworld(frames=60),
+            text("GEMINI wants", "to fight!"),
+            menu("EEVEE", "FIGHT PKMN", "ITEM RUN", cursor="FIGHT"),
+        ],
+        in_battle=True,
+    )
+    assert advance_text(game).stop is StopReason.BATTLE_MENU
 
 
 def test_advance_text_stops_at_the_frame_cap():
@@ -291,3 +305,30 @@ def test_choose_on_the_battle_grid_compares_places_not_text():
     game = FakeGame([grid, text("OK"), overworld()], in_battle=True)
     choose(game, "FIGHT")
     assert game.pressed[0] == "a"
+
+
+def test_choose_presses_a_again_when_the_menu_ignored_it():
+    # Session 4: the A on THUNDERSHOCK landed while the move list was drawing and was dropped.
+    moves = menu("THUNDERSHOCK", "GROWL", "-", cursor="THUNDERSHOCK")
+    moves.ignore_a = 1
+    game = FakeGame([moves, text("PIKACHU used", "THUNDERSHOCK!"), overworld()])
+    r = choose(game, "THUNDERSHOCK")
+    assert game.pressed[:2] == ["a", "a"] and r.stop is StopReason.OVERWORLD
+
+
+def test_battle_text_without_arrow_is_left_to_move_on_by_itself():
+    assert not text_ready(BLANK, stable_frames=STABLE_FRAMES * 3, in_battle=True)
+    assert text_ready(_tiles_with_arrow(), stable_frames=0, in_battle=True)
+
+
+def test_transcript_keeps_battle_text_that_moves_on_by_itself():
+    game = FakeGame(
+        [
+            Phase(Screen(kind=ScreenKind.TEXT, lines=["EEVEE used", "TACKLE!"]), frames=40),
+            menu("EEVEE", "FIGHT PKMN", "ITEM RUN", cursor="FIGHT"),
+        ],
+        in_battle=True,
+    )
+    r = advance_text(game)
+    assert r.stop is StopReason.BATTLE_MENU and game.pressed == []
+    assert r.transcript[:2] == ["EEVEE used", "TACKLE!"]

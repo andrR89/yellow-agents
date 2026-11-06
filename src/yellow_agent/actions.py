@@ -28,6 +28,7 @@ SETTLE_MAX_FRAMES = 90
 # A map script (Oak in the grass) locks input 1 frame after the step that triggers it
 # (measured); walk looks a few frames past its last step so it can report `script`.
 SCRIPT_CHECK_FRAMES = 4
+A_RETRIES = 2  # choose: extra A presses when the menu did not react (session 4, move list)
 
 
 class StopReason(StrEnum):
@@ -82,9 +83,14 @@ class Game(Protocol):
 # -- pure helpers ---------------------------------------------------------------
 
 
-def text_ready(tiles: list[int], stable_frames: int) -> bool:
-    """A can be pressed: ▼ is in the text box, or the screen stopped changing."""
-    return MORE_TEXT in tiles[TEXT_BOX_FIRST_ROW * SCREEN_COLS :] or stable_frames >= STABLE_FRAMES
+def text_ready(tiles: list[int], stable_frames: int, in_battle: bool = False) -> bool:
+    """A can be pressed: ▼ is in the text box, or (outside battle) the screen stopped changing.
+
+    In battle, text without ▼ moves on by itself; an A pressed then lands on the battle menu
+    that comes next and picks FIGHT (session 4)."""
+    if MORE_TEXT in tiles[TEXT_BOX_FIRST_ROW * SCREEN_COLS :]:
+        return True
+    return not in_battle and stable_frames >= STABLE_FRAMES
 
 
 def is_battle_menu(screen: Screen, in_battle: bool) -> bool:
@@ -152,13 +158,15 @@ def _advance(game: Game, max_frames: int) -> tuple[StopReason, int, list[str]]:
                 return StopReason.BATTLE_MENU, presses, transcript
             return StopReason.MENU, presses, transcript
         if screen.kind is ScreenKind.TEXT:
-            if text_ready(tiles, stable):
+            if stable == SETTLE_STABLE_FRAMES:
+                _note(transcript, screen.lines)  # text that moves on by itself (battle)
+            if text_ready(tiles, stable, game.in_battle()):
                 _note(transcript, screen.lines)
                 game.press("a")
                 presses += 1
                 prev, stable = None, 0
                 continue
-        elif game.input_enabled() and stable >= QUIET_FRAMES:
+        elif game.input_enabled() and not game.in_battle() and stable >= QUIET_FRAMES:
             return StopReason.OVERWORLD, presses, transcript
         game.wait(1)
     return StopReason.LIMIT, presses, transcript
@@ -173,12 +181,14 @@ def _result(game: Game, action: dict[str, Any], start: int, stop: StopReason, pr
 
 
 def advance_text(game: Game, max_frames: int = MAX_ADVANCE_FRAMES) -> ActionResult:
-    """Advance dialogue until a choice, the battle menu or free control. Returns the transcript."""
+    """Advance dialogue until a choice, the battle menu or free control. Returns the transcript.
+
+    Called on a quiet overworld, it waits QUIET_FRAMES for a scene to continue before saying
+    `overworld`, so repeated calls get through script pauses."""
     action = {"tool": "advance_text"}
     start = game.frame
-    screen = game.screen()
-    if screen.kind is ScreenKind.OVERWORLD and game.input_enabled():
-        return _result(game, action, start, StopReason.OVERWORLD, 0, [])
+    # On a quiet overworld this waits QUIET_FRAMES for a scene to go on: some scripts leave
+    # input looking free for hundreds of frames (the rival walking up to battle: ~300).
     stop, presses, transcript = _advance(game, max_frames)
     return _result(game, action, start, stop, presses, transcript)
 
@@ -290,9 +300,13 @@ def _choose(game: Game, item: str) -> tuple[StopReason, int, list[str]]:
         presses += 1
     else:
         raise ActionError(f"cursor did not reach {item!r} in {MAX_CURSOR_MOVES} moves")
-    game.press("a")
-    presses += 1
-    _settle(game)
+    before = game.screen()
+    for _ in range(1 + A_RETRIES):
+        game.press("a")
+        presses += 1
+        _settle(game)
+        if game.screen() != before:
+            break  # an A pressed while the menu is still drawing is dropped: press again
     stop, more, transcript = _advance(game, MAX_ADVANCE_FRAMES)
     return stop, presses + more, transcript
 
